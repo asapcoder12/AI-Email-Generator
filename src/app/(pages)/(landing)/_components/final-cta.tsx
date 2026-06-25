@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
@@ -13,8 +14,15 @@ export function FinalCTA({ isAuthenticated = false }: FinalCTAProps) {
 
   return (
     <section className="bg-background px-5 pb-16 pt-6 sm:px-8 sm:pb-20 lg:px-10">
-      <div className="teal-cta-pattern mx-auto max-w-6xl overflow-hidden rounded-xl px-6 py-10 text-white sm:px-10 lg:px-16 lg:py-12">
-        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-xl bg-teal px-6 py-10 text-white sm:px-10 lg:px-16 lg:py-12">
+        <Image
+          alt=""
+          className="object-cover"
+          fill
+          sizes="(min-width: 1024px) 1152px, 100vw"
+          src="/images/cta-background.png"
+        />
+        <div className="relative z-10 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
             <p className="text-sm font-semibold uppercase text-white/75">
               Ready to write faster?

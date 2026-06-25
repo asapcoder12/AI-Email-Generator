@@ -29,12 +29,12 @@ export function MarketingHeader({
 }: MarketingHeaderProps) {
   return (
     <header className="relative z-30 text-white">
-      <nav className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10">
+      <nav className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10">
         <Link
-          className="flex min-h-11 items-center gap-3 text-[17px] font-semibold text-white"
+          className="flex min-h-11 items-center gap-3 text-base font-semibold text-white"
           href="/"
         >
-          <span className="flex size-9 items-center justify-center rounded-lg bg-accent text-primary shadow-[0_8px_22px_rgba(201,180,250,0.34)]">
+          <span className="flex size-8 items-center justify-center rounded-lg bg-accent text-primary">
             <Mail className="size-4" aria-hidden="true" />
           </span>
           <span>AI Email Generator</span>
@@ -57,7 +57,7 @@ export function MarketingHeader({
             <>
               <Button
                 asChild
-                className="h-11 rounded-lg px-6 shadow-[0_14px_32px_rgba(201,180,250,0.28)]"
+                className="h-10 rounded-lg px-6"
                 variant="hero"
               >
                 <Link href="/dashboard">
@@ -80,7 +80,7 @@ export function MarketingHeader({
               </Link>
               <Button
                 asChild
-                className="h-11 rounded-lg px-6 shadow-[0_14px_32px_rgba(201,180,250,0.28)]"
+                className="h-10 rounded-lg px-6"
                 variant="hero"
               >
                 <Link href="/signup">Get started free</Link>

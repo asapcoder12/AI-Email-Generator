@@ -1,4 +1,5 @@
 import { MailCheck } from "lucide-react";
+import Image from "next/image";
 import {
   Accordion,
   AccordionContent,
@@ -103,10 +104,16 @@ export function FAQSection() {
           </dl>
 
           <div className="grid gap-5 pt-6 sm:grid-cols-[56px_minmax(0,1fr)]">
-            <div
-              aria-hidden="true"
-              className="size-14 rounded-full bg-[radial-gradient(circle_at_42%_34%,#fafaf8_0_12%,transparent_13%),linear-gradient(135deg,#c9b4fa,#155555)] ring-1 ring-border"
-            />
+            <div className="relative size-14 overflow-hidden rounded-full ring-1 ring-border">
+              <Image
+                alt="Jordan Lee"
+                className="object-cover"
+                fill
+                loading="eager"
+                sizes="56px"
+                src="/images/avatar.png"
+              />
+            </div>
             <figure>
               <blockquote className="text-sm leading-6 text-foreground">
                 &quot;It&apos;s like having a first draft on demand. Our team

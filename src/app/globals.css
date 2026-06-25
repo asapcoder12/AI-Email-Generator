@@ -21,7 +21,6 @@
   --input: #e8e4dd;
   --ring: #c9b4fa;
   --teal: #0e3030;
-  --teal-mid: #155555;
   --teal-foreground: #ffffff;
   --primary-hover: #0e0c1f;
   --secondary-hover: #f1eee7;
@@ -50,7 +49,6 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-teal: var(--teal);
-  --color-teal-mid: var(--teal-mid);
   --color-teal-foreground: var(--teal-foreground);
   --color-primary-hover: var(--primary-hover);
   --color-secondary-hover: var(--secondary-hover);
@@ -123,44 +121,6 @@ select {
       color-mix(in srgb, var(--primary-foreground) 8%, transparent),
       transparent 28%),
     linear-gradient(115deg, var(--primary-hover) 0%, var(--primary) 48%, #241f52 100%);
-}
-
-.portrait-placeholder {
-  background:
-    radial-gradient(circle at 68% 26%, rgba(255, 255, 255, 0.22), transparent 10%),
-    radial-gradient(circle at 72% 72%, rgba(238, 126, 133, 0.52), transparent 24%),
-    linear-gradient(145deg, rgba(14, 12, 31, 0.18) 0%, rgba(107, 83, 180, 0.68) 48%, rgba(201, 180, 250, 0.76) 100%);
-}
-
-.portrait-placeholder::before {
-  position: absolute;
-  right: 8%;
-  bottom: -12%;
-  width: 46%;
-  height: 70%;
-  border-radius: 46% 46% 0 0;
-  background:
-    radial-gradient(circle at 54% 20%, rgba(250, 250, 248, 0.38) 0 19%, transparent 20%),
-    linear-gradient(180deg, rgba(24, 21, 48, 0.72), rgba(14, 12, 31, 0.94));
-  content: "";
-  filter: blur(0.2px);
-}
-
-.portrait-placeholder::after {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(14, 12, 31, 0.72) 0%, transparent 34%),
-    linear-gradient(180deg, transparent 62%, rgba(14, 12, 31, 0.72) 100%);
-  content: "";
-}
-
-.teal-cta-pattern {
-  background:
-    radial-gradient(circle at 82% 62%, rgba(255, 255, 255, 0.23) 0 1px, transparent 1px),
-    radial-gradient(circle at 8% 12%, color-mix(in srgb, var(--teal-mid) 42%, transparent), transparent 30%),
-    linear-gradient(135deg, var(--teal) 0%, #082424 100%);
-  background-size: 18px 18px, 100% 100%, 100% 100%;
 }
 
 .animate-enter-delay-1 {

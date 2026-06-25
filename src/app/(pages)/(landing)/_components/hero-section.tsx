@@ -21,57 +21,53 @@ export function HeroSection({ isAuthenticated = false }: HeroSectionProps) {
   return (
     <section
       aria-labelledby="landing-hero-title"
-      className="relative z-10 mx-auto grid w-full max-w-7xl gap-12 px-5 pb-16 pt-10 sm:px-8 sm:pb-20 sm:pt-16 lg:grid-cols-2 lg:items-center lg:px-10 lg:pb-0 lg:pt-12"
+      className="relative z-10 mx-auto grid w-full max-w-7xl gap-9 px-5 pb-14 pt-10 sm:px-8 sm:pb-18 sm:pt-14 lg:min-h-[690px] lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)] lg:items-start lg:gap-0 lg:px-10 lg:pb-10 lg:pt-16"
     >
-      <div className="max-w-[640px] pb-0 lg:pb-24">
-        <p className="flex items-center gap-3 text-sm font-semibold text-accent sm:text-base">
+      <div className="max-w-[540px]">
+        <p className="flex items-center gap-3 text-sm font-semibold text-accent">
           <Sparkles className="size-5" aria-hidden="true" />
           Write better. Send faster.
         </p>
         <h1
-          className="mt-7 text-5xl font-semibold leading-[0.98] tracking-normal text-white sm:text-6xl lg:text-[58px]"
+          className="mt-6 text-[42px] font-semibold leading-[1.02] tracking-normal text-white sm:text-6xl lg:text-[54px]"
           id="landing-hero-title"
         >
           AI email generator for campaigns that need to move today
         </h1>
-        <p className="mt-7 max-w-[590px] text-base leading-8 text-white/75 sm:text-lg">
+        <p className="mt-6 max-w-[560px] text-base leading-7 text-white/75">
           Write outreach, sales, lifecycle, and follow-up emails from one
           topic. Choose the tone, the length, and ship a polished draft faster.
         </p>
-        <div className="mt-8">
+        <div className="mt-7">
           <Button
             asChild
-            className="h-14 rounded-lg px-10 text-base shadow-[0_18px_42px_rgba(201,180,250,0.28)] sm:rounded-xl"
+            className="h-12 rounded-lg px-9 text-sm"
             size="lg"
             variant="hero"
           >
             <Link href={ctaHref}>{ctaLabel}</Link>
           </Button>
         </div>
-        <ul className="mt-9 flex flex-col gap-4 text-sm text-white/70 sm:flex-row sm:flex-wrap sm:items-center sm:gap-7">
+        <ul className="mt-8 flex flex-col gap-4 text-xs text-white/70 sm:flex-row sm:flex-wrap sm:items-center sm:gap-7">
           {trustPoints.map((point) => (
             <li className="flex items-center gap-2" key={point}>
-              <CheckCircle2 className="size-4 text-white/80" aria-hidden="true" />
+              <CheckCircle2 className="size-3.5 text-white/80" aria-hidden="true" />
               <span>{point}</span>
             </li>
           ))}
         </ul>
       </div>
 
-      <div className="relative min-h-[350px] sm:min-h-[460px] lg:min-h-[640px]">
-        <div
-          aria-hidden="true"
-          className="portrait-placeholder absolute inset-0 overflow-hidden rounded-2xl border border-white/10 lg:-right-24 lg:left-auto lg:h-full lg:w-[min(700px,58vw)] lg:rounded-none lg:border-0"
-        />
+      <div className="relative min-h-[310px] sm:min-h-[360px] lg:min-h-0">
         <Sparkles
-          className="absolute left-8 top-12 z-20 size-6 text-accent sm:left-12 lg:left-20 lg:top-24"
+          className="absolute left-12 top-8 z-20 size-6 text-accent sm:left-40 lg:left-40 lg:top-9"
           aria-hidden="true"
         />
         <Sparkles
-          className="absolute left-16 top-4 z-20 size-4 text-accent sm:left-24 lg:left-32 lg:top-16"
+          className="absolute left-24 top-2 z-20 size-4 text-accent sm:left-52 lg:left-52 lg:top-0"
           aria-hidden="true"
         />
-        <div className="absolute bottom-5 left-5 z-20 w-[min(20rem,calc(100%-2.5rem))] rounded-xl border border-white/30 bg-white/10 p-5 text-white shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl lg:bottom-auto lg:left-0 lg:top-32 lg:w-72 lg:-translate-x-12">
+        <div className="absolute bottom-0 left-2 z-20 w-[min(20rem,calc(100%-1rem))] rounded-xl border border-white/30 bg-[#1b1938]/55 p-5 text-white shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:left-24 lg:bottom-auto lg:left-0 lg:top-14 lg:w-72 lg:-translate-x-2">
           <p className="text-[11px] font-semibold uppercase tracking-normal text-white/70">
             Preview
           </p>
