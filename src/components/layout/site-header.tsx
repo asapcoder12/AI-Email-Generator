@@ -87,7 +87,7 @@ export function SiteHeader({
             </>
           ) : (
             <>
-              <Button asChild variant={isDark ? "ghost" : "outline"}>
+              <Button asChild className={cn(isDark && "text-white/75 hover:bg-white/10 hover:text-white")} variant={isDark ? "ghost" : "outline"}>
                 <Link href="/login">Sign in</Link>
               </Button>
               <Button asChild variant={isDark ? "hero" : "default"}>

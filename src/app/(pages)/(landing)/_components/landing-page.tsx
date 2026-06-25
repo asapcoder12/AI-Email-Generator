@@ -204,13 +204,19 @@ export function LandingPage({ isAuthenticated = false }: LandingPageProps) {
               </h2>
             </div>
             <Accordion
-              className="animate-enter rounded-lg border bg-background px-5 shadow-sm"
+              className="animate-enter flex flex-col gap-3"
               collapsible
               type="single"
             >
               {faqs.map((faq, index) => (
-                <AccordionItem key={faq.question} value={`item-${index}`}>
-                  <AccordionTrigger>{faq.question}</AccordionTrigger>
+                <AccordionItem
+                  className="rounded-lg border border-b-0 bg-background px-5 shadow-sm"
+                  key={faq.question}
+                  value={`item-${index}`}
+                >
+                  <AccordionTrigger className="hover:no-underline data-[state=open]:text-primary">
+                    {faq.question}
+                  </AccordionTrigger>
                   <AccordionContent>{faq.answer}</AccordionContent>
                 </AccordionItem>
               ))}
@@ -219,23 +225,22 @@ export function LandingPage({ isAuthenticated = false }: LandingPageProps) {
         </section>
 
         <section className="px-4 pb-20 sm:px-6 lg:px-8">
-          <div className="animate-enter mx-auto max-w-6xl rounded-lg bg-teal px-6 py-14 text-teal-foreground sm:px-10 lg:px-16">
-            <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-              <div>
-                <p className="text-sm font-semibold uppercase text-white/70">
-                  Ready for the first draft
-                </p>
-                <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-normal">
-                  Generate better email starting points without wrestling with
-                  a blank page.
-                </h2>
+          <div className="animate-enter mx-auto max-w-6xl overflow-hidden rounded-2xl bg-primary text-primary-foreground shadow-2xl">
+            <div className="hero-surface px-6 py-16 text-center sm:px-10 lg:px-16">
+              <h2 className="mx-auto max-w-2xl text-3xl font-semibold tracking-normal sm:text-4xl">
+                Ready to stop wrestling with a blank page?
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-lg text-white/75">
+                Generate better email starting points and get your message out faster.
+              </p>
+              <div className="mt-8 flex justify-center">
+                <Button asChild size="lg" variant="hero">
+                  <Link href="/signup">
+                    Create your account
+                    <ArrowRight className="size-4" />
+                  </Link>
+                </Button>
               </div>
-              <Button asChild size="lg" variant="teal">
-                <Link href="/signup">
-                  Create account
-                  <ArrowRight className="size-4" />
-                </Link>
-              </Button>
             </div>
           </div>
         </section>
