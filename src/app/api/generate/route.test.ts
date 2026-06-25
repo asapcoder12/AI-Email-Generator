@@ -126,6 +126,28 @@ describe("POST /api/generate", () => {
     expect(saveGeneratedEmail).toHaveBeenCalledOnce();
   });
 
+  it("accepts a topic at the 500 character UI limit", async () => {
+    mockClaims({ sub: "user-1", email: "user@example.com" });
+    const topic = "a".repeat(500);
+
+    const response = await POST(
+      new Request("http://localhost/api/generate", {
+        body: JSON.stringify({
+          length: "medium",
+          tone: "professional",
+          topic,
+        }),
+        method: "POST",
+      }) as never,
+    );
+
+    expect(response.status).toBe(200);
+    expect(saveGeneratedEmail).toHaveBeenCalledWith(
+      expect.anything(),
+      expect.objectContaining({ topic }),
+    );
+  });
+
   it("returns a database error when generated email persistence fails", async () => {
     mockClaims({ sub: "user-1", email: "user@example.com" });
     vi.mocked(saveGeneratedEmail).mockRejectedValueOnce(

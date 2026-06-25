@@ -85,6 +85,124 @@ body {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+.dashboard-shell {
+  min-height: 100dvh;
+  background: var(--secondary);
+  color: var(--foreground);
+}
+
+.dashboard-sidebar {
+  display: none;
+  width: 292px;
+  flex-shrink: 0;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  background: var(--background);
+  padding: 28px 24px;
+}
+
+.dashboard-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.dashboard-mobile-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+}
+
+.dashboard-mobile-nav {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+  padding: 0 12px 12px;
+}
+
+.dashboard-main {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.dashboard-nav-link {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 12px;
+  border-radius: 12px;
+  color: var(--foreground);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 200ms ease-out, color 200ms ease-out;
+}
+
+.dashboard-nav-link:hover {
+  background: var(--secondary);
+}
+
+.dashboard-nav-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.dashboard-nav-link--desktop {
+  padding: 12px 16px;
+}
+
+.dashboard-nav-link--compact {
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px;
+  font-size: 12px;
+}
+
+.dashboard-nav-link--active {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--primary);
+}
+
+.dashboard-nav-link--active:hover {
+  background: color-mix(in srgb, var(--accent) 42%, transparent);
+}
+
+.dashboard-primary-action {
+  background: color-mix(in srgb, var(--primary) 74%, var(--accent));
+  color: var(--primary-foreground);
+}
+
+.dashboard-primary-action:not(:disabled):hover {
+  background: var(--primary-hover);
+}
+
+@media (min-width: 640px) {
+  .dashboard-main {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dashboard-shell {
+    display: flex;
+  }
+
+  .dashboard-sidebar {
+    display: flex;
+    min-height: 100dvh;
+  }
+
+  .dashboard-mobile-header {
+    display: none;
+  }
+
+  .dashboard-main {
+    padding: 40px 40px 48px;
+  }
+}
+
 button,
 a,
 input,

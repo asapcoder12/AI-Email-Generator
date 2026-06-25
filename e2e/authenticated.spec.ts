@@ -25,9 +25,9 @@ test("authenticated user sees the correct app navigation and can generate", asyn
   await page
     .getByLabel(/email topic/i)
     .fill("Follow up after the authenticated QA pass");
-  await page.getByRole("button", { name: /^generate$/i }).click();
+  await page.getByRole("button", { name: /^generate email$/i }).click();
 
-  await expect(page.getByText("Generated result")).toBeVisible({
+  await expect(page.getByText("Result preview")).toBeVisible({
     timeout: 20_000,
   });
   await expect(page.getByText(/Follow up after the authenticated QA pass/i)).toBeVisible();

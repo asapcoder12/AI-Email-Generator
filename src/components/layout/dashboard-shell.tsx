@@ -1,64 +1,209 @@
-import { Mail, User } from "lucide-react";
+"use client";
+
+import {
+  Diamond,
+  FileText,
+  LayoutDashboard,
+  Mail,
+  PenLine,
+  Sparkles,
+  UserRound,
+} from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import type { LucideIcon } from "lucide-react";
+import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 import { LogoutButton } from "./logout-button";
 
 type DashboardShellProps = {
-  children: React.ReactNode;
+  children: ReactNode;
+  savedDrafts: number;
   userEmail: string;
+  wordsGenerated?: number;
 };
 
-const dashboardLinks = [
-  { href: "/dashboard", label: "Generator" },
-  { href: "/profile", label: "Profile" },
-  { href: "/pricing", label: "Pricing" },
+type DashboardLink = {
+  href: string;
+  icon: LucideIcon;
+  label: string;
+  match?: string;
+};
+
+const dashboardLinks: DashboardLink[] = [
+  { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard", match: "/dashboard" },
+  { href: "/dashboard#generator", icon: PenLine, label: "Generate" },
+  { href: "/dashboard#recent-drafts", icon: FileText, label: "Drafts" },
+  { href: "/profile", icon: UserRound, label: "Profile", match: "/profile" },
 ];
 
-export function DashboardShell({ children, userEmail }: DashboardShellProps) {
+export function DashboardShell({
+  children,
+  savedDrafts,
+  userEmail,
+  wordsGenerated = 1248,
+}: DashboardShellProps) {
+  const pathname = usePathname();
+  const formattedWords = new Intl.NumberFormat("en-US").format(wordsGenerated);
+
   return (
-    <div className="min-h-screen bg-secondary">
-      <header className="border-b bg-background">
-        <div className="mx-auto flex min-h-16 w-full max-w-6xl flex-col gap-4 px-4 py-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
-          <Link className="flex items-center gap-2 font-semibold" href="/dashboard">
-            <span className="flex size-9 items-center justify-center rounded-md bg-primary text-white">
-              <Mail className="size-4" />
-            </span>
-            <span>AI Email Generator</span>
-          </Link>
-          <nav className="flex flex-wrap items-center gap-2">
-            {dashboardLinks.map((link) => (
-              <Button asChild key={link.href} size="sm" variant="ghost">
-                <Link href={link.href}>{link.label}</Link>
-              </Button>
-            ))}
-            <LogoutButton />
-          </nav>
-        </div>
-      </header>
-      <main className="mx-auto grid w-full max-w-6xl gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[260px_1fr] lg:px-8">
-        <aside className="animate-enter rounded-lg border bg-background p-5 shadow-sm">
+    <div className="dashboard-shell">
+      <aside className="dashboard-sidebar">
+        <Link
+          className="flex items-center gap-3 text-lg font-semibold leading-none"
+          href="/dashboard"
+        >
+          <span className="flex size-10 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-sm">
+            <Mail className="size-5" aria-hidden="true" />
+          </span>
+          <span>AI Email Generator</span>
+        </Link>
+
+        <nav aria-label="Dashboard navigation" className="mt-10 grid gap-2">
+          {dashboardLinks.map((link) => (
+            <DashboardNavLink
+              isActive={isActiveLink(pathname, link)}
+              key={link.label}
+              link={link}
+            />
+          ))}
+        </nav>
+
+        <section
+          aria-label="Account summary"
+          className="mt-10 rounded-xl border bg-background p-5 shadow-sm"
+        >
           <div className="flex items-start gap-3">
-            <span className="flex size-10 items-center justify-center rounded-md bg-secondary">
-              <User className="size-4" />
+            <span className="flex size-10 items-center justify-center rounded-lg bg-secondary text-foreground">
+              <UserRound className="size-4" aria-hidden="true" />
             </span>
             <div className="min-w-0">
               <p className="truncate text-sm font-semibold">{userEmail}</p>
-              <p className="mt-1 text-xs text-muted-foreground">
-                Free workspace
-              </p>
+              <p className="mt-1 text-xs text-muted-foreground">Free workspace</p>
             </div>
           </div>
-          <Separator className="my-5" />
-          <div className="space-y-3">
-            <p className="text-sm leading-6 text-muted-foreground">
-              Drafts, profile details, and saved generation history stay tied
-              to this workspace.
-            </p>
+
+          <div className="mt-5 border-t pt-4 text-sm">
+            <SummaryRow label="Plan" value="Free" valueKind="badge" />
+            <SummaryRow label="Saved drafts" value={savedDrafts.toString()} />
+            <SummaryRow label="Words generated" value={formattedWords} />
           </div>
-        </aside>
-        <section className="animate-enter animate-enter-delay-1">{children}</section>
-      </main>
+        </section>
+
+        <section className="mt-9 rounded-xl border border-accent/50 bg-accent/15 p-5">
+          <span className="flex size-9 items-center justify-center rounded-full bg-accent/35 text-primary">
+            <Sparkles className="size-4" aria-hidden="true" />
+          </span>
+          <h2 className="mt-5 text-base font-semibold">Upgrade to Pro</h2>
+          <p className="mt-3 text-sm leading-6 text-primary/80">
+            Unlock unlimited drafts, priority support, and advanced features.
+          </p>
+          <Button asChild className="mt-5 w-full" size="sm">
+            <Link href="/pricing">Upgrade plan</Link>
+          </Button>
+        </section>
+
+        <div className="mt-8 border-t pt-6">
+          <Button
+            asChild
+            className="w-full justify-start px-3 text-sm font-medium"
+            variant="ghost"
+          >
+            <Link href="/pricing">
+              <Diamond className="size-4" aria-hidden="true" />
+              Upgrade plan
+            </Link>
+          </Button>
+          <LogoutButton
+            className="mt-2 w-full justify-start px-3 text-sm font-medium"
+            variant="ghost"
+          />
+        </div>
+      </aside>
+
+      <div className="dashboard-content">
+        <header className="dashboard-mobile-header">
+          <div className="flex min-h-16 items-center justify-between gap-3 px-4">
+            <Link
+              className="flex min-w-0 items-center gap-2 font-semibold"
+              href="/dashboard"
+            >
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                <Mail className="size-4" aria-hidden="true" />
+              </span>
+              <span className="truncate">AI Email Generator</span>
+            </Link>
+            <LogoutButton className="h-9 px-3" size="sm" variant="outline" />
+          </div>
+          <nav aria-label="Dashboard navigation" className="dashboard-mobile-nav">
+            {dashboardLinks.map((link) => (
+              <DashboardNavLink
+                compact
+                isActive={isActiveLink(pathname, link)}
+                key={link.label}
+                link={link}
+              />
+            ))}
+          </nav>
+        </header>
+
+        <main className="dashboard-main">{children}</main>
+      </div>
     </div>
   );
+}
+
+function DashboardNavLink({
+  compact = false,
+  isActive,
+  link,
+}: {
+  compact?: boolean;
+  isActive: boolean;
+  link: DashboardLink;
+}) {
+  const Icon = link.icon;
+
+  return (
+    <Link
+      aria-current={isActive ? "page" : undefined}
+      className={cn(
+        "dashboard-nav-link",
+        compact ? "dashboard-nav-link--compact" : "dashboard-nav-link--desktop",
+        isActive && "dashboard-nav-link--active",
+      )}
+      href={link.href}
+    >
+      <Icon className="size-5" aria-hidden="true" />
+      <span>{link.label}</span>
+    </Link>
+  );
+}
+
+function SummaryRow({
+  label,
+  value,
+  valueKind = "text",
+}: {
+  label: string;
+  value: string;
+  valueKind?: "badge" | "text";
+}) {
+  return (
+    <div className="flex min-h-9 items-center justify-between gap-3">
+      <span className="text-muted-foreground">{label}</span>
+      {valueKind === "badge" ? (
+        <span className="rounded-full bg-accent/35 px-3 py-1 text-xs font-semibold text-primary">
+          {value}
+        </span>
+      ) : (
+        <span className="font-semibold tabular-nums">{value}</span>
+      )}
+    </div>
+  );
+}
+
+function isActiveLink(pathname: string, link: DashboardLink) {
+  return Boolean(link.match && pathname === link.match);
 }

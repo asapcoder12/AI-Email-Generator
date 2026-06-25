@@ -44,8 +44,7 @@ describe("DashboardGenerator", () => {
 
     await screen.findAllByText("Update: test launch");
     expect(screen.getAllByText("Update: test launch")).toHaveLength(2);
-    expect(screen.getByText("Hello from the generated body.")).toBeInTheDocument();
-    expect(screen.getAllByText("Test launch update")).toHaveLength(2);
+    expect(screen.getAllByText("Hello from the generated body.")).toHaveLength(2);
   });
 
   it("shows API errors inline", async () => {
@@ -97,6 +96,6 @@ describe("DashboardGenerator", () => {
     );
 
     expect(screen.getByText("Saved subject")).toBeInTheDocument();
-    expect(screen.getByText("Saved topic")).toBeInTheDocument();
+    expect(screen.getByText("Saved body")).toBeInTheDocument();
   });
 });

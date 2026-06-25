@@ -4,6 +4,8 @@ import {
   type GenerateEmailRequest,
 } from "@/types/email";
 
+const MAX_TOPIC_CHARS = 500;
+
 type ValidationResult =
   | {
       ok: true;
@@ -34,8 +36,8 @@ export function validateGenerateEmailRequest(input: unknown): ValidationResult {
     details.topic = "Topic must be at least 3 characters.";
   }
 
-  if (topic.length > 160) {
-    details.topic = "Topic must be 160 characters or fewer.";
+  if (topic.length > MAX_TOPIC_CHARS) {
+    details.topic = `Topic must be ${MAX_TOPIC_CHARS} characters or fewer.`;
   }
 
   if (!EMAIL_TONES.includes(tone as GenerateEmailRequest["tone"])) {
