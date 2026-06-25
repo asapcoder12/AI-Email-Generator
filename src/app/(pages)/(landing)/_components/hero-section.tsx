@@ -1,14 +1,8 @@
-import { CheckCircle2, Copy, Sparkles } from "lucide-react";
+import { CheckCircle2, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 const trustPoints = ["No credit card", "Free forever plan", "Cancel anytime"];
-
-const previewDetails = [
-  { label: "Tone", value: "Professional" },
-  { label: "Length", value: "Medium" },
-  { label: "Status", value: "Ready to copy" },
-];
 
 type HeroSectionProps = {
   isAuthenticated?: boolean;
@@ -56,53 +50,6 @@ export function HeroSection({ isAuthenticated = false }: HeroSectionProps) {
             </li>
           ))}
         </ul>
-      </div>
-
-      <div className="relative min-h-[310px] sm:min-h-[360px] lg:min-h-0">
-        <Sparkles
-          className="absolute left-12 top-8 z-20 size-6 text-accent sm:left-40 lg:left-40 lg:top-9"
-          aria-hidden="true"
-        />
-        <Sparkles
-          className="absolute left-24 top-2 z-20 size-4 text-accent sm:left-52 lg:left-52 lg:top-0"
-          aria-hidden="true"
-        />
-        <div className="absolute bottom-0 left-2 z-20 w-[min(20rem,calc(100%-1rem))] rounded-xl border border-white/30 bg-[#1b1938]/55 p-5 text-white shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:left-24 lg:bottom-auto lg:left-0 lg:top-14 lg:w-72 lg:-translate-x-2">
-          <p className="text-[11px] font-semibold uppercase tracking-normal text-white/70">
-            Preview
-          </p>
-          <h2 className="mt-2 text-base font-semibold leading-tight">
-            Demo follow-up
-          </h2>
-
-          <div className="mt-5 space-y-3 border-t border-white/10 pt-4">
-            {previewDetails.map((item) => (
-              <div
-                className="grid grid-cols-[18px_minmax(0,1fr)_auto] items-center gap-3 text-xs"
-                key={item.label}
-              >
-                <CheckCircle2 className="size-4 text-accent" aria-hidden="true" />
-                <span className="text-white/75">{item.label}</span>
-                <span className="text-right text-white/90">{item.value}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-5 border-t border-white/10 pt-4">
-            <p className="text-[11px] font-semibold text-white/70">Subject</p>
-            <p className="mt-1 text-xs font-semibold leading-5">
-              Quick follow-up on next steps
-            </p>
-            <p className="mt-3 pr-6 text-[11px] leading-5 text-white/70">
-              Hi Alex, thanks again for the demo yesterday. I put together a
-              short recap of the key points and a suggested next step ...
-            </p>
-          </div>
-
-          <span className="absolute bottom-4 right-4 text-white/75">
-            <Copy className="size-4" aria-hidden="true" />
-          </span>
-        </div>
       </div>
     </section>
   );
