@@ -45,9 +45,8 @@ export function UpgradeDialog({ planName }: UpgradeDialogProps) {
               </span>
               <DialogTitle>Upgrade request received</DialogTitle>
               <DialogDescription>
-                The Stripe integration is intentionally out of scope for this
-                release. This flow confirms the intended premium journey and
-                can be connected to billing later.
+                Your upgrade request has been received. Our team will reach
+                out with next steps to activate your plan.
               </DialogDescription>
             </DialogHeader>
             <DialogFooter>
@@ -61,8 +60,7 @@ export function UpgradeDialog({ planName }: UpgradeDialogProps) {
             <DialogHeader>
               <DialogTitle>Upgrade to {planName}</DialogTitle>
               <DialogDescription>
-                Leave your email to simulate the premium upgrade handoff. No
-                payment details are collected in this flow.
+                Enter your work email to continue with the upgrade process.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-2">

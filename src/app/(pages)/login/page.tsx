@@ -19,7 +19,7 @@ export default async function LoginPage() {
         <section className="animate-enter w-full max-w-md rounded-lg border bg-background p-6 shadow-sm">
           <h1 className="text-3xl font-semibold tracking-normal">Welcome back</h1>
           <p className="mt-3 text-sm leading-6 text-muted-foreground">
-            Sign in with Supabase Auth to access your email generator dashboard.
+            Sign in to access your email generator dashboard.
           </p>
           <div className="mt-8">
             <AuthForm mode="login" />

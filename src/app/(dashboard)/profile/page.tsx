@@ -43,7 +43,7 @@ export default async function ProfilePage() {
     ? `${profile.plan.charAt(0).toUpperCase()}${profile.plan.slice(1)} plan`
     : "Free plan";
   const subject =
-    typeof claims?.sub === "string" ? claims.sub : "Supabase authenticated user";
+    typeof claims?.sub === "string" ? claims.sub : "Authenticated user";
 
   return (
     <Card className="animate-enter">
@@ -53,7 +53,7 @@ export default async function ProfilePage() {
         </Badge>
         <CardTitle className="text-3xl">Account profile</CardTitle>
         <CardDescription>
-          A minimal account surface backed by Supabase Auth and app data.
+          View and manage your account details.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -65,14 +65,14 @@ export default async function ProfilePage() {
             </p>
             <p className="mt-1 break-words text-lg font-semibold">{email}</p>
           </div>
-          <div className="animate-enter rounded-md border bg-secondary p-5">
+          <div className="animate-enter animate-enter-delay-1 rounded-md border bg-secondary p-5">
             <CalendarDays className="size-6 text-primary" />
             <p className="mt-4 text-sm font-semibold text-muted-foreground">
               Plan
             </p>
             <p className="mt-1 text-lg font-semibold">{planLabel}</p>
           </div>
-          <div className="animate-enter rounded-md border bg-secondary p-5">
+          <div className="animate-enter animate-enter-delay-2 rounded-md border bg-secondary p-5">
             <MailCheck className="size-6 text-primary" />
             <p className="mt-4 text-sm font-semibold text-muted-foreground">
               Saved drafts

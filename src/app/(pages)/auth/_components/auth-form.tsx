@@ -142,7 +142,7 @@ function getAuthErrorMessage(error: unknown) {
   }
 
   if (/failed to fetch|network/i.test(error.message)) {
-    return "Could not reach Supabase Auth. Check the network connection and environment variables, then try again.";
+    return "Could not reach the authentication server. Check your network connection and try again.";
   }
 
   return error.message;

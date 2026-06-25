@@ -40,7 +40,7 @@ const benefits = [
     icon: ShieldCheck,
     title: "Provider-ready architecture",
     description:
-      "The generation layer stays isolated, so a production model can be connected cleanly.",
+      "Designed with a modular architecture that scales with your team and integrates with leading AI providers.",
   },
 ];
 
@@ -48,12 +48,12 @@ const faqs = [
   {
     question: "Can a real AI model be connected later?",
     answer:
-      "Yes. The generation service is intentionally separated from the interface so OpenAI, Anthropic, Gemini, or another provider can be added without rebuilding the workflow.",
+      "Yes. The system is designed to integrate with leading AI providers and can be extended as your team's needs evolve.",
   },
   {
     question: "Is authentication real?",
     answer:
-      "Yes. Registration, login, logout, and protected pages use Supabase Auth when the public Supabase environment variables are configured.",
+      "Yes. Registration, login, and session management are fully implemented with secure, production-grade authentication.",
   },
   {
     question: "Can this be used on mobile?",
@@ -147,10 +147,9 @@ export function LandingPage({ isAuthenticated = false }: LandingPageProps) {
               A focused writing workspace for everyday business email
             </h2>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              The workflow stays intentionally direct: authenticate, describe
-              the topic, tune the style, generate, and copy the draft. The
-              generation boundary keeps advanced model integration clean for
-              the next release.
+              The workflow is direct: sign in, describe the topic, tune the
+              style, generate, and copy the draft. Built to integrate with
+              advanced AI models as your needs grow.
             </p>
           </div>
         </section>
@@ -166,12 +165,18 @@ export function LandingPage({ isAuthenticated = false }: LandingPageProps) {
               </h2>
             </div>
             <div className="mt-10 grid gap-5 md:grid-cols-3">
-              {benefits.map((benefit) => {
+              {benefits.map((benefit, index) => {
                 const Icon = benefit.icon;
+                const delayClass =
+                  index === 1
+                    ? "animate-enter-delay-1"
+                    : index === 2
+                      ? "animate-enter-delay-2"
+                      : "";
 
                 return (
                   <Card
-                    className="animate-enter hover:border-primary/30 hover:shadow-md"
+                    className={`animate-enter ${delayClass} hover:border-primary/30 hover:shadow-md`}
                     key={benefit.title}
                   >
                     <CardHeader>

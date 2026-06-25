@@ -21,8 +21,7 @@ export default async function SignupPage() {
             Create your workspace
           </h1>
           <p className="mt-3 text-sm leading-6 text-muted-foreground">
-            Register with Supabase Auth and start generating polished email
-            drafts.
+            Create your account and start generating polished email drafts.
           </p>
           <div className="mt-8">
             <AuthForm mode="signup" />

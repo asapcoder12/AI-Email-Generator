@@ -178,7 +178,7 @@ export function DashboardGenerator({
             {resultLabel}
           </CardTitle>
           <CardDescription>
-            Generated drafts are saved to your Supabase-backed history.
+            Generated drafts are automatically saved to your history.
           </CardDescription>
         </CardHeader>
         <CardContent>

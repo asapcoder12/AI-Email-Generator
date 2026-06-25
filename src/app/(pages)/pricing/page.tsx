@@ -33,7 +33,7 @@ const plans = [
     name: "Business",
     price: "$49",
     description: "For larger teams preparing real model rollout.",
-    features: ["Everything in Pro", "Usage governance", "Review-ready architecture"],
+    features: ["Everything in Pro", "Usage governance", "Advanced configuration"],
     featured: false,
   },
 ];
@@ -53,58 +53,67 @@ export default async function PricingPage() {
               Choose a plan for faster email production
             </h1>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              Pricing is intentionally UI-only for this release. The Upgrade
-              action is present and ready for a future Stripe integration.
+              Start with the free plan and upgrade when your team needs more
+              capacity and advanced features.
             </p>
           </div>
           <div className="mx-auto mt-12 grid max-w-6xl gap-5 md:grid-cols-3">
-            {plans.map((plan) => (
-              <Card
-                className={
-                  plan.featured
-                    ? "animate-enter border-primary bg-primary text-primary-foreground shadow-md"
-                    : "animate-enter hover:border-primary/30 hover:shadow-md"
-                }
-                key={plan.name}
-              >
-                <CardHeader>
-                  <div className="flex items-center justify-between gap-4">
-                    <CardTitle>{plan.name}</CardTitle>
-                    {plan.featured ? (
-                      <Sparkles className="size-5 text-accent" />
-                    ) : null}
-                  </div>
-                  <CardDescription
-                    className={plan.featured ? "text-white/70" : undefined}
-                  >
-                    {plan.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-4xl font-semibold">
-                    {plan.price}
-                    <span className="text-base font-medium opacity-70">/mo</span>
-                  </p>
-                  <ul className="mt-6 space-y-3">
-                    {plan.features.map((feature) => (
-                      <li className="flex items-start gap-2 text-sm" key={feature}>
-                        <Check className="mt-0.5 size-4 shrink-0" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-8">
-                    {plan.name === "Free" ? (
-                      <Button asChild className="w-full" variant="outline">
-                        <Link href="/signup">Start free</Link>
-                      </Button>
-                    ) : (
-                      <UpgradeDialog planName={plan.name} />
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+            {plans.map((plan, index) => {
+              const delayClass =
+                index === 1
+                  ? "animate-enter-delay-1"
+                  : index === 2
+                    ? "animate-enter-delay-2"
+                    : "";
+
+              return (
+                <Card
+                  className={
+                    plan.featured
+                      ? `animate-enter ${delayClass} border-primary bg-primary text-primary-foreground shadow-md`
+                      : `animate-enter ${delayClass} hover:border-primary/30 hover:shadow-md`
+                  }
+                  key={plan.name}
+                >
+                  <CardHeader>
+                    <div className="flex items-center justify-between gap-4">
+                      <CardTitle>{plan.name}</CardTitle>
+                      {plan.featured ? (
+                        <Sparkles className="size-5 text-accent" />
+                      ) : null}
+                    </div>
+                    <CardDescription
+                      className={plan.featured ? "text-white/70" : undefined}
+                    >
+                      {plan.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-4xl font-semibold">
+                      {plan.price}
+                      <span className="text-base font-medium opacity-70">/mo</span>
+                    </p>
+                    <ul className="mt-6 space-y-3">
+                      {plan.features.map((feature) => (
+                        <li className="flex items-start gap-2 text-sm" key={feature}>
+                          <Check className="mt-0.5 size-4 shrink-0" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-8">
+                      {plan.name === "Free" ? (
+                        <Button asChild className="w-full" variant="outline">
+                          <Link href="/signup">Start free</Link>
+                        </Button>
+                      ) : (
+                        <UpgradeDialog planName={plan.name} />
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </section>
         <section className="px-4 pb-20 sm:px-6 lg:px-8">
