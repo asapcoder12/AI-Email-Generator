@@ -85,6 +85,7 @@ Project skills live under `.agents/skills/<skill-name>/SKILL.md`. When a trigger
 Available project skills:
 
 - `design-system`: design decisions for colors, spacing, typography, radius, and tokens.
+- `ui-ux-pro-max`: UI/UX design intelligence for web and mobile, including styles, color palettes, font pairings, product types, UX guidelines, charts, and patterns across React, Next.js, Tailwind, shadcn/ui, and HTML/CSS.
 - `tailwind-best-practices`: Tailwind utility implementation, responsive classes, dark mode, and Tailwind config.
 - `shadcn-ui`: shadcn/ui component selection, installation, customization, variants, and accessibility.
 - `tanstack-query`: server state, query keys, mutations, invalidation, retries, optimistic updates, and async cache patterns.
@@ -101,7 +102,7 @@ Available project skills:
 
 Before the first edit in a code-writing task, scan the request and target files for these triggers:
 
-- Use `design-system` when editing visual design decisions, design tokens, colors, spacing, radius, typography, or new layout primitives.
+- Use `ui-ux-pro-max` when planning, building, designing, implementing, reviewing, fixing, improving, optimizing, enhancing, refactoring, or checking UI/UX for websites, landing pages, dashboards, admin panels, e-commerce, SaaS, portfolios, blogs, mobile apps, components, forms, tables, charts, navigation, accessibility, animation, responsive behavior, typography, color, spacing, interaction states, shadows, or gradients.
 - Use `tailwind-best-practices` when editing `className`, `tailwind.config.*`, `globals.css`, `@theme` blocks, utility strings, or `cn()` composition.
 - Use `shadcn-ui` when importing from `@/components/ui/*`, adding shadcn components, or changing shadcn variants and behavior.
 - Use `tanstack-query` when importing `@tanstack/react-query`, changing `useQuery`, `useMutation`, `useInfiniteQuery`, query keys, cache invalidation, prefetching, retries, or optimistic updates.
@@ -114,13 +115,14 @@ Before the first edit in a code-writing task, scan the request and target files 
 - Use `prompt-master` when writing, improving, or adapting prompts for AI tools.
 - Use `karpathy-guidelines` for code changes not covered by a narrower trigger, large multi-file changes, refactors, or unclear scope.
 
-Common stacks are allowed when responsibilities differ: UI styling usually needs `design-system` plus `tailwind-best-practices`; shadcn UI work may also need `shadcn-ui`; data-fetching features often need `tanstack-query` plus `error-handling`; new route handlers usually need `designing-apis` plus `error-handling`.
+Common stacks are allowed when responsibilities differ: UI work usually needs `ui-ux-pro-max` for UX direction, `design-system` for tokens and values, and `tailwind-best-practices` for implementation; shadcn UI work may also need `shadcn-ui`; data-fetching features often need `tanstack-query` plus `error-handling`; new route handlers usually need `designing-apis` plus `error-handling`.
 
 ## Skill Boundaries
 
 Let each skill decide only its own concern:
 
 - `design-system` decides what design tokens and visual values to use.
+- `ui-ux-pro-max` decides product-level UI/UX direction, page and component patterns, style selection, palette and font recommendations, accessibility, responsive behavior, interaction quality, animation, chart choices, and visual polish.
 - `tailwind-best-practices` decides how to implement styling with Tailwind.
 - `shadcn-ui` decides component-library usage.
 - `tanstack-query` decides server-backed async state patterns.
