@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, CreditCard } from "lucide-react";
+import { ArrowRight, CheckCircle2, CreditCard } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,10 +17,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 type UpgradeDialogProps = {
+  ctaLabel: string;
   planName: string;
 };
 
-export function UpgradeDialog({ planName }: UpgradeDialogProps) {
+export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -31,9 +32,12 @@ export function UpgradeDialog({ planName }: UpgradeDialogProps) {
   return (
     <Dialog onOpenChange={(open) => !open && setSubmitted(false)}>
       <DialogTrigger asChild>
-        <Button className="w-full" variant={planName === "Pro" ? "accent" : "default"}>
-          <CreditCard className="size-4" />
-          Upgrade
+        <Button
+          className="h-12 w-full rounded-md"
+          variant={planName === "Pro" ? "accent" : "default"}
+        >
+          {ctaLabel}
+          <ArrowRight className="size-4" aria-hidden="true" />
         </Button>
       </DialogTrigger>
       <DialogContent>
@@ -41,7 +45,7 @@ export function UpgradeDialog({ planName }: UpgradeDialogProps) {
           <>
             <DialogHeader>
               <span className="flex size-12 items-center justify-center rounded-md bg-secondary text-primary">
-                <CheckCircle2 className="size-6" />
+                <CheckCircle2 className="size-6" aria-hidden="true" />
               </span>
               <DialogTitle>Upgrade request received</DialogTitle>
               <DialogDescription>
@@ -75,7 +79,7 @@ export function UpgradeDialog({ planName }: UpgradeDialogProps) {
             </div>
             <DialogFooter>
               <Button type="submit">
-                <CreditCard className="size-4" />
+                <CreditCard className="size-4" aria-hidden="true" />
                 Continue upgrade
               </Button>
             </DialogFooter>

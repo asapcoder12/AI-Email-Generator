@@ -83,8 +83,6 @@ Do not use Zustand as a substitute for TanStack Query for server-backed data. Do
 Project skills live under `.agents/skills/<skill-name>/SKILL.md`. When a trigger below applies, Codex must read the relevant `SKILL.md` before editing files. If multiple triggers apply, read the narrowest relevant skills first and use each skill only for its own responsibility.
 
 Available project skills:
-
-- `design-system`: design decisions for colors, spacing, typography, radius, and tokens.
 - `ui-ux-pro-max`: UI/UX design intelligence for web and mobile, including styles, color palettes, font pairings, product types, UX guidelines, charts, and patterns across React, Next.js, Tailwind, shadcn/ui, and HTML/CSS.
 - `tailwind-best-practices`: Tailwind utility implementation, responsive classes, dark mode, and Tailwind config.
 - `shadcn-ui`: shadcn/ui component selection, installation, customization, variants, and accessibility.
