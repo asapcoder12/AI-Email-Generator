@@ -12,10 +12,12 @@ describe("LandingPage", () => {
       }),
     ).toBeInTheDocument();
     expect(screen.getAllByText("Benefits").length).toBeGreaterThan(0);
-    expect(screen.getByText("Questions before your first generated email")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /create account/i })).toHaveAttribute(
-      "href",
-      "/signup",
-    );
+    expect(
+      screen.getByText("Questions before your first generated email"),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Teams ship more, faster")).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /create your free account/i }),
+    ).toHaveAttribute("href", "/signup");
   });
 });
