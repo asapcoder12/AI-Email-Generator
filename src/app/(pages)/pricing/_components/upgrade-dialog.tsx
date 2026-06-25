@@ -5,6 +5,7 @@ import { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -30,7 +31,7 @@ export function UpgradeDialog({ planName }: UpgradeDialogProps) {
   return (
     <Dialog onOpenChange={(open) => !open && setSubmitted(false)}>
       <DialogTrigger asChild>
-        <Button className="w-full" variant={planName === "Pro" ? "hero" : "default"}>
+        <Button className="w-full" variant={planName === "Pro" ? "accent" : "default"}>
           <CreditCard className="size-4" />
           Upgrade
         </Button>
@@ -45,12 +46,14 @@ export function UpgradeDialog({ planName }: UpgradeDialogProps) {
               <DialogTitle>Upgrade request received</DialogTitle>
               <DialogDescription>
                 The Stripe integration is intentionally out of scope for this
-                MVP. This flow confirms the intended premium journey and can be
-                connected to billing later.
+                release. This flow confirms the intended premium journey and
+                can be connected to billing later.
               </DialogDescription>
             </DialogHeader>
             <DialogFooter>
-              <Button type="button">Done</Button>
+              <DialogClose asChild>
+                <Button type="button">Done</Button>
+              </DialogClose>
             </DialogFooter>
           </>
         ) : (
@@ -59,7 +62,7 @@ export function UpgradeDialog({ planName }: UpgradeDialogProps) {
               <DialogTitle>Upgrade to {planName}</DialogTitle>
               <DialogDescription>
                 Leave your email to simulate the premium upgrade handoff. No
-                payment details are collected in the MVP.
+                payment details are collected in this flow.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-2">

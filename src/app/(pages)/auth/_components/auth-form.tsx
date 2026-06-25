@@ -76,11 +76,7 @@ export function AuthForm({ mode }: AuthFormProps) {
         return;
       }
     } catch (authError) {
-      setError(
-        authError instanceof Error
-          ? authError.message
-          : "Authentication failed. Please try again.",
-      );
+      setError(getAuthErrorMessage(authError));
     } finally {
       setIsPending(false);
     }
@@ -138,4 +134,16 @@ export function AuthForm({ mode }: AuthFormProps) {
       </p>
     </form>
   );
+}
+
+function getAuthErrorMessage(error: unknown) {
+  if (!(error instanceof Error)) {
+    return "Authentication failed. Please try again.";
+  }
+
+  if (/failed to fetch|network/i.test(error.message)) {
+    return "Could not reach Supabase Auth. Check the network connection and environment variables, then try again.";
+  }
+
+  return error.message;
 }

@@ -1,7 +1,6 @@
-import { Check, Sparkles } from "lucide-react";
+import { ArrowRight, Check, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,13 +10,16 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { UpgradeDialog } from "./_components/upgrade-dialog";
+import { getAuthenticatedClaims } from "@/lib/supabase/server";
+
+export const dynamic = "force-dynamic";
 
 const plans = [
   {
     name: "Free",
     price: "$0",
-    description: "For trying the generator with mock AI.",
-    features: ["Mock generation", "Tone and length controls", "Supabase login"],
+    description: "For trying the generator and saving first drafts.",
+    features: ["Email draft generation", "Tone and length controls", "Supabase login"],
     featured: false,
   },
   {
@@ -36,15 +38,18 @@ const plans = [
   },
 ];
 
-export default function PricingPage() {
+export default async function PricingPage() {
+  const claims = await getAuthenticatedClaims();
+  const ctaHref = claims ? "/dashboard" : "/signup";
+  const ctaLabel = claims ? "Open dashboard" : "Create account";
+
   return (
     <div className="min-h-screen bg-background">
-      <SiteHeader />
+      <SiteHeader isAuthenticated={Boolean(claims)} />
       <main>
         <section className="px-4 py-20 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="accent">Premium flow MVP</Badge>
-            <h1 className="mt-5 text-4xl font-semibold leading-tight tracking-normal sm:text-5xl">
+          <div className="animate-enter mx-auto max-w-3xl text-center">
+            <h1 className="text-4xl font-semibold leading-tight tracking-normal sm:text-5xl">
               Choose a plan for faster email production
             </h1>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
@@ -57,8 +62,8 @@ export default function PricingPage() {
               <Card
                 className={
                   plan.featured
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : undefined
+                    ? "animate-enter border-primary bg-primary text-primary-foreground shadow-md"
+                    : "animate-enter hover:border-primary/30 hover:shadow-md"
                 }
                 key={plan.name}
               >
@@ -100,6 +105,27 @@ export default function PricingPage() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </section>
+        <section className="px-4 pb-20 sm:px-6 lg:px-8">
+          <div className="animate-enter mx-auto max-w-6xl rounded-lg bg-teal px-6 py-14 text-teal-foreground sm:px-10 lg:px-16">
+            <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div>
+                <p className="text-sm font-semibold uppercase text-white/70">
+                  Ready to write faster
+                </p>
+                <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-normal">
+                  Start with the free workspace and upgrade when your workflow
+                  needs more room.
+                </h2>
+              </div>
+              <Button asChild size="lg" variant="teal">
+                <Link href={ctaHref}>
+                  {ctaLabel}
+                  <ArrowRight className="size-4" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </section>
       </main>

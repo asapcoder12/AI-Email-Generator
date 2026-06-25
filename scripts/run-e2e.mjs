@@ -1,10 +1,13 @@
 import { spawn } from "node:child_process";
 
 const isWindows = process.platform === "win32";
+const forwardedArgs = ["--workers=1", ...process.argv.slice(2)];
 const npmCommand = isWindows ? "npm run dev:e2e" : "npm";
 const npmArgs = isWindows ? [] : ["run", "dev:e2e"];
-const npxCommand = isWindows ? "npx playwright test" : "npx";
-const npxArgs = isWindows ? [] : ["playwright", "test"];
+const npxCommand = isWindows
+  ? `npx playwright test ${forwardedArgs.join(" ")}`
+  : "npx";
+const npxArgs = isWindows ? [] : ["playwright", "test", ...forwardedArgs];
 const baseUrl = "http://127.0.0.1:3000";
 
 const server = spawn(npmCommand, npmArgs, {

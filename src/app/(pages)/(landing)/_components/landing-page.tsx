@@ -15,7 +15,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -39,17 +38,17 @@ const benefits = [
   },
   {
     icon: ShieldCheck,
-    title: "Safe MVP mode",
+    title: "Provider-ready architecture",
     description:
-      "The generator uses a mock provider today and keeps the model boundary ready.",
+      "The generation layer stays isolated, so a production model can be connected cleanly.",
   },
 ];
 
 const faqs = [
   {
-    question: "Does the MVP call a paid AI API?",
+    question: "Can a real AI model be connected later?",
     answer:
-      "No. The default provider is mock-only. The service interface is ready for OpenAI, Anthropic, Gemini, or another provider later.",
+      "Yes. The generation service is intentionally separated from the interface so OpenAI, Anthropic, Gemini, or another provider can be added without rebuilding the workflow.",
   },
   {
     question: "Is authentication real?",
@@ -63,19 +62,20 @@ const faqs = [
   },
 ];
 
-export function LandingPage() {
+type LandingPageProps = {
+  isAuthenticated?: boolean;
+};
+
+export function LandingPage({ isAuthenticated = false }: LandingPageProps) {
   return (
     <div className="min-h-screen bg-background">
-      <SiteHeader variant="dark" />
+      <SiteHeader isAuthenticated={isAuthenticated} variant="dark" />
       <main>
         <section className="relative overflow-hidden bg-primary text-primary-foreground">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(201,180,250,0.55),transparent_28%),radial-gradient(circle_at_20%_10%,rgba(255,255,255,0.14),transparent_30%),linear-gradient(135deg,#1b1938_0%,#0e0c1f_100%)]" />
+          <div className="hero-surface absolute inset-0" />
           <div className="relative mx-auto grid min-h-[calc(100vh-4rem)] w-full max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8">
-            <div className="animate-fade-up">
-              <Badge className="border-white/15 bg-white/10 text-white" variant="outline">
-                Mock AI MVP
-              </Badge>
-              <h1 className="mt-6 max-w-3xl text-4xl font-semibold leading-none tracking-normal sm:text-5xl lg:text-6xl">
+            <div className="animate-enter">
+              <h1 className="max-w-3xl text-4xl font-semibold leading-none tracking-normal sm:text-5xl lg:text-6xl">
                 AI Email Generator for campaigns that need to move today
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-8 text-white/75">
@@ -100,7 +100,7 @@ export function LandingPage() {
                 </Button>
               </div>
             </div>
-            <div className="animate-soft-pulse rounded-lg border border-white/15 bg-white/10 p-3 shadow-2xl backdrop-blur">
+            <div className="animate-enter animate-enter-delay-1 rounded-lg border border-white/15 bg-white/10 p-3 shadow-2xl backdrop-blur">
               <div className="rounded-md bg-background p-5 text-foreground">
                 <div className="flex items-center justify-between gap-4 border-b pb-4">
                   <div>
@@ -114,7 +114,7 @@ export function LandingPage() {
                   <Sparkles className="size-5 text-primary" />
                 </div>
                 <div className="mt-5 grid gap-3">
-                  {["Tone: Professional", "Length: Medium", "Provider: mock"].map(
+                  {["Tone: Professional", "Length: Medium", "Ready to copy"].map(
                     (item) => (
                       <div
                         className="flex items-center gap-2 rounded-md bg-secondary px-3 py-2 text-sm"
@@ -141,16 +141,16 @@ export function LandingPage() {
         </section>
 
         <section className="px-4 py-20 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-4xl text-center">
+          <div className="animate-enter mx-auto max-w-4xl text-center">
             <MailCheck className="mx-auto size-10 text-primary" />
             <h2 className="mt-5 text-3xl font-semibold tracking-normal sm:text-4xl">
               A focused writing workspace for everyday business email
             </h2>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              The MVP keeps the workflow intentionally direct: authenticate,
-              describe the topic, tune the style, generate, and copy the draft.
-              The provider boundary keeps paid LLM integration clean for the
-              next release.
+              The workflow stays intentionally direct: authenticate, describe
+              the topic, tune the style, generate, and copy the draft. The
+              generation boundary keeps advanced model integration clean for
+              the next release.
             </p>
           </div>
         </section>
@@ -170,7 +170,10 @@ export function LandingPage() {
                 const Icon = benefit.icon;
 
                 return (
-                  <Card key={benefit.title}>
+                  <Card
+                    className="animate-enter hover:border-primary/30 hover:shadow-md"
+                    key={benefit.title}
+                  >
                     <CardHeader>
                       <span className="flex size-11 items-center justify-center rounded-md bg-primary text-white">
                         <Icon className="size-5" />
@@ -195,7 +198,11 @@ export function LandingPage() {
                 Questions before your first generated email
               </h2>
             </div>
-            <Accordion className="rounded-lg border px-5" collapsible type="single">
+            <Accordion
+              className="animate-enter rounded-lg border bg-background px-5 shadow-sm"
+              collapsible
+              type="single"
+            >
               {faqs.map((faq, index) => (
                 <AccordionItem key={faq.question} value={`item-${index}`}>
                   <AccordionTrigger>{faq.question}</AccordionTrigger>
@@ -207,15 +214,15 @@ export function LandingPage() {
         </section>
 
         <section className="px-4 pb-20 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-6xl rounded-lg bg-teal px-6 py-14 text-teal-foreground sm:px-10 lg:px-16">
+          <div className="animate-enter mx-auto max-w-6xl rounded-lg bg-teal px-6 py-14 text-teal-foreground sm:px-10 lg:px-16">
             <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
                 <p className="text-sm font-semibold uppercase text-white/70">
                   Ready for the first draft
                 </p>
                 <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-normal">
-                  Generate better email starting points without spending money
-                  on AI calls.
+                  Generate better email starting points without wrestling with
+                  a blank page.
                 </h2>
               </div>
               <Button asChild size="lg" variant="teal">

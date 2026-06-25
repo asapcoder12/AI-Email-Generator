@@ -4,21 +4,22 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-md px-5 text-sm font-semibold tracking-normal transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-md px-5 text-sm font-semibold tracking-normal transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-out active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 disabled:active:scale-100 [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default:
-          "bg-primary text-primary-foreground hover:bg-[#0e0c1f]",
+        default: "bg-primary text-primary-foreground hover:bg-primary-hover",
+        accent:
+          "bg-accent text-accent-foreground hover:bg-accent/90",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
           "border bg-background text-foreground hover:bg-secondary",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-[#f1eee7]",
+          "bg-secondary text-secondary-foreground hover:bg-secondary-hover",
         ghost: "text-foreground hover:bg-secondary",
         hero:
-          "rounded-full bg-accent text-accent-foreground hover:bg-[#d6c4ff]",
+          "rounded-full bg-accent text-accent-foreground hover:bg-accent/90",
         teal: "bg-background text-teal hover:bg-secondary",
       },
       size: {

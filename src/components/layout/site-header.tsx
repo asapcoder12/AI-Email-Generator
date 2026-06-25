@@ -13,6 +13,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { LogoutButton } from "./logout-button";
 
 const navLinks = [
   { href: "/#benefits", label: "Benefits" },
@@ -21,10 +22,14 @@ const navLinks = [
 ];
 
 type SiteHeaderProps = {
+  isAuthenticated?: boolean;
   variant?: "dark" | "light";
 };
 
-export function SiteHeader({ variant = "light" }: SiteHeaderProps) {
+export function SiteHeader({
+  isAuthenticated = false,
+  variant = "light",
+}: SiteHeaderProps) {
   const isDark = variant === "dark";
 
   return (
@@ -67,22 +72,39 @@ export function SiteHeader({ variant = "light" }: SiteHeaderProps) {
         </div>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Button asChild variant={isDark ? "ghost" : "outline"}>
-            <Link href="/login">Sign in</Link>
-          </Button>
-          <Button asChild variant={isDark ? "hero" : "default"}>
-            <Link href="/signup">
-              Get started
-              <ArrowRight className="size-4" />
-            </Link>
-          </Button>
+          {isAuthenticated ? (
+            <>
+              <Button asChild variant={isDark ? "hero" : "default"}>
+                <Link href="/dashboard">
+                  Dashboard
+                  <ArrowRight className="size-4" />
+                </Link>
+              </Button>
+              <LogoutButton
+                className={cn(isDark && "border-white/20 text-white hover:bg-white/10")}
+                variant={isDark ? "ghost" : "outline"}
+              />
+            </>
+          ) : (
+            <>
+              <Button asChild variant={isDark ? "ghost" : "outline"}>
+                <Link href="/login">Sign in</Link>
+              </Button>
+              <Button asChild variant={isDark ? "hero" : "default"}>
+                <Link href="/signup">
+                  Get started
+                  <ArrowRight className="size-4" />
+                </Link>
+              </Button>
+            </>
+          )}
         </div>
 
         <Sheet>
           <SheetTrigger asChild>
             <Button
               aria-label="Open navigation"
-              className={cn(isDark && "text-white hover:bg-white/10")}
+              className={cn("md:hidden", isDark && "text-white hover:bg-white/10")}
               size="icon"
               variant="ghost"
             >
@@ -109,16 +131,29 @@ export function SiteHeader({ variant = "light" }: SiteHeaderProps) {
               ))}
             </div>
             <div className="mt-8 grid gap-3">
-              <SheetClose asChild>
-                <Button asChild variant="outline">
-                  <Link href="/login">Sign in</Link>
-                </Button>
-              </SheetClose>
-              <SheetClose asChild>
-                <Button asChild>
-                  <Link href="/signup">Get started</Link>
-                </Button>
-              </SheetClose>
+              {isAuthenticated ? (
+                <>
+                  <SheetClose asChild>
+                    <Button asChild>
+                      <Link href="/dashboard">Dashboard</Link>
+                    </Button>
+                  </SheetClose>
+                  <LogoutButton />
+                </>
+              ) : (
+                <>
+                  <SheetClose asChild>
+                    <Button asChild variant="outline">
+                      <Link href="/login">Sign in</Link>
+                    </Button>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Button asChild>
+                      <Link href="/signup">Get started</Link>
+                    </Button>
+                  </SheetClose>
+                </>
+              )}
             </div>
           </SheetContent>
         </Sheet>

@@ -1,6 +1,5 @@
 import { Mail, User } from "lucide-react";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { LogoutButton } from "./logout-button";
@@ -38,7 +37,7 @@ export function DashboardShell({ children, userEmail }: DashboardShellProps) {
         </div>
       </header>
       <main className="mx-auto grid w-full max-w-6xl gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[260px_1fr] lg:px-8">
-        <aside className="rounded-lg border bg-background p-5 shadow-sm">
+        <aside className="animate-enter rounded-lg border bg-background p-5 shadow-sm">
           <div className="flex items-start gap-3">
             <span className="flex size-10 items-center justify-center rounded-md bg-secondary">
               <User className="size-4" />
@@ -52,14 +51,13 @@ export function DashboardShell({ children, userEmail }: DashboardShellProps) {
           </div>
           <Separator className="my-5" />
           <div className="space-y-3">
-            <Badge variant="accent">Mock AI active</Badge>
             <p className="text-sm leading-6 text-muted-foreground">
-              Generation is local and deterministic for the MVP, so no paid AI
-              API calls are made.
+              Drafts, profile details, and saved generation history stay tied
+              to this workspace.
             </p>
           </div>
         </aside>
-        <section>{children}</section>
+        <section className="animate-enter animate-enter-delay-1">{children}</section>
       </main>
     </div>
   );

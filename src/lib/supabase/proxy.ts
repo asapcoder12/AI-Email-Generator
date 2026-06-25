@@ -36,7 +36,13 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  await supabase.auth.getClaims();
+  try {
+    await supabase.auth.getClaims();
+  } catch (error) {
+    console.error("Supabase session refresh failed", {
+      message: error instanceof Error ? error.message : "Unknown error",
+    });
+  }
 
   return response;
 }

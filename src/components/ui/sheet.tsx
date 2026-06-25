@@ -31,10 +31,10 @@ function SheetContent({
 }) {
   return (
     <SheetPrimitive.Portal>
-      <SheetPrimitive.Overlay className="fixed inset-0 z-50 bg-primary/55 backdrop-blur-sm" />
+      <SheetPrimitive.Overlay className="fixed inset-0 z-50 bg-primary/55 backdrop-blur-sm data-[state=open]:animate-overlay-in" />
       <SheetPrimitive.Content
         className={cn(
-          "fixed top-0 z-50 h-full w-80 max-w-[85vw] border bg-background p-6 shadow-lg data-[state=open]:animate-fade-up",
+          "fixed top-0 z-50 h-full w-80 max-w-[85vw] border bg-background p-6 shadow-lg data-[state=open]:animate-slide-in-right",
           side === "right" ? "right-0 border-l" : "left-0 border-r",
           className,
         )}

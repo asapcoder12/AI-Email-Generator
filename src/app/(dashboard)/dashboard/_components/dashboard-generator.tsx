@@ -112,8 +112,8 @@ export function DashboardGenerator({
           </Badge>
           <CardTitle className="text-3xl">Generate an email</CardTitle>
           <CardDescription>
-            Describe the topic, choose the style, and generate a mock-powered
-            draft that can later be backed by a real LLM provider.
+            Describe the topic, choose the style, and generate a polished draft
+            that is ready to review, save, and copy.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -197,7 +197,7 @@ export function DashboardGenerator({
           ) : null}
 
           {!generateMutation.isPending && generatedEmail ? (
-            <div className="rounded-md border bg-secondary p-5">
+            <div className="animate-enter rounded-md border bg-secondary p-5">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                   <p className="text-sm font-semibold">Subject:</p>
@@ -246,7 +246,7 @@ export function DashboardGenerator({
             <div className="grid gap-3">
               {history.map((item) => (
                 <article
-                  className="rounded-md border bg-secondary p-4"
+                  className="animate-enter rounded-md border bg-secondary p-4 transition-[border-color,box-shadow] duration-200 ease-out hover:border-primary/30 hover:shadow-sm"
                   key={item.id}
                 >
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">

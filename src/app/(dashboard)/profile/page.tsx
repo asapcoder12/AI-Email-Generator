@@ -41,12 +41,12 @@ export default async function ProfilePage() {
   const email = profile?.email ?? getClaimEmail(claims);
   const planLabel = profile
     ? `${profile.plan.charAt(0).toUpperCase()}${profile.plan.slice(1)} plan`
-    : "Free MVP";
+    : "Free plan";
   const subject =
     typeof claims?.sub === "string" ? claims.sub : "Supabase authenticated user";
 
   return (
-    <Card>
+    <Card className="animate-enter">
       <CardHeader>
         <Badge className="w-fit" variant="accent">
           Profile
@@ -58,21 +58,21 @@ export default async function ProfilePage() {
       </CardHeader>
       <CardContent>
         <div className="grid gap-5 md:grid-cols-3">
-          <div className="rounded-md border bg-secondary p-5">
+          <div className="animate-enter rounded-md border bg-secondary p-5">
             <UserCircle className="size-6 text-primary" />
             <p className="mt-4 text-sm font-semibold text-muted-foreground">
               Email
             </p>
             <p className="mt-1 break-words text-lg font-semibold">{email}</p>
           </div>
-          <div className="rounded-md border bg-secondary p-5">
+          <div className="animate-enter rounded-md border bg-secondary p-5">
             <CalendarDays className="size-6 text-primary" />
             <p className="mt-4 text-sm font-semibold text-muted-foreground">
               Plan
             </p>
             <p className="mt-1 text-lg font-semibold">{planLabel}</p>
           </div>
-          <div className="rounded-md border bg-secondary p-5">
+          <div className="animate-enter rounded-md border bg-secondary p-5">
             <MailCheck className="size-6 text-primary" />
             <p className="mt-4 text-sm font-semibold text-muted-foreground">
               Saved drafts
@@ -81,7 +81,7 @@ export default async function ProfilePage() {
           </div>
         </div>
         <Separator className="my-6" />
-        <div className="rounded-md border bg-background p-5">
+        <div className="animate-enter rounded-md border bg-background p-5">
           <p className="text-sm font-semibold text-muted-foreground">
             Supabase subject
           </p>
