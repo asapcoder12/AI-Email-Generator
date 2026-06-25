@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "name": "zustand",
+  "owner": "sablier-labs",
+  "repo": "plugin-marketplace",
+  "path": "plugins/frontend/skills/zustand",
+  "branch": "main",
+  "sha": "df73fc2115379d95e6b83af332e4e69f0cce7597",
+  "source": "manual"
+}

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "name": "tanstack-query",
+  "owner": "madappgang",
+  "repo": "claude-code",
+  "path": "plugins/dev/skills/frontend/tanstack-query",
+  "branch": "main",
+  "sha": "9b5816bcf30da289752b2448374386c0fdd784ec",
+  "source": "manual"
+}
