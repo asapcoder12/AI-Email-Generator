@@ -75,8 +75,8 @@ AI_PROVIDER=mock
 | `NEXT_PUBLIC_SUPABASE_URL` | Yes for auth, protected pages, and persistence | App, API route, Supabase clients, Docker, CI | Supabase project URL, for example `https://your-project.supabase.co`. Public by design, but environment-specific. |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Yes for auth, protected pages, and persistence | App, API route, Supabase clients, Docker, CI | Supabase publishable anon key. Do not use a service-role key in this client-facing variable. |
 | `AI_PROVIDER` | Optional | Email generator service, Docker, CI | Defaults to `mock`. The MVP currently supports only `mock`; any other value fails intentionally. |
-| `E2E_EMAIL` | Optional | Playwright config, `e2e/authenticated.spec.ts` | Email for the authenticated Playwright smoke test. If it is missing, that test is skipped. |
-| `E2E_PASSWORD` | Optional | Playwright config, `e2e/authenticated.spec.ts` | Password for the authenticated Playwright smoke test. If it is missing, that test is skipped. |
+| `E2E_EMAIL` | Optional | Playwright config, `e2e/authenticated.spec.ts`, GitHub Actions | Email for the authenticated Playwright smoke test. If it is missing, that test is skipped. Store it as a GitHub Actions repository secret in CI. |
+| `E2E_PASSWORD` | Optional | Playwright config, `e2e/authenticated.spec.ts`, GitHub Actions | Password for the authenticated Playwright smoke test. If it is missing, that test is skipped. Store it as a GitHub Actions repository secret in CI. |
 | `NEXT_TELEMETRY_DISABLED` | Optional | Local scripts, Docker build/runtime | Set to `1` to disable Next.js telemetry. The Dockerfile and E2E runner already disable it where they run. |
 | `CI` | Set by CI providers | Playwright config | Enables CI retries and the GitHub reporter in Playwright. Usually set automatically by GitHub Actions. |
 | `NODE_ENV` | Set by framework/runtime | Next.js, Docker runtime | The Docker image sets `production`. Do not set it manually for normal local development. |
@@ -100,7 +100,7 @@ If the Supabase variables are missing, public pages still render as a signed-out
 | `npm run test:e2e` | Start the E2E dev server, run Playwright with one worker, and stop the server. |
 | `npm run test:e2e:run` | Run Playwright directly against an already running app at `http://127.0.0.1:3000`. |
 
-The authenticated Playwright smoke test requires `E2E_EMAIL` and `E2E_PASSWORD`. Put them in `.env.local`, `.env`, or the shell environment before running E2E tests. Without both values, the authenticated test is skipped and the public smoke tests still run.
+The authenticated Playwright smoke test requires `E2E_EMAIL`, `E2E_PASSWORD`, `NEXT_PUBLIC_SUPABASE_URL`, and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`. Put them in `.env.local`, `.env`, or the shell environment before running E2E tests locally. Without the full set, the authenticated test is skipped and the public smoke tests still run.
 
 ## Docker
 
@@ -170,3 +170,19 @@ Route groups organize public and protected surfaces without changing URLs. Share
 ## CI/CD
 
 GitHub Actions runs linting, TypeScript checks, Vitest tests, production build, Playwright smoke tests, and Docker build on pushes to `main` and pull requests. CI uses mock Supabase values for checks that only need environment variables to exist.
+
+For authenticated E2E in GitHub Actions, add these repository variables under `Settings -> Secrets and variables -> Actions -> Variables`:
+
+```text
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+```
+
+Add these repository secrets under `Settings -> Secrets and variables -> Actions -> Secrets`:
+
+```text
+E2E_EMAIL
+E2E_PASSWORD
+```
+
+Use a dedicated test or staging Supabase project and a dedicated test user. If the Supabase variables are not configured, CI still runs the public Playwright smoke tests and skips the authenticated smoke test.
