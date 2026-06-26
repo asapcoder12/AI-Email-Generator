@@ -118,241 +118,241 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
               <X className="size-4" aria-hidden="true" />
               <span className="sr-only">Close</span>
             </DialogPrimitive.Close>
-              {/* Email step */}
-              {step === "email" && (
-                <div className="relative rounded-xl border border-[#e8e4dd] bg-[#ffffff] p-6 sm:p-10 shadow-[0_8px_24px_rgba(0,0,0,0.12)]">
-                  <div className="mb-6 flex justify-center animate-fade-up">
-                    <div className="flex items-center gap-2 rounded-full border border-[#e8e4dd] bg-[#fafaf8] px-3 py-1.5 text-[12px] font-[540] text-[#73706d]">
-                      <div className="size-2 rounded-full bg-[#1b1938]" aria-hidden="true" />
-                      Step 1 of 3
-                    </div>
+            {/* Email step */}
+            {step === "email" && (
+              <div className="relative rounded-xl border border-[#e8e4dd] bg-[#ffffff] p-6 sm:p-10 shadow-[0_8px_24px_rgba(0,0,0,0.12)]">
+                <div className="mb-6 flex justify-center animate-fade-up">
+                  <div className="flex items-center gap-2 rounded-full border border-[#e8e4dd] bg-[#fafaf8] px-3 py-1.5 text-[12px] font-[540] text-[#73706d]">
+                    <div className="size-2 rounded-full bg-[#1b1938]" aria-hidden="true" />
+                    Step 1 of 3
                   </div>
-
-                  <form onSubmit={handleEmailSubmit} className="space-y-8 animate-fade-up" noValidate>
-                    <div className="space-y-3 text-center">
-                      <div className="text-[12px] font-[540] text-[#73706d]">
-                        Get early access
-                      </div>
-                      <DialogPrimitive.Title className="text-[28px] font-[540] leading-[1.14] tracking-[-0.63px] text-[#292827]">
-                        Get your {planName} invite
-                      </DialogPrimitive.Title>
-                      <DialogPrimitive.Description className="mx-auto max-w-[340px] text-[16px] font-[460] leading-[1.5] text-[#73706d]">
-                        We manually onboard teams to maintain the highest quality experience.
-                      </DialogPrimitive.Description>
-                    </div>
-                    
-                    <div className="space-y-6">
-                      <div className="flex flex-col gap-2">
-                        <Label
-                          className="text-[14px] font-[460] text-[#73706d]"
-                          htmlFor={emailInputId}
-                        >
-                          Work email
-                        </Label>
-                        <Input
-                          aria-describedby={emailError ? emailErrorId : undefined}
-                          aria-invalid={Boolean(emailError)}
-                          autoFocus
-                          id={emailInputId}
-                          name="email"
-                          onChange={(event) => {
-                            setEmail(event.target.value);
-                            if (emailError) {
-                              setEmailError(null);
-                            }
-                          }}
-                          placeholder="you@company.com"
-                          type="email"
-                          value={email}
-                          className="h-[44px] border-[#e8e4dd] bg-[#ffffff] text-[16px] font-[460] text-[#292827] placeholder:text-[#9a9794] rounded-sm focus-visible:ring-2 focus-visible:ring-[#1b1938] focus-visible:ring-offset-0"
-                        />
-                        {emailError && (
-                          <p
-                            className="mt-2 text-[14px] font-[460] text-red-500"
-                            id={emailErrorId}
-                            role="alert"
-                          >
-                            {emailError}
-                          </p>
-                        )}
-                      </div>
-
-                      <div className="space-y-4 pt-2">
-                        <Button
-                          className="h-[44px] w-full rounded-md bg-[#1b1938] text-[16px] font-[700] text-[#ffffff] hover:bg-[#0e0c1f]"
-                          type="submit"
-                        >
-                          Request {planName} Access
-                          <ArrowRight className="ml-2 size-4" aria-hidden="true" />
-                        </Button>
-
-                        <p className="flex items-center justify-center gap-2 text-[14px] font-[460] text-[#9a9794]">
-                          <Lock className="size-3.5" aria-hidden="true" />
-                          Secure and private waitlist
-                        </p>
-                      </div>
-                    </div>
-                  </form>
                 </div>
-              )}
 
-              {/* Goals step */}
-              {step === "goals" && (
-                <div className="relative rounded-xl border border-[#e8e4dd] bg-[#ffffff] p-6 sm:p-10 shadow-[0_8px_24px_rgba(0,0,0,0.12)]">
-                  <div className="mb-6 flex justify-center animate-fade-up">
-                    <div className="flex items-center gap-2 rounded-full border border-[#e8e4dd] bg-[#fafaf8] px-3 py-1.5 text-[12px] font-[540] text-[#73706d]">
-                      <div className="size-2 rounded-full bg-[#1b1938]" aria-hidden="true" />
-                      Step 2 of 3
+                <form onSubmit={handleEmailSubmit} className="space-y-8 animate-fade-up" noValidate>
+                  <div className="space-y-3 text-center">
+                    <div className="text-[12px] font-[540] text-[#73706d]">
+                      Get early access
                     </div>
+                    <DialogPrimitive.Title className="text-[28px] font-[540] leading-[1.14] tracking-[-0.63px] text-[#292827]">
+                      Get your {planName} invite
+                    </DialogPrimitive.Title>
+                    <DialogPrimitive.Description className="mx-auto max-w-[340px] text-[16px] font-[460] leading-[1.5] text-[#73706d]">
+                      We manually onboard teams to maintain the highest quality experience.
+                    </DialogPrimitive.Description>
                   </div>
 
-                  <form onSubmit={handleGoalsSubmit} className="space-y-8 animate-fade-up">
-                    <div className="space-y-3 text-center">
-                      <div className="text-[12px] font-[540] text-[#73706d]">
-                        Customize your experience
-                      </div>
-                      <DialogPrimitive.Title className="text-[28px] font-[540] leading-[1.14] tracking-[-0.63px] text-[#292827]">
-                        Which plan fits you best?
-                      </DialogPrimitive.Title>
-                      <DialogPrimitive.Description className="mx-auto max-w-[340px] text-[16px] font-[460] leading-[1.5] text-[#73706d]">
-                        Confirm the plan you&apos;d like to join the waitlist for.
-                      </DialogPrimitive.Description>
+                  <div className="space-y-6">
+                    <div className="flex flex-col gap-2">
+                      <Label
+                        className="text-[14px] font-[460] text-[#73706d]"
+                        htmlFor={emailInputId}
+                      >
+                        Work email
+                      </Label>
+                      <Input
+                        aria-describedby={emailError ? emailErrorId : undefined}
+                        aria-invalid={Boolean(emailError)}
+                        autoFocus
+                        id={emailInputId}
+                        name="email"
+                        onChange={(event) => {
+                          setEmail(event.target.value);
+                          if (emailError) {
+                            setEmailError(null);
+                          }
+                        }}
+                        placeholder="you@company.com"
+                        type="email"
+                        value={email}
+                        className="h-[44px] border-[#e8e4dd] bg-[#ffffff] text-[16px] font-[460] text-[#292827] placeholder:text-[#9a9794] rounded-sm focus-visible:ring-2 focus-visible:ring-[#1b1938] focus-visible:ring-offset-0"
+                      />
+                      {emailError && (
+                        <p
+                          className="mt-2 text-[14px] font-[460] text-red-500"
+                          id={emailErrorId}
+                          role="alert"
+                        >
+                          {emailError}
+                        </p>
+                      )}
                     </div>
 
-                    <div className="grid gap-3">
-                      {goals.map((goal) => {
-                        const Icon = goal.icon;
-                        const isSelected = selectedGoal === goal.id;
-                        return (
-                          <button
-                            key={goal.id}
-                            type="button"
-                            onClick={() => handleGoalSelect(goal.id)}
-                            className={cn(
-                              "group relative flex w-full items-center gap-4 rounded-md border p-4 text-left transition-all",
-                              isSelected
-                                ? "border-[#1b1938] bg-[#fafaf8]"
-                                : "border-[#e8e4dd] bg-[#ffffff] hover:border-[#9a9794]"
-                            )}
-                            aria-pressed={isSelected}
-                          >
-                            <div
-                              className={cn(
-                                "flex size-12 shrink-0 items-center justify-center rounded-md transition-colors border",
-                                isSelected
-                                  ? "bg-[#1b1938] text-[#ffffff] border-[#1b1938]"
-                                  : "bg-[#ffffff] text-[#9a9794] border-[#e8e4dd]"
-                              )}
-                            >
-                              <Icon className="size-5" aria-hidden="true" />
-                            </div>
-                            <div className="flex-1">
-                              <div className="text-[16px] font-[460] text-[#292827]">
-                                {goal.title}
-                              </div>
-                              <div className="mt-0.5 text-[14px] font-[460] leading-[1.4] text-[#73706d]">
-                                {goal.desc}
-                              </div>
-                            </div>
-                            {isSelected && (
-                              <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-[#1b1938]">
-                                <Check className="size-4 text-[#ffffff]" aria-hidden="true" />
-                              </div>
-                            )}
-                          </button>
-                        );
-                      })}
-                    </div>
-                    
                     <div className="space-y-4 pt-2">
                       <Button
+                        className="h-[44px] w-full rounded-md bg-[#1b1938] text-[16px] font-[700] text-[#ffffff] hover:bg-[#0e0c1f]"
                         type="submit"
-                        disabled={!selectedGoal}
-                        className="h-[44px] w-full rounded-md bg-[#1b1938] text-[16px] font-[700] text-[#ffffff] hover:bg-[#0e0c1f] disabled:opacity-50"
                       >
-                        Continue
+                        Request {planName} Access
                         <ArrowRight className="ml-2 size-4" aria-hidden="true" />
                       </Button>
+
                       <p className="flex items-center justify-center gap-2 text-[14px] font-[460] text-[#9a9794]">
                         <Lock className="size-3.5" aria-hidden="true" />
-                        You can change this later
+                        Secure and private waitlist
                       </p>
                     </div>
-                  </form>
-                </div>
-              )}
+                  </div>
+                </form>
+              </div>
+            )}
 
-              {/* Success step */}
-              {step === "success" && (
-                <div className="relative rounded-xl border border-[#e8e4dd] bg-[#ffffff] p-6 sm:p-10 shadow-[0_8px_24px_rgba(0,0,0,0.12)]">
-                  <div className="mb-6 flex justify-center animate-fade-up">
-                    <div className="flex items-center gap-2 rounded-full border border-[#e8e4dd] bg-[#fafaf8] px-3 py-1.5 text-[12px] font-[540] text-[#73706d]">
-                      <div className="size-2 rounded-full bg-[#1b1938]" aria-hidden="true" />
-                      All set
+            {/* Goals step */}
+            {step === "goals" && (
+              <div className="relative rounded-xl border border-[#e8e4dd] bg-[#ffffff] p-6 sm:p-10 shadow-[0_8px_24px_rgba(0,0,0,0.12)]">
+                <div className="mb-6 flex justify-center animate-fade-up">
+                  <div className="flex items-center gap-2 rounded-full border border-[#e8e4dd] bg-[#fafaf8] px-3 py-1.5 text-[12px] font-[540] text-[#73706d]">
+                    <div className="size-2 rounded-full bg-[#1b1938]" aria-hidden="true" />
+                    Step 2 of 3
+                  </div>
+                </div>
+
+                <form onSubmit={handleGoalsSubmit} className="space-y-8 animate-fade-up">
+                  <div className="space-y-3 text-center">
+                    <div className="text-[12px] font-[540] text-[#73706d]">
+                      Customize your experience
                     </div>
+                    <DialogPrimitive.Title className="text-[28px] font-[540] leading-[1.14] tracking-[-0.63px] text-[#292827]">
+                      Which plan fits you best?
+                    </DialogPrimitive.Title>
+                    <DialogPrimitive.Description className="mx-auto max-w-[340px] text-[16px] font-[460] leading-[1.5] text-[#73706d]">
+                      Confirm the plan you&apos;d like to join the waitlist for.
+                    </DialogPrimitive.Description>
                   </div>
 
-                  <div className="flex flex-col items-center justify-center space-y-8 animate-fade-up">
-                    <div className="relative flex size-[88px] items-center justify-center">
-                      <div className="relative flex size-[72px] items-center justify-center rounded-full border-[2px] border-[#1b1938] bg-[#fafaf8]">
-                        <Check className="size-8 text-[#1b1938]" aria-hidden="true" strokeWidth={2} />
-                      </div>
-                    </div>
-
-                    <div className="space-y-3 text-center">
-                      <DialogPrimitive.Title className="text-[28px] font-[540] leading-[1.14] tracking-[-0.63px] text-[#292827]">
-                        You&apos;re on the list
-                      </DialogPrimitive.Title>
-                      <DialogPrimitive.Description className="mx-auto max-w-[340px] space-y-4 text-[16px] font-[460] leading-[1.5] text-[#73706d]">
-                        <p>We&apos;ve reserved your spot for {selectedGoal || planName}.</p>
-                        <p>
-                          We&apos;ll email you at{" "}
-                          <strong className="font-[700] text-[#292827]">{email}</strong>{" "}
-                          when your workspace is ready.
-                        </p>
-                      </DialogPrimitive.Description>
-                    </div>
-
-                    <div className="w-full space-y-6">
-                      <div className="flex w-full items-center gap-4 rounded-md border border-[#e8e4dd] bg-[#fafaf8] p-4 text-left">
-                        <div className="flex size-12 shrink-0 items-center justify-center rounded-md border border-[#e8e4dd] bg-[#ffffff] text-[#292827]">
-                          <Mail className="size-5" aria-hidden="true" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="text-[16px] font-[460] text-[#292827]">
-                            Waitlist confirmed
-                          </div>
-                          <div className="mt-0.5 text-[14px] font-[460] text-[#73706d]">
-                            You&apos;ll be one of the first to get access.
-                          </div>
-                        </div>
-                        <div className="rounded-xs border border-[#e8e4dd] bg-[#ffffff] px-2.5 py-1 text-[12px] font-[540] text-[#292827]">
-                          {selectedGoal || planName} Access
-                        </div>
-                      </div>
-
-                      <div className="space-y-4">
-                        <DialogPrimitive.Close asChild>
-                          <Button
-                            className="h-[44px] w-full rounded-md bg-[#1b1938] text-[16px] font-[700] text-[#ffffff] hover:bg-[#0e0c1f]"
-                            type="button"
+                  <div className="grid gap-3">
+                    {goals.map((goal) => {
+                      const Icon = goal.icon;
+                      const isSelected = selectedGoal === goal.id;
+                      return (
+                        <button
+                          key={goal.id}
+                          type="button"
+                          onClick={() => handleGoalSelect(goal.id)}
+                          className={cn(
+                            "group relative flex w-full items-center gap-4 rounded-md border p-4 text-left transition-all",
+                            isSelected
+                              ? "border-[#1b1938] bg-[#fafaf8]"
+                              : "border-[#e8e4dd] bg-[#ffffff] hover:border-[#9a9794]"
+                          )}
+                          aria-pressed={isSelected}
+                        >
+                          <div
+                            className={cn(
+                              "flex size-12 shrink-0 items-center justify-center rounded-md transition-colors border",
+                              isSelected
+                                ? "bg-[#1b1938] text-[#ffffff] border-[#1b1938]"
+                                : "bg-[#ffffff] text-[#9a9794] border-[#e8e4dd]"
+                            )}
                           >
-                            Done
-                          </Button>
-                        </DialogPrimitive.Close>
-                        
-                        <div className="text-center">
-                          <DialogPrimitive.Close className="inline-flex items-center gap-2 text-[14px] font-[460] text-[#73706d] transition-colors hover:text-[#292827] focus-visible:outline-none">
-                            <ArrowLeft className="size-3.5" aria-hidden="true" />
-                            Back to site
-                          </DialogPrimitive.Close>
+                            <Icon className="size-5" aria-hidden="true" />
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-[16px] font-[460] text-[#292827]">
+                              {goal.title}
+                            </div>
+                            <div className="mt-0.5 text-[14px] font-[460] leading-[1.4] text-[#73706d]">
+                              {goal.desc}
+                            </div>
+                          </div>
+                          {isSelected && (
+                            <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-[#1b1938]">
+                              <Check className="size-4 text-[#ffffff]" aria-hidden="true" />
+                            </div>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <div className="space-y-4 pt-2">
+                    <Button
+                      type="submit"
+                      disabled={!selectedGoal}
+                      className="h-[44px] w-full rounded-md bg-[#1b1938] text-[16px] font-[700] text-[#ffffff] hover:bg-[#0e0c1f] disabled:opacity-50"
+                    >
+                      Continue
+                      <ArrowRight className="ml-2 size-4" aria-hidden="true" />
+                    </Button>
+                    <p className="flex items-center justify-center gap-2 text-[14px] font-[460] text-[#9a9794]">
+                      <Lock className="size-3.5" aria-hidden="true" />
+                      You can change this later
+                    </p>
+                  </div>
+                </form>
+              </div>
+            )}
+
+            {/* Success step */}
+            {step === "success" && (
+              <div className="relative rounded-xl border border-[#e8e4dd] bg-[#ffffff] p-6 sm:p-10 shadow-[0_8px_24px_rgba(0,0,0,0.12)]">
+                <div className="mb-6 flex justify-center animate-fade-up">
+                  <div className="flex items-center gap-2 rounded-full border border-[#e8e4dd] bg-[#fafaf8] px-3 py-1.5 text-[12px] font-[540] text-[#73706d]">
+                    <div className="size-2 rounded-full bg-[#1b1938]" aria-hidden="true" />
+                    All set
+                  </div>
+                </div>
+
+                <div className="flex flex-col items-center justify-center space-y-8 animate-fade-up">
+                  <div className="relative flex size-[88px] items-center justify-center">
+                    <div className="relative flex size-[72px] items-center justify-center rounded-full border-[2px] border-[#1b1938] bg-[#fafaf8]">
+                      <Check className="size-8 text-[#1b1938]" aria-hidden="true" strokeWidth={2} />
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 text-center">
+                    <DialogPrimitive.Title className="text-[28px] font-[540] leading-[1.14] tracking-[-0.63px] text-[#292827]">
+                      You&apos;re on the list
+                    </DialogPrimitive.Title>
+                    <DialogPrimitive.Description className="mx-auto max-w-[340px] space-y-4 text-[16px] font-[460] leading-[1.5] text-[#73706d]">
+                      <p>We&apos;ve reserved your spot for {selectedGoal || planName}.</p>
+                      <p>
+                        We&apos;ll email you at{" "}
+                        <strong className="font-[700] text-[#292827]">{email}</strong>{" "}
+                        when your workspace is ready.
+                      </p>
+                    </DialogPrimitive.Description>
+                  </div>
+
+                  <div className="w-full space-y-6">
+                    <div className="flex w-full items-center gap-4 rounded-md border border-[#e8e4dd] bg-[#fafaf8] p-4 text-left">
+                      <div className="flex size-12 shrink-0 items-center justify-center rounded-md border border-[#e8e4dd] bg-[#ffffff] text-[#292827]">
+                        <Mail className="size-5" aria-hidden="true" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="text-[16px] font-[460] text-[#292827]">
+                          Waitlist confirmed
                         </div>
+                        <div className="mt-0.5 text-[14px] font-[460] text-[#73706d]">
+                          You&apos;ll be one of the first to get access.
+                        </div>
+                      </div>
+                      <div className="rounded-xs border border-[#e8e4dd] bg-[#ffffff] px-2.5 py-1 text-[12px] font-[540] text-[#292827]">
+                        {selectedGoal || planName} Access
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <DialogPrimitive.Close asChild>
+                        <Button
+                          className="h-[44px] w-full rounded-md bg-[#1b1938] text-[16px] font-[700] text-[#ffffff] hover:bg-[#0e0c1f]"
+                          type="button"
+                        >
+                          Done
+                        </Button>
+                      </DialogPrimitive.Close>
+
+                      <div className="text-center">
+                        <DialogPrimitive.Close className="inline-flex items-center gap-2 text-[14px] font-[460] text-[#73706d] transition-colors hover:text-[#292827] focus-visible:outline-none">
+                          <ArrowLeft className="size-3.5" aria-hidden="true" />
+                          Back to site
+                        </DialogPrimitive.Close>
                       </div>
                     </div>
                   </div>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
+          </div>
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>
     </DialogPrimitive.Root>
