@@ -184,32 +184,6 @@ export default async function PricingPage() {
             })}
           </div>
         </section>
-        <section className="px-4 pb-16 pt-12 sm:px-6 sm:pb-20 lg:px-8">
-          <div className="animate-enter relative mx-auto max-w-[1120px] overflow-hidden rounded-lg bg-teal px-8 py-16 text-teal-foreground sm:px-12 lg:px-16 lg:py-24">
-            <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
-              <div className="max-w-2xl">
-                <p className="text-sm font-semibold uppercase tracking-normal text-on-dark-mute">
-                  READY TO WRITE FASTER?
-                </p>
-                <h2 className="mt-4 text-[28px] font-[540] leading-[1.14] tracking-normal">
-                  Start with the free workspace and upgrade as your workflow
-                  grows.
-                </h2>
-              </div>
-              <Button
-                asChild
-                className="h-12 w-full px-8 text-base font-bold sm:w-[245px]"
-                size="lg"
-                variant="teal"
-              >
-                <Link href="/dashboard">
-                  Open dashboard
-                  <ArrowRight className="size-4" aria-hidden="true" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </section>
       </main>
     </div>
   );
