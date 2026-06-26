@@ -2,6 +2,17 @@
 
 AI Email Generator is a Next.js MVP for creating polished business email drafts from a short topic brief. It includes a marketing landing page, Supabase Auth, a protected dashboard, mock AI generation, a premium pricing flow, tests, Docker, and CI.
 
+## Features
+
+- Public landing and pricing pages
+- Supabase email/password authentication
+- Protected dashboard, drafts, and profile pages
+- Mock AI email generation with tone and length controls
+- Saved generated email history in Supabase Postgres
+- UI-only upgrade flow for future billing work
+- Unit, component, API route, and Playwright smoke tests
+- Docker standalone production image
+
 ## Tech Stack
 
 - Next.js 16 App Router with React 19 and TypeScript strict mode
@@ -10,6 +21,12 @@ AI Email Generator is a Next.js MVP for creating polished business email drafts 
 - TanStack Query for the dashboard generation mutation
 - Vitest, Testing Library, and Playwright
 - Docker standalone Next.js output
+
+## Prerequisites
+
+- Node.js 22
+- npm
+- A Supabase project for authenticated dashboard and persistence flows
 
 ## Getting Started
 
@@ -25,13 +42,7 @@ Create `.env.local` from the example:
 cp .env.example .env.local
 ```
 
-Set these values:
-
-```bash
-NEXT_PUBLIC_SUPABASE_URL=your-supabase-project-url
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-supabase-publishable-key
-AI_PROVIDER=mock
-```
+Fill in the required Supabase values described in [Environment Variables](#environment-variables). Do not commit local environment files with real project credentials.
 
 Apply the app database schema before testing authenticated generation. The migration file is:
 
@@ -49,15 +60,47 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-## Scripts
+## Environment Variables
+
+The application reads variables from `.env.local`, the deployment environment, Docker Compose, or CI. The minimum local setup for authenticated app flows is:
 
 ```bash
-npm run lint
-npm run typecheck
-npm run test:run
-npm run build
-npm run test:e2e
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-project-url
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-supabase-publishable-key
+AI_PROVIDER=mock
 ```
+
+| Variable | Required | Used by | Description |
+| --- | --- | --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL` | Yes for auth, protected pages, and persistence | App, API route, Supabase clients, Docker, CI | Supabase project URL, for example `https://your-project.supabase.co`. Public by design, but environment-specific. |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Yes for auth, protected pages, and persistence | App, API route, Supabase clients, Docker, CI | Supabase publishable anon key. Do not use a service-role key in this client-facing variable. |
+| `AI_PROVIDER` | Optional | Email generator service, Docker, CI | Defaults to `mock`. The MVP currently supports only `mock`; any other value fails intentionally. |
+| `E2E_EMAIL` | Optional | `e2e/authenticated.spec.ts` | Email for the authenticated Playwright smoke test. If it is missing, that test is skipped. |
+| `E2E_PASSWORD` | Optional | `e2e/authenticated.spec.ts` | Password for the authenticated Playwright smoke test. If it is missing, that test is skipped. |
+| `NEXT_TELEMETRY_DISABLED` | Optional | Local scripts, Docker build/runtime | Set to `1` to disable Next.js telemetry. The Dockerfile and E2E runner already disable it where they run. |
+| `CI` | Set by CI providers | Playwright config | Enables CI retries and the GitHub reporter in Playwright. Usually set automatically by GitHub Actions. |
+| `NODE_ENV` | Set by framework/runtime | Next.js, Docker runtime | The Docker image sets `production`. Do not set it manually for normal local development. |
+| `PORT` | Optional for standalone runtime | Docker runtime, Next.js standalone server | The Docker image sets `3000`. Override only when running the standalone server on another port. |
+| `HOSTNAME` | Optional for standalone runtime | Docker runtime, Next.js standalone server | The Docker image sets `0.0.0.0` so the container accepts external traffic. |
+
+If the Supabase variables are missing, public pages still render as a signed-out visitor. Authenticated pages redirect to `/login`, and `/api/generate` returns an auth configuration error.
+
+## Scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the local Next.js development server. |
+| `npm run dev:e2e` | Start the development server for Playwright on `127.0.0.1`. |
+| `npm run build` | Build the production app with standalone output. |
+| `npm run start` | Start the built Next.js app. |
+| `npm run lint` | Run ESLint. |
+| `npm run typecheck` | Run TypeScript without emitting files. |
+| `npm run test` | Start Vitest in watch mode. |
+| `npm run test:run` | Run Vitest once for unit, component, and API route tests. |
+| `npm run test:e2e` | Start the E2E dev server, run Playwright with one worker, and stop the server. |
+| `npm run test:e2e:run` | Run Playwright directly against an already running app at `http://127.0.0.1:3000`. |
+
+The authenticated Playwright smoke test requires `E2E_EMAIL` and `E2E_PASSWORD`. Without them, the authenticated test is skipped and the public smoke tests still run.
 
 ## Docker
 
@@ -73,6 +116,8 @@ Or use Compose:
 ```bash
 docker compose up --build
 ```
+
+Docker Compose reads variable substitutions from the shell environment or a root `.env` file. If your local values are stored only in `.env.local`, export the Supabase variables before running Compose or provide an equivalent `.env` file that is not committed.
 
 ## Project Structure
 
@@ -99,6 +144,19 @@ e2e/
 
 Route groups organize public and protected surfaces without changing URLs. Shared UI lives in `src/components`; Supabase clients, app data access, API helpers, and utilities live in `src/lib`; mock generation lives in `src/services/email-generator`.
 
+## Routes
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Marketing landing page. |
+| `/pricing` | Pricing page and UI-only upgrade flow. |
+| `/login` | Supabase sign-in page. |
+| `/signup` | Supabase account creation page. |
+| `/dashboard` | Protected email generator dashboard. |
+| `/drafts` | Protected saved draft history. |
+| `/profile` | Protected account profile summary. |
+| `/api/generate` | Authenticated email generation API route. |
+
 ## Architecture Decisions
 
 - The AI provider is mock-only in the MVP. `EmailGeneratorProvider` makes it straightforward to add OpenAI, Anthropic, Gemini, or another provider later without changing the dashboard UI.
@@ -111,4 +169,4 @@ Route groups organize public and protected surfaces without changing URLs. Share
 
 ## CI/CD
 
-GitHub Actions runs linting, TypeScript checks, Vitest tests, production build, Playwright smoke tests, and Docker build on pushes to `main` and pull requests.
+GitHub Actions runs linting, TypeScript checks, Vitest tests, production build, Playwright smoke tests, and Docker build on pushes to `main` and pull requests. CI uses mock Supabase values for checks that only need environment variables to exist.
