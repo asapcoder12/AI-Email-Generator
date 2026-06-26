@@ -11,7 +11,6 @@ import {
 import { FormEvent, useMemo, useState } from "react";
 import Link from "next/link";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -31,6 +30,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
 import { useGenerateEmail } from "../_hooks/use-generate-email";
+import { DraftDialog } from "../../_components/draft-dialog";
 import type { EmailHistoryItem } from "@/types/database";
 import type { EmailLength, EmailTone, GeneratedEmail } from "@/types/email";
 
@@ -334,46 +334,15 @@ export function DashboardGenerator({
             </CardDescription>
           </div>
           <Button asChild size="sm" variant="outline">
-            <Link href="/dashboard#recent-drafts">View all drafts</Link>
+            <Link href="/drafts">View all drafts</Link>
           </Button>
         </CardHeader>
         <CardContent>
           {history.length > 0 ? (
             <div className="overflow-hidden rounded-lg border">
-              {history.map((item) => {
-                const generatedDate = formatDraftDate(item.createdAt);
-
-                return (
-                  <article
-                    className="grid min-h-[76px] gap-3 border-b bg-background px-4 py-3 last:border-b-0 sm:grid-cols-[minmax(0,1fr)_auto_auto] sm:items-center"
-                    key={item.id}
-                  >
-                    <div className="min-w-0">
-                      <h3 className="truncate text-sm font-[540]">
-                        {item.subject}
-                      </h3>
-                      <p className="mt-1 line-clamp-1 text-sm leading-6 text-muted-foreground">
-                        {getPreviewText(item.body)}
-                      </p>
-                    </div>
-                    <div className="flex flex-wrap gap-2 sm:justify-end">
-                      <Badge className="bg-secondary" variant="outline">
-                        {getToneLabel(item.tone)}
-                      </Badge>
-                      <Badge className="bg-secondary" variant="outline">
-                        {getLengthLabel(item.length)}
-                      </Badge>
-                    </div>
-                    <time
-                      className="text-left text-sm leading-5 text-muted-foreground sm:min-w-[104px] sm:text-right"
-                      dateTime={item.createdAt}
-                    >
-                      <span className="block">{generatedDate.date}</span>
-                      <span className="block">{generatedDate.time}</span>
-                    </time>
-                  </article>
-                );
-              })}
+              {history.map((item) => (
+                <DraftDialog key={item.id} item={item} />
+              ))}
             </div>
           ) : (
             <div className="flex min-h-[132px] flex-col items-center justify-center rounded-lg border border-dashed bg-secondary p-6 text-center">
@@ -408,39 +377,4 @@ function getTopicValidationMessage(topic: string) {
   }
 
   return null;
-}
-
-function getPreviewText(body: string) {
-  return body.trim().replace(/\s+/g, " ");
-}
-
-function getToneLabel(value: EmailTone) {
-  return toneOptions.find((option) => option.value === value)?.label ?? value;
-}
-
-function getLengthLabel(value: EmailLength) {
-  return lengthOptions.find((option) => option.value === value)?.label ?? value;
-}
-
-function formatDraftDate(value: string) {
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) {
-    return {
-      date: "Recently",
-      time: "",
-    };
-  }
-
-  return {
-    date: new Intl.DateTimeFormat("en-US", {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    }).format(date),
-    time: new Intl.DateTimeFormat("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-    }).format(date),
-  };
 }

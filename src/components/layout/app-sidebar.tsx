@@ -22,7 +22,7 @@ export type DashboardLink = {
 
 export const dashboardLinks: DashboardLink[] = [
   { href: "/dashboard", icon: Home, label: "Home", match: "/dashboard" },
-  { href: "/dashboard#recent-drafts", icon: MailCheck, label: "Drafts" },
+  { href: "/drafts", icon: MailCheck, label: "Drafts", match: "/drafts" },
 ];
 
 type AppSidebarProps = {
