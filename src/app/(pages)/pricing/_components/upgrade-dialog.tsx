@@ -6,7 +6,6 @@ import {
   CheckCircle2,
   Lock,
   Mail,
-  Loader2,
   X,
   Target,
   Zap,
@@ -23,7 +22,7 @@ type UpgradeDialogProps = {
   planName: string;
 };
 
-type Step = "analyzing" | "goals" | "email" | "success";
+type Step = "goals" | "email" | "success";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -48,26 +47,17 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
   const emailInputId = useId();
   const emailErrorId = `${emailInputId}-error`;
   const [open, setOpen] = useState(false);
-  const [step, setStep] = useState<Step>("analyzing");
+  const [step, setStep] = useState<Step>("goals");
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState<string | null>(null);
   const [selectedGoal, setSelectedGoal] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (open && step === "analyzing") {
-      const timer = setTimeout(() => {
-        setStep("goals");
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [open, step]);
 
   function handleOpenChange(newOpen: boolean) {
     setOpen(newOpen);
     if (!newOpen) {
       // reset state after animation completes
       setTimeout(() => {
-        setStep("analyzing");
+        setStep("goals");
         setEmail("");
         setEmailError(null);
         setSelectedGoal(null);
@@ -116,20 +106,6 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
             </DialogPrimitive.Close>
 
             <div className="w-full max-w-md animate-enter">
-              {step === "analyzing" && (
-                <div className="flex flex-col items-center justify-center space-y-6 text-center animate-fade-up">
-                  <Loader2 className="size-12 animate-spin text-accent" />
-                  <div className="space-y-2">
-                    <DialogPrimitive.Title className="text-2xl font-[540] tracking-tight text-primary-foreground">
-                      Preparing workspace...
-                    </DialogPrimitive.Title>
-                    <DialogPrimitive.Description className="text-base text-on-dark-mute">
-                      Checking {planName} environment availability
-                    </DialogPrimitive.Description>
-                  </div>
-                </div>
-              )}
-
               {step === "goals" && (
                 <div className="flex flex-col space-y-8 animate-fade-up">
                   <div className="space-y-3 text-center">
@@ -216,7 +192,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                         type="submit"
                       >
                         <Mail className="mr-2 size-5" aria-hidden="true" />
-                        Request VIP Access
+                        Request {planName} Access
                       </Button>
 
                       <p className="flex items-center justify-center gap-2 text-sm text-on-dark-mute">
