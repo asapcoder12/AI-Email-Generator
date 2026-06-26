@@ -19,13 +19,13 @@ export function ProfileHeader() {
         </p>
       </div>
 
-      <div aria-hidden="true" className="hidden shrink-0 opacity-90 sm:block">
+      <div aria-hidden="true" className="hidden shrink-0 sm:block">
         <Image
           alt=""
-          className="size-[120px] lg:size-[140px]"
+          className="size-[120px] rounded-full object-cover lg:size-[140px]"
           height={140}
           priority
-          src="/media/profile-avatar-placeholder.svg"
+          src="/images/avatar.png"
           width={140}
         />
       </div>
