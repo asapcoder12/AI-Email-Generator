@@ -71,7 +71,6 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
 
   function handleGoalSelect(goalId: string) {
     setSelectedGoal(goalId);
-    setStep("email");
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -104,11 +103,6 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
           )}
         >
           <div className="landing-hero-copy-overlay flex min-h-full items-center justify-center p-4 py-12 sm:p-6 lg:p-8">
-            <DialogPrimitive.Close className="absolute right-4 top-4 flex size-11 items-center justify-center rounded-full border border-hairline-dark bg-primary-deep/60 text-on-dark-mute backdrop-blur-md transition-all hover:border-hairline-dark/80 hover:bg-primary-deep hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:right-6 sm:top-6">
-              <X className="size-5" aria-hidden="true" />
-              <span className="sr-only">Close</span>
-            </DialogPrimitive.Close>
-
             <div className="w-full max-w-[520px] animate-enter">
               {/* Progress indicator */}
               {step !== "success" && (
@@ -135,7 +129,11 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
 
               {/* Goals step */}
               {step === "goals" && (
-                <div className="rounded-xl border border-hairline-dark/60 bg-primary-deep/40 p-6 backdrop-blur-md sm:p-8">
+                <div className="relative rounded-[20px] border border-hairline-dark bg-primary-deep p-6 shadow-2xl sm:p-8">
+                  <DialogPrimitive.Close className="absolute right-4 top-4 flex size-8 items-center justify-center rounded-full text-on-dark-mute transition-colors hover:bg-white/10 hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:right-5 sm:top-5">
+                    <X className="size-4" aria-hidden="true" />
+                    <span className="sr-only">Close</span>
+                  </DialogPrimitive.Close>
                   <div className="space-y-8 animate-fade-up">
                     <div className="space-y-3 text-center">
                       <DialogPrimitive.Title className="text-[28px] font-[540] leading-[1.14] tracking-[-0.63px] text-primary-foreground sm:text-[32px]">
@@ -156,8 +154,8 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                             className={cn(
                               "group relative flex w-full items-center gap-4 rounded-lg border p-5 text-left transition-all",
                               isSelected
-                                ? "border-accent bg-primary-deep/80 shadow-[0_0_24px_rgba(201,180,250,0.15)]"
-                                : "border-hairline-dark bg-primary-deep/60 hover:border-accent/50 hover:bg-primary-deep/80"
+                                ? "border-accent bg-primary"
+                                : "border-hairline-dark bg-transparent hover:border-accent/50 hover:bg-primary/50"
                             )}
                             aria-pressed={isSelected}
                           >
@@ -188,13 +186,29 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                         );
                       })}
                     </div>
+                    
+                    <div className="pt-2">
+                      <Button
+                        type="button"
+                        onClick={() => setStep("email")}
+                        disabled={!selectedGoal}
+                        className="h-12 w-full rounded-full bg-accent text-base font-[700] text-primary hover:bg-accent/90 disabled:opacity-50 sm:h-14 sm:text-lg"
+                      >
+                        Continue
+                        <ArrowRight className="size-4 sm:size-5" aria-hidden="true" />
+                      </Button>
+                    </div>
                   </div>
                 </div>
               )}
 
               {/* Email step */}
               {step === "email" && (
-                <div className="rounded-xl border border-hairline-dark/60 bg-primary-deep/40 p-6 backdrop-blur-md sm:p-8">
+                <div className="relative rounded-[20px] border border-hairline-dark bg-primary-deep p-6 shadow-2xl sm:p-8">
+                  <DialogPrimitive.Close className="absolute right-4 top-4 flex size-8 items-center justify-center rounded-full text-on-dark-mute transition-colors hover:bg-white/10 hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:right-5 sm:top-5">
+                    <X className="size-4" aria-hidden="true" />
+                    <span className="sr-only">Close</span>
+                  </DialogPrimitive.Close>
                   <form onSubmit={handleSubmit} className="space-y-8 animate-fade-up" noValidate>
                     <div className="space-y-3 text-center">
                       <DialogPrimitive.Title className="text-[28px] font-[540] leading-[1.14] tracking-[-0.63px] text-primary-foreground sm:text-[32px]">
@@ -205,7 +219,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                       </DialogPrimitive.Description>
                     </div>
                     
-                    <div className="space-y-6 rounded-lg border border-hairline-dark/40 bg-primary-deep/60 p-6 sm:p-8">
+                    <div className="space-y-6 rounded-lg border border-hairline-dark bg-primary p-6 sm:p-8">
                       <div className="space-y-2">
                         <Label
                           className="text-base font-[600] text-primary-foreground"
@@ -262,9 +276,13 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
 
               {/* Success step */}
               {step === "success" && (
-                <div className="rounded-xl border border-hairline-dark/60 bg-primary-deep/40 p-6 backdrop-blur-md sm:p-8">
+                <div className="relative rounded-[20px] border border-hairline-dark bg-primary-deep p-6 shadow-2xl sm:p-8">
+                  <DialogPrimitive.Close className="absolute right-4 top-4 flex size-8 items-center justify-center rounded-full text-on-dark-mute transition-colors hover:bg-white/10 hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:right-5 sm:top-5">
+                    <X className="size-4" aria-hidden="true" />
+                    <span className="sr-only">Close</span>
+                  </DialogPrimitive.Close>
                   <div className="flex flex-col items-center justify-center space-y-8 text-center animate-fade-up">
-                    <div className="flex size-20 items-center justify-center rounded-lg bg-accent/20 shadow-[0_0_40px_rgba(201,180,250,0.25)] sm:size-24">
+                    <div className="flex size-20 items-center justify-center rounded-lg bg-accent/20 sm:size-24">
                       <CheckCircle2 className="size-10 text-accent sm:size-12" aria-hidden="true" />
                     </div>
                     <div className="space-y-3">
