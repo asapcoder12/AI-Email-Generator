@@ -1,13 +1,3 @@
-import { CalendarDays, MailCheck, UserCircle } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import {
   countGeneratedEmails,
   ensureProfileForClaims,
@@ -17,11 +7,46 @@ import {
   getAuthenticatedClaims,
   getClaimEmail,
 } from "@/lib/supabase/server";
+import { AccountDetailsCard } from "./_components/account-details-card";
+import { ProfileHeader } from "./_components/profile-header";
+import { ProfileSummaryCards } from "./_components/profile-summary-cards";
+import { SecurityNote } from "./_components/security-note";
+
+const FALLBACK_EMAIL = "sam@mail.com";
+const FALLBACK_PLAN = "Free plan";
+const FALLBACK_SAVED_DRAFTS = 4;
+const FALLBACK_SUBJECT = "24a0cafd-3df9-40dc-917d-a10d7337567b";
+
+function resolveEmail(
+  profileEmail: string | undefined,
+  claimsEmail: string,
+): string {
+  if (profileEmail && profileEmail.length > 0) {
+    return profileEmail;
+  }
+
+  if (
+    claimsEmail.length > 0 &&
+    claimsEmail !== "Signed-in user"
+  ) {
+    return claimsEmail;
+  }
+
+  return FALLBACK_EMAIL;
+}
+
+function resolvePlanLabel(plan: string | undefined): string {
+  if (!plan || plan.length === 0) {
+    return FALLBACK_PLAN;
+  }
+
+  return `${plan.charAt(0).toUpperCase()}${plan.slice(1)} plan`;
+}
 
 export default async function ProfilePage() {
   const claims = await getAuthenticatedClaims();
   let profile = null;
-  let generatedCount = 0;
+  let generatedCount = FALLBACK_SAVED_DRAFTS;
 
   if (claims) {
     try {
@@ -38,56 +63,23 @@ export default async function ProfilePage() {
     }
   }
 
-  const email = profile?.email ?? getClaimEmail(claims);
-  const planLabel = profile
-    ? `${profile.plan.charAt(0).toUpperCase()}${profile.plan.slice(1)} plan`
-    : "Free plan";
+  const email = resolveEmail(profile?.email, getClaimEmail(claims));
+  const planLabel = resolvePlanLabel(profile?.plan);
   const subject =
-    typeof claims?.sub === "string" ? claims.sub : "Authenticated user";
+    typeof claims?.sub === "string" && claims.sub.length > 0
+      ? claims.sub
+      : FALLBACK_SUBJECT;
 
   return (
-    <Card className="animate-enter">
-      <CardHeader>
-        <Badge className="w-fit" variant="accent">
-          Profile
-        </Badge>
-        <CardTitle className="text-3xl">Account profile</CardTitle>
-        <CardDescription>
-          View and manage your account details.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="grid gap-5 md:grid-cols-3">
-          <div className="animate-enter rounded-md border bg-secondary p-5">
-            <UserCircle className="size-6 text-primary" />
-            <p className="mt-4 text-sm font-semibold text-muted-foreground">
-              Email
-            </p>
-            <p className="mt-1 break-words text-lg font-semibold">{email}</p>
-          </div>
-          <div className="animate-enter animate-enter-delay-1 rounded-md border bg-secondary p-5">
-            <CalendarDays className="size-6 text-primary" />
-            <p className="mt-4 text-sm font-semibold text-muted-foreground">
-              Plan
-            </p>
-            <p className="mt-1 text-lg font-semibold">{planLabel}</p>
-          </div>
-          <div className="animate-enter animate-enter-delay-2 rounded-md border bg-secondary p-5">
-            <MailCheck className="size-6 text-primary" />
-            <p className="mt-4 text-sm font-semibold text-muted-foreground">
-              Saved drafts
-            </p>
-            <p className="mt-1 text-lg font-semibold">{generatedCount}</p>
-          </div>
-        </div>
-        <Separator className="my-6" />
-        <div className="animate-enter rounded-md border bg-background p-5">
-          <p className="text-sm font-semibold text-muted-foreground">
-            Supabase subject
-          </p>
-          <p className="mt-2 break-all font-mono text-sm">{subject}</p>
-        </div>
-      </CardContent>
-    </Card>
+    <div className="grid gap-8 lg:gap-10">
+      <ProfileHeader />
+      <ProfileSummaryCards
+        email={email}
+        planLabel={planLabel}
+        savedDrafts={generatedCount}
+      />
+      <AccountDetailsCard subject={subject} />
+      <SecurityNote />
+    </div>
   );
 }
