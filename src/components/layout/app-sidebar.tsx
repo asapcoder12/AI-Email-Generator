@@ -1,10 +1,10 @@
 "use client";
 
 import {
-  Diamond,
-  FileText,
+  ArrowRight,
   LayoutDashboard,
   Mail,
+  MailCheck,
   PenLine,
   Sparkles,
   UserRound,
@@ -25,7 +25,7 @@ export type DashboardLink = {
 export const dashboardLinks: DashboardLink[] = [
   { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard", match: "/dashboard" },
   { href: "/dashboard#generator", icon: PenLine, label: "Generate" },
-  { href: "/dashboard#recent-drafts", icon: FileText, label: "Drafts" },
+  { href: "/dashboard#recent-drafts", icon: MailCheck, label: "Drafts" },
   { href: "/profile", icon: UserRound, label: "Profile", match: "/profile" },
 ];
 
@@ -37,24 +37,21 @@ type AppSidebarProps = {
 };
 
 export function AppSidebar({
-  formattedWords,
   pathname,
-  savedDrafts,
-  userEmail,
 }: AppSidebarProps) {
   return (
     <aside className="dashboard-sidebar">
       <Link
-        className="flex items-center gap-3 text-lg font-semibold leading-none"
+        className="flex items-center gap-5 px-2 text-[23px] font-bold leading-none text-[#0b0d2e]"
         href="/dashboard"
       >
-        <span className="flex size-10 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-sm">
+        <span className="flex size-[38px] items-center justify-center rounded-lg bg-[#080b2f] text-primary-foreground shadow-sm">
           <Mail className="size-5" aria-hidden="true" />
         </span>
         <span>AI Email Generator</span>
       </Link>
 
-      <nav aria-label="Dashboard navigation" className="mt-10 grid gap-2">
+      <nav aria-label="Dashboard navigation" className="mt-[58px] grid gap-3">
         {dashboardLinks.map((link) => (
           <DashboardNavLink
             isActive={isActiveLink(pathname, link)}
@@ -64,35 +61,33 @@ export function AppSidebar({
         ))}
       </nav>
 
-      <section className="mt-9 rounded-xl border border-accent/50 bg-accent/15 p-5">
-        <span className="flex size-9 items-center justify-center rounded-full bg-accent/35 text-primary">
-          <Sparkles className="size-4" aria-hidden="true" />
+      <section className="mx-2 mt-auto rounded-lg border border-[#e4e3ec] bg-white p-5 shadow-[0_18px_48px_rgba(20,18,56,0.06)]">
+        <span className="flex size-9 items-center justify-center rounded-full bg-[#f0ebff] text-[#3928e8]">
+          <Sparkles className="size-[18px]" aria-hidden="true" />
         </span>
-        <h2 className="mt-5 text-base font-semibold">Upgrade to Pro</h2>
-        <p className="mt-3 text-sm leading-6 text-primary/80">
-          Unlock unlimited drafts, priority support, and advanced features.
+        <h2 className="mt-5 text-base font-bold text-[#111438]">
+          Upgrade your plan
+        </h2>
+        <p className="mt-4 text-[15px] leading-6 text-[#464a70]">
+          Unlock premium features and higher limits.
         </p>
-        <Button asChild className="mt-5 w-full" size="sm">
-          <Link href="/pricing">Upgrade plan</Link>
-        </Button>
-      </section>
-
-      <div className="mt-8 border-t pt-6">
         <Button
           asChild
-          className="w-full justify-start px-3 text-sm font-medium"
+          className="mt-5 h-11 w-full rounded-md bg-[#f4efff] text-[15px] font-bold text-[#3928e8] shadow-none hover:bg-[#ebe4ff]"
+          size="sm"
           variant="ghost"
         >
           <Link href="/pricing">
-            <Diamond className="size-4" aria-hidden="true" />
-            Upgrade plan
+            View plans
+            <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
         </Button>
-        <LogoutButton
-          className="mt-2 w-full justify-start px-3 text-sm font-medium"
-          variant="ghost"
-        />
-      </div>
+      </section>
+
+      <LogoutButton
+        className="mx-2 mt-8 h-11 w-[calc(100%-1rem)] justify-start gap-5 px-2 text-base font-medium text-[#202344] hover:bg-transparent hover:text-[#3928e8] [&_svg]:size-[22px]"
+        variant="ghost"
+      />
     </aside>
   );
 }
@@ -118,32 +113,12 @@ function DashboardNavLink({
       )}
       href={link.href}
     >
-      <Icon className="size-5" aria-hidden="true" />
+      <Icon
+        className={compact ? "size-5" : "size-[22px]"}
+        aria-hidden="true"
+      />
       <span>{link.label}</span>
     </Link>
-  );
-}
-
-function SummaryRow({
-  label,
-  value,
-  valueKind = "text",
-}: {
-  label: string;
-  value: string;
-  valueKind?: "badge" | "text";
-}) {
-  return (
-    <div className="flex min-h-9 items-center justify-between gap-3">
-      <span className="text-muted-foreground">{label}</span>
-      {valueKind === "badge" ? (
-        <span className="rounded-full bg-accent/35 px-3 py-1 text-xs font-semibold text-primary">
-          {value}
-        </span>
-      ) : (
-        <span className="font-semibold tabular-nums">{value}</span>
-      )}
-    </div>
   );
 }
 

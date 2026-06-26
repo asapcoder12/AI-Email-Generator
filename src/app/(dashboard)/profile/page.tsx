@@ -71,15 +71,21 @@ export default async function ProfilePage() {
       : FALLBACK_SUBJECT;
 
   return (
-    <div className="grid gap-8 lg:gap-10">
+    <div>
       <ProfileHeader />
-      <ProfileSummaryCards
-        email={email}
-        planLabel={planLabel}
-        savedDrafts={generatedCount}
-      />
-      <AccountDetailsCard subject={subject} />
-      <SecurityNote />
+      <div className="mt-10">
+        <ProfileSummaryCards
+          email={email}
+          planLabel={planLabel}
+          savedDrafts={generatedCount}
+        />
+      </div>
+      <div className="mt-[39px]">
+        <AccountDetailsCard subject={subject} />
+      </div>
+      <div className="mt-[26px]">
+        <SecurityNote />
+      </div>
     </div>
   );
 }

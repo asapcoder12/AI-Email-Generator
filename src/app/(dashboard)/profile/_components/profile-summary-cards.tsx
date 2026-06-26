@@ -22,13 +22,15 @@ function SummaryCard({
 }: SummaryCardProps) {
   return (
     <div
-      className={`rounded-xl border bg-card p-6 shadow-sm sm:p-8 ${animationClass}`}
+      className={`min-h-[216px] rounded-[10px] border border-[#e0e0e8] bg-white p-6 shadow-[0_16px_42px_rgba(20,18,56,0.04)] sm:p-[25px] ${animationClass}`}
     >
-      <span className="flex size-10 items-center justify-center rounded-lg bg-accent/25 text-primary">
-        <Icon className="size-5" aria-hidden="true" />
+      <span className="flex size-[62px] items-center justify-center rounded-[10px] bg-[#f0ebff] text-[#3928e8]">
+        <Icon className="size-[30px]" aria-hidden="true" />
       </span>
-      <p className="mt-5 text-sm text-muted-foreground">{label}</p>
-      <p className="mt-1 break-words text-lg font-semibold text-foreground">
+      <p className="mt-7 text-[17px] font-bold leading-6 text-[#575a76]">
+        {label}
+      </p>
+      <p className="mt-3 break-words text-2xl font-bold leading-7 text-[#0b0d2e]">
         {value}
       </p>
     </div>
@@ -43,7 +45,7 @@ export function ProfileSummaryCards({
   return (
     <section
       aria-label="Account summary"
-      className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+      className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
     >
       <SummaryCard icon={UserRound} label="Email" value={email} />
       <SummaryCard
