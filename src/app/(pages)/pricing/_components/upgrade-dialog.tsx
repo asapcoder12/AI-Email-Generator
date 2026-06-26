@@ -110,6 +110,8 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-100"
             style={{ backgroundImage: "url('/images/get-invite-bg.png')" }}
           />
+          {/* Dimming layer to make background less bright */}
+          <div className="absolute inset-0 bg-black/40" />
         </DialogPrimitive.Overlay>
 
         <DialogPrimitive.Content
@@ -119,13 +121,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
         >
 
           {/* Top Navigation Bar */}
-          <div className="relative z-10 flex w-full flex-none items-center justify-between p-6 sm:p-8">
-            <div className="flex items-center gap-2">
-              <div className="flex size-8 items-center justify-center rounded-lg bg-[#C4A1FF] text-[#0C0C16]">
-                <Mail className="size-5" aria-hidden="true" />
-              </div>
-              <span className="text-[15px] font-[600] text-white">AI Email Generator</span>
-            </div>
+          <div className="relative z-10 flex w-full flex-none items-center justify-end p-6 sm:p-8">
             <DialogPrimitive.Close className="flex size-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 backdrop-blur-md transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
               <X className="size-4" aria-hidden="true" />
               <span className="sr-only">Close</span>
@@ -137,7 +133,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
             <div className="w-full max-w-[480px] animate-enter">
               {/* Email step */}
               {step === "email" && (
-                <div className="relative rounded-[24px] border border-white/10 bg-[#0C0C16]/60 p-6 shadow-2xl backdrop-blur-xl sm:p-10">
+                <div className="relative rounded-[36px] border border-[#b794ff]/75 bg-[#0b0920]/70 p-6 sm:p-10 backdrop-blur-xl shadow-[inset_0_0_30px_rgba(139,92,246,0.14)] before:absolute before:inset-0 before:-z-10 before:rounded-[36px] before:shadow-[0_0_50px_rgba(139,92,246,0.55)]">
                   <div className="mb-6 flex justify-center animate-fade-up">
                     <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[13px] font-[500] text-white/80">
                       <div className="size-2 rounded-full bg-[#C4A1FF]" aria-hidden="true" />
@@ -196,7 +192,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
 
                       <div className="space-y-4 pt-2">
                         <Button
-                          className="h-12 w-full rounded-xl bg-[#C4A1FF] text-[15px] font-[600] text-[#0C0C16] hover:bg-[#B68EFF] sm:h-14"
+                          className="h-12 w-full rounded-xl bg-gradient-to-r from-violet-400 to-purple-400 text-[15px] font-semibold text-[#160b2e] shadow-[0_0_24px_rgba(168,85,247,0.45)] hover:opacity-90 sm:h-14"
                           type="submit"
                         >
                           Request Pro Access
@@ -215,7 +211,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
 
               {/* Goals step */}
               {step === "goals" && (
-                <div className="relative rounded-[24px] border border-white/10 bg-[#0C0C16]/60 p-6 shadow-2xl backdrop-blur-xl sm:p-10">
+                <div className="relative rounded-[36px] border border-[#b794ff]/75 bg-[#0b0920]/70 p-6 sm:p-10 backdrop-blur-xl shadow-[inset_0_0_30px_rgba(139,92,246,0.14)] before:absolute before:inset-0 before:-z-10 before:rounded-[36px] before:shadow-[0_0_50px_rgba(139,92,246,0.55)]">
                   <div className="mb-6 flex justify-center animate-fade-up">
                     <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[13px] font-[500] text-white/80">
                       <div className="size-2 rounded-full bg-[#C4A1FF]" aria-hidden="true" />
@@ -285,7 +281,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                       <Button
                         type="submit"
                         disabled={!selectedGoal}
-                        className="h-12 w-full rounded-xl bg-[#C4A1FF] text-[15px] font-[600] text-[#0C0C16] hover:bg-[#B68EFF] disabled:opacity-50 sm:h-14"
+                        className="h-12 w-full rounded-xl bg-gradient-to-r from-violet-400 to-purple-400 text-[15px] font-semibold text-[#160b2e] shadow-[0_0_24px_rgba(168,85,247,0.45)] hover:opacity-90 disabled:opacity-50 sm:h-14"
                       >
                         Continue
                         <ArrowRight className="ml-2 size-4" aria-hidden="true" />
@@ -301,7 +297,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
 
               {/* Success step */}
               {step === "success" && (
-                <div className="relative rounded-[24px] border border-white/10 bg-[#0C0C16]/60 p-6 shadow-2xl backdrop-blur-xl sm:p-10">
+                <div className="relative rounded-[36px] border border-[#b794ff]/75 bg-[#0b0920]/70 p-6 sm:p-10 backdrop-blur-xl shadow-[inset_0_0_30px_rgba(139,92,246,0.14)] before:absolute before:inset-0 before:-z-10 before:rounded-[36px] before:shadow-[0_0_50px_rgba(139,92,246,0.55)]">
                   <div className="mb-6 flex justify-center animate-fade-up">
                     <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[13px] font-[500] text-white/80">
                       <div className="size-2 rounded-full bg-[#C4A1FF]" aria-hidden="true" />
@@ -352,7 +348,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                       <div className="space-y-4">
                         <DialogPrimitive.Close asChild>
                           <Button
-                            className="h-12 w-full rounded-xl bg-[#C4A1FF] text-[15px] font-[600] text-[#0C0C16] hover:bg-[#B68EFF] sm:h-14"
+                            className="h-12 w-full rounded-xl bg-gradient-to-r from-violet-400 to-purple-400 text-[15px] font-semibold text-[#160b2e] shadow-[0_0_24px_rgba(168,85,247,0.45)] hover:opacity-90 sm:h-14"
                             type="button"
                           >
                             Done
