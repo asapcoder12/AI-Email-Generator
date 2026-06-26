@@ -36,7 +36,7 @@ function DialogOverlay({
   return (
     <DialogPrimitive.Overlay
       className={cn(
-        "fixed inset-0 z-50 bg-primary/55 backdrop-blur-sm data-[state=closed]:animate-overlay-out data-[state=open]:animate-overlay-in",
+        "fixed inset-0 z-50 bg-[#252646]/55 backdrop-blur-md data-[state=closed]:animate-overlay-out data-[state=open]:animate-overlay-in",
         className,
       )}
       data-slot="dialog-overlay"
@@ -55,15 +55,18 @@ function DialogContent({
       <DialogOverlay />
       <DialogPrimitive.Content
         className={cn(
-          "fixed left-1/2 top-1/2 z-50 grid w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 rounded-lg border bg-background p-6 shadow-lg data-[state=closed]:animate-scale-out data-[state=open]:animate-scale-in",
+          "fixed left-1/2 top-1/2 z-50 grid w-[calc(100vw-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 rounded-2xl border border-[#e8e4dd] bg-background p-6 shadow-[0_24px_80px_rgba(15,16,48,0.22)] data-[state=closed]:animate-scale-out data-[state=open]:animate-scale-in sm:p-8",
           className,
         )}
         data-slot="dialog-content"
         {...props}
       >
         {children}
-        <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-          <X className="size-4" />
+        <DialogPrimitive.Close
+          aria-label="Close dialog"
+          className="absolute right-5 top-5 flex size-9 items-center justify-center rounded-full border border-[#e8e4dd] bg-white text-[#111438]/80 shadow-[0_6px_18px_rgba(15,16,48,0.08)] transition-colors hover:bg-[#f7f4ff] hover:text-[#3928e8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        >
+          <X className="size-4" aria-hidden="true" />
           <span className="sr-only">Close</span>
         </DialogPrimitive.Close>
       </DialogPrimitive.Content>
