@@ -143,7 +143,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                     </div>
                     
                     <div className="space-y-6">
-                      <div className="space-y-2">
+                      <div className="flex flex-col gap-2">
                         <Label
                           className="text-[14px] font-[460] text-[#73706d]"
                           htmlFor={emailInputId}
