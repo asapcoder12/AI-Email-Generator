@@ -2,18 +2,16 @@
 
 import {
   ArrowRight,
-  LayoutDashboard,
+  Home,
   Mail,
   MailCheck,
-  PenLine,
   Sparkles,
-  UserRound,
 } from "lucide-react";
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { LogoutButton } from "./logout-button";
+import { UserMenu } from "./user-menu";
 
 export type DashboardLink = {
   href: string;
@@ -23,10 +21,8 @@ export type DashboardLink = {
 };
 
 export const dashboardLinks: DashboardLink[] = [
-  { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard", match: "/dashboard" },
-  { href: "/dashboard#generator", icon: PenLine, label: "Generate" },
+  { href: "/dashboard", icon: Home, label: "Home", match: "/dashboard" },
   { href: "/dashboard#recent-drafts", icon: MailCheck, label: "Drafts" },
-  { href: "/profile", icon: UserRound, label: "Profile", match: "/profile" },
 ];
 
 type AppSidebarProps = {
@@ -38,6 +34,7 @@ type AppSidebarProps = {
 
 export function AppSidebar({
   pathname,
+  userEmail,
 }: AppSidebarProps) {
   return (
     <aside className="dashboard-sidebar">
@@ -61,33 +58,34 @@ export function AppSidebar({
         ))}
       </nav>
 
-      <section className="mx-2 mt-auto rounded-lg border border-border bg-card p-5 shadow-[var(--shadow-elev-1)]">
-        <span className="flex size-9 items-center justify-center rounded-lg bg-accent text-primary">
-          <Sparkles className="size-5" aria-hidden="true" />
-        </span>
-        <h2 className="mt-5 text-base font-[700] text-foreground">
-          Upgrade your plan
-        </h2>
-        <p className="mt-4 text-base leading-6 text-muted-foreground">
-          Unlock premium features and higher limits.
-        </p>
-        <Button
-          asChild
-          className="mt-5 w-full text-sm"
-          size="sm"
-          variant="default"
-        >
-          <Link href="/pricing">
-            View plans
-            <ArrowRight className="size-4" aria-hidden="true" />
-          </Link>
-        </Button>
-      </section>
+      <div className="mt-auto flex flex-col gap-4">
+        <section className="mx-2 rounded-lg border border-border bg-card p-5 shadow-[var(--shadow-elev-1)]">
+          <span className="flex size-9 items-center justify-center rounded-lg bg-accent text-primary">
+            <Sparkles className="size-5" aria-hidden="true" />
+          </span>
+          <h2 className="mt-5 text-base font-[700] text-foreground">
+            Upgrade your plan
+          </h2>
+          <p className="mt-4 text-base leading-6 text-muted-foreground">
+            Unlock premium features and higher limits.
+          </p>
+          <Button
+            asChild
+            className="mt-5 w-full text-sm"
+            size="sm"
+            variant="default"
+          >
+            <Link href="/pricing">
+              View plans
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
+          </Button>
+        </section>
 
-      <LogoutButton
-        className="mx-2 mt-8 h-11 w-[calc(100%-1rem)] justify-start gap-5 px-2 text-base font-[460] text-foreground hover:bg-secondary hover:text-primary [&_svg]:size-5"
-        variant="ghost"
-      />
+        <div className="mx-2 mb-4 mt-2">
+          <UserMenu userEmail={userEmail} />
+        </div>
+      </div>
     </aside>
   );
 }
@@ -124,3 +122,4 @@ function isActiveLink(pathname: string, link: DashboardLink) {
 }
 
 export { DashboardNavLink, isActiveLink };
+

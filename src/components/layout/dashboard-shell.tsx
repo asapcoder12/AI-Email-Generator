@@ -10,7 +10,7 @@ import {
   dashboardLinks,
   isActiveLink,
 } from "./app-sidebar";
-import { LogoutButton } from "./logout-button";
+import { UserMenu } from "./user-menu";
 
 type DashboardShellProps = {
   children: ReactNode;
@@ -49,7 +49,7 @@ export function DashboardShell({
               </span>
               <span className="truncate">AI Email Generator</span>
             </Link>
-            <LogoutButton className="px-3" size="sm" variant="outline" />
+            <UserMenu compact userEmail={userEmail} />
           </div>
           <nav aria-label="Dashboard navigation" className="dashboard-mobile-nav">
             {dashboardLinks.map((link) => (
