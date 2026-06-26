@@ -86,6 +86,7 @@ src/app/
     auth/
   (dashboard)/
     dashboard/
+    drafts/
     profile/
   api/generate/
 src/components/
