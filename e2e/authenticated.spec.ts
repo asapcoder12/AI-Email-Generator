@@ -8,6 +8,7 @@ const hasSupabaseConfig =
   Boolean(supabaseUrl && supabasePublishableKey) &&
   supabaseUrl !== "https://example.supabase.co" &&
   supabasePublishableKey !== "sb_publishable_test_key";
+const escapedEmail = escapeRegExp(email ?? "");
 
 test.skip(
   !email || !password || !hasSupabaseConfig,
@@ -19,6 +20,8 @@ test.setTimeout(60_000);
 test("authenticated user sees the correct app navigation and can generate", async ({
   page,
 }) => {
+  const topic = `Authenticated QA pass ${Date.now()}`;
+
   await page.goto("/login");
   await page.getByLabel("Email", { exact: true }).fill(email ?? "");
   await page.getByLabel("Password", { exact: true }).fill(password ?? "");
@@ -26,30 +29,54 @@ test("authenticated user sees the correct app navigation and can generate", asyn
 
   await expect(page).toHaveURL(/\/dashboard$/, { timeout: 20_000 });
   await expect(page.getByText(email ?? "").first()).toBeVisible();
-  await expect(page.getByRole("button", { name: /sign out/i })).toBeVisible();
+  const userMenuButton = page.getByRole("button", {
+    name: new RegExp(escapedEmail, "i"),
+  });
+  await expect(userMenuButton).toBeVisible();
 
-  await page
-    .getByLabel(/email topic/i)
-    .fill("Follow up after the authenticated QA pass");
-  await page.getByRole("button", { name: /^generate email$/i }).click();
+  const topicInput = page.getByRole("textbox", { name: /email topic/i });
+  const generateButton = page.getByRole("button", { name: /^generate email$/i });
+  await topicInput.pressSequentially(topic);
+  await expect(page.getByText(`${topic.length} / 500`)).toBeVisible();
+  await expect(generateButton).toBeEnabled();
+  await generateButton.click();
 
   await expect(page.getByText("Result preview")).toBeVisible({
     timeout: 20_000,
   });
-  await expect(page.getByText(/Follow up after the authenticated QA pass/i)).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: /copy generated email/i }),
+  ).toBeVisible({ timeout: 20_000 });
+  await expect(
+    page
+      .locator("pre")
+      .filter({ hasText: new RegExp(escapeRegExp(topic), "i") }),
+  ).toBeVisible();
 
   await page.goto("/pricing");
-  await expect(page.getByRole("link", { name: /dashboard/i })).toBeVisible();
-  await expect(page.getByRole("link", { name: /^sign in$/i })).toHaveCount(0);
-  await expect(page.getByRole("link", { name: /^get started$/i })).toHaveCount(0);
+  const pricingHeader = page.getByRole("banner");
+  await expect(
+    pricingHeader.getByRole("link", { name: /^dashboard$/i }),
+  ).toBeVisible();
+  await expect(
+    pricingHeader.getByRole("link", { name: /^sign in$/i }),
+  ).toHaveCount(0);
+  await expect(
+    pricingHeader.getByRole("link", { name: /^get started$/i }),
+  ).toHaveCount(0);
 
   await page.goto("/profile");
   await expect(page.getByText(email ?? "").first()).toBeVisible();
   await expect(page.getByText("Saved drafts")).toBeVisible();
 
-  await page.getByRole("button", { name: /sign out/i }).click();
+  await userMenuButton.click();
+  await page.getByRole("menuitem", { name: /sign out/i }).click();
   await expect(page).toHaveURL(/\/login$/, { timeout: 20_000 });
 
   await page.goto("/dashboard");
   await expect(page).toHaveURL(/\/login$/);
 });
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
