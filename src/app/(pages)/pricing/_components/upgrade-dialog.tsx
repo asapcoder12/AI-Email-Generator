@@ -192,7 +192,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
 
                       <div className="space-y-4 pt-2">
                         <Button
-                          className="h-12 w-full rounded-xl bg-gradient-to-r from-violet-400 to-purple-400 text-[15px] font-semibold text-[#160b2e] shadow-[0_0_24px_rgba(168,85,247,0.45)] hover:opacity-90 sm:h-14"
+                          className="h-12 w-full rounded-xl bg-gradient-to-r from-violet-400 to-purple-400 text-[15px] font-semibold text-[#160b2e] hover:opacity-90 sm:h-14"
                           type="submit"
                         >
                           Request Pro Access
@@ -281,7 +281,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                       <Button
                         type="submit"
                         disabled={!selectedGoal}
-                        className="h-12 w-full rounded-xl bg-gradient-to-r from-violet-400 to-purple-400 text-[15px] font-semibold text-[#160b2e] shadow-[0_0_24px_rgba(168,85,247,0.45)] hover:opacity-90 disabled:opacity-50 sm:h-14"
+                        className="h-12 w-full rounded-xl bg-gradient-to-r from-violet-400 to-purple-400 text-[15px] font-semibold text-[#160b2e] hover:opacity-90 disabled:opacity-50 sm:h-14"
                       >
                         Continue
                         <ArrowRight className="ml-2 size-4" aria-hidden="true" />
@@ -348,7 +348,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                       <div className="space-y-4">
                         <DialogPrimitive.Close asChild>
                           <Button
-                            className="h-12 w-full rounded-xl bg-gradient-to-r from-violet-400 to-purple-400 text-[15px] font-semibold text-[#160b2e] shadow-[0_0_24px_rgba(168,85,247,0.45)] hover:opacity-90 sm:h-14"
+                            className="h-12 w-full rounded-xl bg-gradient-to-r from-violet-400 to-purple-400 text-[15px] font-semibold text-[#160b2e] hover:opacity-90 sm:h-14"
                             type="button"
                           >
                             Done
