@@ -80,10 +80,10 @@ export default async function ProfilePage() {
           savedDrafts={generatedCount}
         />
       </div>
-      <div className="mt-[39px]">
+      <div className="mt-8">
         <AccountDetailsCard subject={subject} />
       </div>
-      <div className="mt-[26px]">
+      <div className="mt-6">
         <SecurityNote />
       </div>
     </div>

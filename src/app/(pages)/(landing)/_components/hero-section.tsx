@@ -23,29 +23,29 @@ export function HeroSection({ isAuthenticated = false }: HeroSectionProps) {
           Write better. Send faster.
         </p>
         <h1
-          className="mt-6 text-[42px] font-semibold leading-[1.02] tracking-normal text-white sm:text-6xl lg:text-[54px]"
+          className="mt-6 text-[36px] font-[540] leading-[0.96] tracking-normal text-primary-foreground sm:text-5xl lg:text-[64px]"
           id="landing-hero-title"
         >
           AI email generator for campaigns that need to move today
         </h1>
-        <p className="mt-6 max-w-[560px] text-base leading-7 text-white/75">
+        <p className="mt-6 max-w-[560px] text-lg font-[540] leading-[1.5] text-primary-foreground">
           Write outreach, sales, lifecycle, and follow-up emails from one
           topic. Choose the tone, the length, and ship a polished draft faster.
         </p>
         <div className="mt-7">
           <Button
             asChild
-            className="h-12 rounded-lg px-9 text-sm"
+            className="px-9"
             size="lg"
             variant="hero"
           >
             <Link href={ctaHref}>{ctaLabel}</Link>
           </Button>
         </div>
-        <ul className="mt-8 flex flex-col gap-4 text-xs text-white/70 sm:flex-row sm:flex-wrap sm:items-center sm:gap-7">
+        <ul className="mt-8 flex flex-col gap-4 text-xs font-[540] text-primary-foreground sm:flex-row sm:flex-wrap sm:items-center sm:gap-7">
           {trustPoints.map((point) => (
             <li className="flex items-center gap-2" key={point}>
-              <CheckCircle2 className="size-3.5 text-white/80" aria-hidden="true" />
+              <CheckCircle2 className="size-3.5 text-primary-foreground" aria-hidden="true" />
               <span>{point}</span>
             </li>
           ))}

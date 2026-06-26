@@ -28,10 +28,10 @@ export function MarketingHeader({
   isAuthenticated = false,
 }: MarketingHeaderProps) {
   return (
-    <header className="relative z-30 text-white">
+    <header className="relative z-30 text-primary-foreground">
       <nav className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10">
         <Link
-          className="flex min-h-11 items-center gap-3 text-base font-semibold text-white"
+          className="flex min-h-11 items-center gap-3 text-base font-semibold text-primary-foreground"
           href="/"
         >
           <span className="flex size-8 items-center justify-center rounded-lg bg-accent text-primary">
@@ -43,7 +43,7 @@ export function MarketingHeader({
         <div className="hidden items-center gap-10 md:flex">
           {navLinks.map((link) => (
             <Link
-              className="text-sm font-medium text-white/70 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="text-sm font-medium text-on-dark-mute transition-colors duration-200 hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               href={link.href}
               key={link.href}
             >
@@ -57,7 +57,7 @@ export function MarketingHeader({
             <>
               <Button
                 asChild
-                className="h-10 rounded-lg px-6"
+                className="px-6"
                 variant="hero"
               >
                 <Link href="/dashboard">
@@ -66,21 +66,21 @@ export function MarketingHeader({
                 </Link>
               </Button>
               <LogoutButton
-                className="border border-white/15 text-white/80 hover:bg-white/10 hover:text-white"
+                className="text-on-dark-mute hover:bg-primary-deep hover:text-primary-foreground"
                 variant="ghost"
               />
             </>
           ) : (
             <>
               <Link
-                className="text-sm font-medium text-white/70 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                className="text-sm font-medium text-on-dark-mute transition-colors duration-200 hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 href="/login"
               >
                 Sign in
               </Link>
               <Button
                 asChild
-                className="h-10 rounded-lg px-6"
+                className="px-6"
                 variant="hero"
               >
                 <Link href="/signup">Get started free</Link>
@@ -93,7 +93,7 @@ export function MarketingHeader({
           <SheetTrigger asChild>
             <Button
               aria-label="Open navigation"
-              className="md:hidden text-white hover:bg-white/10"
+              className="text-primary-foreground hover:bg-primary-deep md:hidden"
               size="icon"
               variant="ghost"
             >

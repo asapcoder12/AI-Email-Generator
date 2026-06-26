@@ -39,7 +39,7 @@ export function CopySubjectButton({ value }: CopySubjectButtonProps) {
   return (
     <Button
       aria-label="Copy Supabase subject"
-      className="h-11 shrink-0 rounded-lg border-[#e6e4ee] bg-white px-4 text-[15px] font-bold text-[#3928e8] hover:bg-[#f7f4ff]"
+      className="shrink-0 px-4 text-sm"
       onClick={handleCopy}
       size="sm"
       type="button"

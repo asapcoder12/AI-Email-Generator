@@ -44,12 +44,12 @@ export function DashboardShell({
               className="flex min-w-0 items-center gap-2 font-semibold"
               href="/dashboard"
             >
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground">
                 <Mail className="size-4" aria-hidden="true" />
               </span>
               <span className="truncate">AI Email Generator</span>
             </Link>
-            <LogoutButton className="h-9 px-3" size="sm" variant="outline" />
+            <LogoutButton className="px-3" size="sm" variant="outline" />
           </div>
           <nav aria-label="Dashboard navigation" className="dashboard-mobile-nav">
             {dashboardLinks.map((link) => (

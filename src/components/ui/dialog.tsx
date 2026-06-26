@@ -36,7 +36,7 @@ function DialogOverlay({
   return (
     <DialogPrimitive.Overlay
       className={cn(
-        "fixed inset-0 z-50 bg-[#252646]/55 backdrop-blur-md data-[state=closed]:animate-overlay-out data-[state=open]:animate-overlay-in",
+        "fixed inset-0 z-50 bg-primary/55 data-[state=closed]:animate-overlay-out data-[state=open]:animate-overlay-in",
         className,
       )}
       data-slot="dialog-overlay"
@@ -53,23 +53,25 @@ function DialogContent({
   return (
     <DialogPortal>
       <DialogOverlay />
-      <DialogPrimitive.Content
-        className={cn(
-          "fixed left-1/2 top-1/2 z-50 grid w-[calc(100vw-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 rounded-2xl border border-[#e8e4dd] bg-background p-6 shadow-[0_24px_80px_rgba(15,16,48,0.22)] data-[state=closed]:animate-scale-out data-[state=open]:animate-scale-in sm:p-8",
-          className,
-        )}
-        data-slot="dialog-content"
-        {...props}
-      >
-        {children}
-        <DialogPrimitive.Close
-          aria-label="Close dialog"
-          className="absolute right-5 top-5 flex size-9 items-center justify-center rounded-full border border-[#e8e4dd] bg-white text-[#111438]/80 shadow-[0_6px_18px_rgba(15,16,48,0.08)] transition-colors hover:bg-[#f7f4ff] hover:text-[#3928e8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+      <div className="pointer-events-none fixed inset-0 z-50 grid place-items-center p-4">
+        <DialogPrimitive.Content
+          className={cn(
+            "pointer-events-auto relative z-50 grid w-full max-w-lg gap-4 rounded-xl border border-border bg-background p-6 shadow-[var(--shadow-elev-2)] data-[state=closed]:animate-scale-out data-[state=open]:animate-scale-in sm:p-8",
+            className,
+          )}
+          data-slot="dialog-content"
+          {...props}
         >
-          <X className="size-4" aria-hidden="true" />
-          <span className="sr-only">Close</span>
-        </DialogPrimitive.Close>
-      </DialogPrimitive.Content>
+          {children}
+          <DialogPrimitive.Close
+            aria-label="Close dialog"
+            className="absolute right-5 top-5 flex size-11 items-center justify-center rounded-md border border-border bg-background text-foreground shadow-[var(--shadow-elev-1)] transition-colors hover:bg-secondary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          >
+            <X className="size-4" aria-hidden="true" />
+            <span className="sr-only">Close</span>
+          </DialogPrimitive.Close>
+        </DialogPrimitive.Content>
+      </div>
     </DialogPortal>
   );
 }

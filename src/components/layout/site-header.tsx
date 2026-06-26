@@ -41,10 +41,10 @@ export function SiteHeader({
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 border-b backdrop-blur-xl",
+        "sticky top-0 z-40 border-b",
         isDark
-          ? "border-white/10 bg-primary/90 text-primary-foreground"
-          : "border-border bg-white/95 text-foreground",
+          ? "border-hairline-dark bg-primary text-primary-foreground"
+          : "border-border bg-background text-foreground",
       )}
     >
       <nav className="mx-auto flex h-[72px] w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -55,7 +55,7 @@ export function SiteHeader({
           <span
             className={cn(
               "flex size-9 items-center justify-center rounded-md",
-              isDark ? "bg-accent text-primary" : "bg-primary text-white",
+              isDark ? "bg-accent text-primary" : "bg-primary text-primary-foreground",
             )}
           >
             <Mail className="size-4" aria-hidden="true" />
@@ -73,10 +73,15 @@ export function SiteHeader({
                 className={cn(
                   "relative flex h-[72px] items-center text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                   isDark
-                    ? "text-white/75 hover:text-white"
+                    ? "text-on-dark-mute hover:text-primary-foreground"
                     : "text-muted-foreground hover:text-foreground",
                   isActive &&
-                    "text-foreground after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-primary",
+                    cn(
+                      "after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:rounded-full",
+                      isDark
+                        ? "text-primary-foreground after:bg-accent"
+                        : "text-foreground after:bg-primary",
+                    ),
                 )}
                 href={link.href}
                 key={link.href}
@@ -92,7 +97,7 @@ export function SiteHeader({
             <>
               <Button
                 asChild
-                className={cn("h-11 rounded-md px-6", isDark && "text-primary")}
+                className={cn("px-6", isDark && "text-primary")}
                 variant={isDark ? "hero" : "default"}
               >
                 <Link href="/dashboard">
@@ -101,7 +106,7 @@ export function SiteHeader({
                 </Link>
               </Button>
               <LogoutButton
-                className={cn(isDark && "border-white/20 text-white hover:bg-white/10")}
+                className={cn(isDark && "text-primary-foreground hover:bg-primary-deep")}
                 variant={isDark ? "ghost" : "outline"}
               />
             </>
@@ -111,15 +116,15 @@ export function SiteHeader({
                 <Button
                   asChild
                   className={cn(
-                    "h-11 rounded-md px-5",
-                    isDark && "text-white/75 hover:bg-white/10 hover:text-white",
+                    "px-5",
+                    isDark && "text-on-dark-mute hover:bg-primary-deep hover:text-primary-foreground",
                   )}
                   variant={isDark ? "ghost" : "outline"}
                 >
                   <Link href="/login">Sign in</Link>
                 </Button>
               ) : null}
-              <Button asChild className="h-11 rounded-md px-6" variant={isDark ? "hero" : "default"}>
+              <Button asChild className="px-6" variant={isDark ? "hero" : "default"}>
                 <Link href="/signup">
                   {primaryCtaLabel}
                   <ArrowRight className="size-4" aria-hidden="true" />
@@ -133,7 +138,7 @@ export function SiteHeader({
           <SheetTrigger asChild>
             <Button
               aria-label="Open navigation"
-              className={cn("ml-auto shrink-0 md:hidden", isDark && "text-white hover:bg-white/10")}
+              className={cn("ml-auto shrink-0 md:hidden", isDark && "text-primary-foreground hover:bg-primary-deep")}
               size="icon"
               variant="ghost"
             >

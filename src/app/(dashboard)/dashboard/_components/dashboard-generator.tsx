@@ -137,21 +137,21 @@ export function DashboardGenerator({
   return (
     <div className="grid gap-5">
       <header className="flex items-start gap-4">
-        <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-accent/30 text-primary">
+        <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-accent text-primary">
           <Sparkles className="size-5" aria-hidden="true" />
         </span>
         <div className="min-w-0">
-          <h1 className="text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
+          <h1 className="text-[28px] font-[540] leading-[1.14] text-foreground sm:text-[48px] sm:font-[460] sm:leading-[0.96]">
             Generate an email
           </h1>
-          <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground sm:text-base">
+          <p className="mt-3 max-w-3xl text-base leading-6 text-muted-foreground">
             Describe the topic, choose the style, and generate a polished draft
             that is ready to review, save, and copy.
           </p>
         </div>
       </header>
 
-      <Card id="generator" className="rounded-xl">
+      <Card id="generator" className="rounded-lg">
         <CardContent className="p-5 sm:p-6">
           <form className="grid gap-5" onSubmit={handleSubmit}>
             <div className="grid gap-2">
@@ -256,10 +256,10 @@ export function DashboardGenerator({
         </CardContent>
       </Card>
 
-      <Card aria-live="polite" className="rounded-xl">
+      <Card aria-live="polite" className="rounded-lg">
         <CardHeader className="flex-row items-start justify-between gap-4">
           <div className="min-w-0">
-            <CardTitle className="flex items-center gap-3 text-xl">
+            <CardTitle className="flex items-center gap-3 text-[22px] font-[460] leading-[1.1]">
               <MailCheck className="size-5" aria-hidden="true" />
               Result preview
             </CardTitle>
@@ -282,7 +282,7 @@ export function DashboardGenerator({
         </CardHeader>
         <CardContent>
           {generateMutation.isPending ? (
-            <div className="rounded-lg border bg-secondary/70 p-5">
+            <div className="rounded-lg border border-border bg-secondary p-5">
               <Skeleton className="h-4 w-40" />
               <Skeleton className="mt-5 h-4 w-full" />
               <Skeleton className="mt-3 h-4 w-11/12" />
@@ -291,7 +291,7 @@ export function DashboardGenerator({
           ) : null}
 
           {!generateMutation.isPending && generatedEmail ? (
-            <div className="animate-enter rounded-lg border border-accent/50 bg-accent/15 p-5">
+            <div className="animate-enter rounded-lg border border-border bg-secondary p-5">
               <p className="text-xs font-semibold uppercase text-primary/70">
                 Subject
               </p>
@@ -310,8 +310,8 @@ export function DashboardGenerator({
           ) : null}
 
           {!generateMutation.isPending && !generatedEmail ? (
-            <div className="flex min-h-[160px] flex-col items-center justify-center rounded-lg border border-dashed bg-secondary/70 p-6 text-center">
-              <span className="flex size-14 items-center justify-center rounded-full border bg-background text-muted-foreground shadow-sm">
+            <div className="flex min-h-[160px] flex-col items-center justify-center rounded-lg border border-dashed bg-secondary p-6 text-center">
+              <span className="flex size-14 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground shadow-[var(--shadow-elev-1)]">
                 <Mail className="size-6" aria-hidden="true" />
               </span>
               <p className="mt-4 max-w-sm text-sm leading-6 text-muted-foreground">
@@ -322,10 +322,10 @@ export function DashboardGenerator({
         </CardContent>
       </Card>
 
-      <Card id="recent-drafts" className="rounded-xl">
+      <Card id="recent-drafts" className="rounded-lg">
         <CardHeader className="flex-row items-start justify-between gap-4">
           <div className="min-w-0">
-            <CardTitle className="flex items-center gap-3 text-xl">
+            <CardTitle className="flex items-center gap-3 text-[22px] font-[460] leading-[1.1]">
               <History className="size-5" aria-hidden="true" />
               Recent drafts
             </CardTitle>
@@ -376,8 +376,8 @@ export function DashboardGenerator({
               })}
             </div>
           ) : (
-            <div className="flex min-h-[132px] flex-col items-center justify-center rounded-lg border border-dashed bg-secondary/70 p-6 text-center">
-              <span className="flex size-12 items-center justify-center rounded-full border bg-background text-muted-foreground shadow-sm">
+            <div className="flex min-h-[132px] flex-col items-center justify-center rounded-lg border border-dashed bg-secondary p-6 text-center">
+              <span className="flex size-12 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground shadow-[var(--shadow-elev-1)]">
                 <History className="size-5" aria-hidden="true" />
               </span>
               <p className="mt-4 max-w-sm text-sm leading-6 text-muted-foreground">

@@ -42,10 +42,10 @@ export function BenefitsSection() {
     >
       <div className="mx-auto max-w-6xl">
         <div className="max-w-[520px]">
-          <p className="text-xs font-semibold uppercase text-[#5432d3]">
+          <p className="text-xs font-[540] uppercase text-primary">
             Built for speed.
           </p>
-          <h2 className="mt-4 text-3xl font-semibold leading-[1.04] tracking-normal text-foreground sm:text-[34px]">
+          <h2 className="mt-4 text-[28px] font-[540] leading-[1.14] tracking-normal text-foreground sm:text-[48px] sm:font-[460] sm:leading-[0.96]">
             Built for speed without locking the architecture
           </h2>
         </div>
@@ -56,18 +56,18 @@ export function BenefitsSection() {
 
             return (
               <Card
-                className="rounded-xl border-border bg-card shadow-[0_12px_30px_rgba(27,25,56,0.04)]"
+                className="rounded-lg border-border bg-card"
                 key={benefit.title}
               >
                 <CardHeader className="grid grid-cols-[48px_minmax(0,1fr)] gap-x-5 gap-y-3 p-8">
-                  <span className="flex size-11 items-center justify-center rounded-lg bg-[#5b32d6] text-white shadow-[0_10px_22px_rgba(91,50,214,0.22)]">
+                  <span className="flex size-11 items-center justify-center rounded-lg bg-accent text-primary">
                     <Icon className="size-5" aria-hidden="true" />
                   </span>
                   <div>
-                    <CardTitle className="text-base font-semibold leading-6">
+                    <CardTitle className="text-[22px] font-[460] leading-[1.1]">
                       {benefit.title}
                     </CardTitle>
-                    <CardDescription className="mt-4 text-sm leading-7 text-[#5f5c59]">
+                    <CardDescription className="mt-4 text-base font-[460] leading-6 text-muted-foreground">
                       {benefit.description}
                     </CardDescription>
                   </div>

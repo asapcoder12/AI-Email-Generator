@@ -16,9 +16,9 @@ export default async function LoginPage() {
     <div className="min-h-screen bg-secondary">
       <SiteHeader />
       <main className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-12">
-        <section className="animate-enter w-full max-w-md rounded-lg border bg-background p-6 shadow-sm">
-          <h1 className="text-3xl font-semibold tracking-normal">Welcome back</h1>
-          <p className="mt-3 text-sm leading-6 text-muted-foreground">
+        <section className="animate-enter w-full max-w-md rounded-lg border border-border bg-background p-8 shadow-[var(--shadow-elev-1)]">
+          <h1 className="text-[28px] font-[540] leading-[1.14] tracking-normal text-foreground">Welcome back</h1>
+          <p className="mt-3 text-base leading-6 text-muted-foreground">
             Sign in to access your email generator dashboard.
           </p>
           <div className="mt-8">

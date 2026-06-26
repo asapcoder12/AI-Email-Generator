@@ -22,15 +22,15 @@ function SummaryCard({
 }: SummaryCardProps) {
   return (
     <div
-      className={`min-h-[216px] rounded-[10px] border border-[#e0e0e8] bg-white p-6 shadow-[0_16px_42px_rgba(20,18,56,0.04)] sm:p-[25px] ${animationClass}`}
+      className={`min-h-[216px] rounded-lg border border-border bg-card p-6 shadow-[var(--shadow-elev-1)] sm:p-8 ${animationClass}`}
     >
-      <span className="flex size-[62px] items-center justify-center rounded-[10px] bg-[#f0ebff] text-[#3928e8]">
-        <Icon className="size-[30px]" aria-hidden="true" />
+      <span className="flex size-16 items-center justify-center rounded-lg bg-accent text-primary">
+        <Icon className="size-8" aria-hidden="true" />
       </span>
-      <p className="mt-7 text-[17px] font-bold leading-6 text-[#575a76]">
+      <p className="mt-7 text-base font-[540] leading-6 text-muted-foreground">
         {label}
       </p>
-      <p className="mt-3 break-words text-2xl font-bold leading-7 text-[#0b0d2e]">
+      <p className="mt-3 break-words text-[22px] font-[460] leading-[1.1] text-foreground">
         {value}
       </p>
     </div>

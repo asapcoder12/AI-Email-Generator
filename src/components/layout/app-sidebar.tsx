@@ -42,16 +42,16 @@ export function AppSidebar({
   return (
     <aside className="dashboard-sidebar">
       <Link
-        className="flex items-center gap-5 px-2 text-[23px] font-bold leading-none text-[#0b0d2e]"
+        className="flex items-center gap-5 px-2 text-[22px] font-[540] leading-[1.1] text-foreground"
         href="/dashboard"
       >
-        <span className="flex size-[38px] items-center justify-center rounded-lg bg-[#080b2f] text-primary-foreground shadow-sm">
+        <span className="flex size-10 items-center justify-center rounded-md bg-primary text-primary-foreground shadow-[var(--shadow-elev-1)]">
           <Mail className="size-5" aria-hidden="true" />
         </span>
         <span>AI Email Generator</span>
       </Link>
 
-      <nav aria-label="Dashboard navigation" className="mt-[58px] grid gap-3">
+      <nav aria-label="Dashboard navigation" className="mt-14 grid gap-3">
         {dashboardLinks.map((link) => (
           <DashboardNavLink
             isActive={isActiveLink(pathname, link)}
@@ -61,21 +61,21 @@ export function AppSidebar({
         ))}
       </nav>
 
-      <section className="mx-2 mt-auto rounded-lg border border-[#e4e3ec] bg-white p-5 shadow-[0_18px_48px_rgba(20,18,56,0.06)]">
-        <span className="flex size-9 items-center justify-center rounded-full bg-[#f0ebff] text-[#3928e8]">
-          <Sparkles className="size-[18px]" aria-hidden="true" />
+      <section className="mx-2 mt-auto rounded-lg border border-border bg-card p-5 shadow-[var(--shadow-elev-1)]">
+        <span className="flex size-9 items-center justify-center rounded-lg bg-accent text-primary">
+          <Sparkles className="size-5" aria-hidden="true" />
         </span>
-        <h2 className="mt-5 text-base font-bold text-[#111438]">
+        <h2 className="mt-5 text-base font-bold text-foreground">
           Upgrade your plan
         </h2>
-        <p className="mt-4 text-[15px] leading-6 text-[#464a70]">
+        <p className="mt-4 text-base leading-6 text-muted-foreground">
           Unlock premium features and higher limits.
         </p>
         <Button
           asChild
-          className="mt-5 h-11 w-full rounded-md bg-[#f4efff] text-[15px] font-bold text-[#3928e8] shadow-none hover:bg-[#ebe4ff]"
+          className="mt-5 w-full text-sm"
           size="sm"
-          variant="ghost"
+          variant="default"
         >
           <Link href="/pricing">
             View plans
@@ -85,7 +85,7 @@ export function AppSidebar({
       </section>
 
       <LogoutButton
-        className="mx-2 mt-8 h-11 w-[calc(100%-1rem)] justify-start gap-5 px-2 text-base font-medium text-[#202344] hover:bg-transparent hover:text-[#3928e8] [&_svg]:size-[22px]"
+        className="mx-2 mt-8 h-11 w-[calc(100%-1rem)] justify-start gap-5 px-2 text-base font-[460] text-foreground hover:bg-secondary hover:text-primary [&_svg]:size-5"
         variant="ghost"
       />
     </aside>
@@ -113,10 +113,7 @@ function DashboardNavLink({
       )}
       href={link.href}
     >
-      <Icon
-        className={compact ? "size-5" : "size-[22px]"}
-        aria-hidden="true"
-      />
+      <Icon className="size-5" aria-hidden="true" />
       <span>{link.label}</span>
     </Link>
   );

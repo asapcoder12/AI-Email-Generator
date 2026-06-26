@@ -45,8 +45,8 @@ export function FAQSection() {
     >
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
         <div>
-          <p className="text-xs font-semibold uppercase text-[#5432d3]">FAQ</p>
-          <h2 className="mt-4 max-w-[420px] text-2xl font-semibold leading-[1.08] tracking-normal text-foreground sm:text-[28px]">
+          <p className="text-xs font-[540] uppercase text-primary">FAQ</p>
+          <h2 className="mt-4 max-w-[420px] text-[28px] font-[540] leading-[1.14] tracking-normal text-foreground">
             Questions before your first generated email
           </h2>
 
@@ -57,7 +57,7 @@ export function FAQSection() {
           >
             {faqs.map((faq, index) => (
               <AccordionItem
-                className="rounded-lg border border-border bg-background px-4 shadow-[0_8px_22px_rgba(27,25,56,0.035)]"
+                className="rounded-lg border border-border bg-background px-4 shadow-[var(--shadow-elev-1)]"
                 key={faq.question}
                 value={`faq-${index}`}
               >
@@ -72,13 +72,13 @@ export function FAQSection() {
           </Accordion>
         </div>
 
-        <Card className="rounded-xl border-border bg-card p-6 shadow-[0_14px_34px_rgba(27,25,56,0.05)] sm:p-7">
+        <Card className="rounded-lg border-border bg-card p-6 sm:p-7">
           <div className="grid gap-5 border-b border-border pb-6 sm:grid-cols-[56px_minmax(0,1fr)]">
-            <span className="flex size-14 items-center justify-center rounded-full bg-accent text-[#5432d3]">
+            <span className="flex size-14 items-center justify-center rounded-lg bg-accent text-primary">
               <MailCheck className="size-6" aria-hidden="true" />
             </span>
             <div>
-              <h3 className="text-xl font-semibold leading-tight text-foreground">
+              <h3 className="text-[22px] font-[460] leading-[1.1] text-foreground">
                 Teams ship more, faster
               </h3>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
@@ -90,7 +90,7 @@ export function FAQSection() {
           <dl className="grid gap-5 border-b border-border py-6 sm:grid-cols-3">
             {stats.map((stat) => (
               <div key={stat.label}>
-                <dd className="text-3xl font-semibold leading-none text-[#17153d]">
+                <dd className="text-[28px] font-[540] leading-[1.14] text-foreground">
                   {stat.value}
                   {stat.suffix ? (
                     <span className="text-base font-medium text-muted-foreground">

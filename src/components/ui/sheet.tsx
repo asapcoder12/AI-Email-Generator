@@ -34,7 +34,7 @@ function SheetContent({
       <SheetPrimitive.Overlay className="fixed inset-0 z-50 bg-primary/55 backdrop-blur-sm data-[state=closed]:animate-overlay-out data-[state=open]:animate-overlay-in" />
       <SheetPrimitive.Content
         className={cn(
-          "fixed top-0 z-50 h-full w-80 max-w-[85vw] border bg-background p-6 shadow-lg data-[state=closed]:animate-slide-out-right data-[state=open]:animate-slide-in-right",
+          "fixed top-0 z-50 h-full w-80 max-w-[85vw] border border-border bg-background p-6 shadow-[var(--shadow-elev-2)] data-[state=closed]:animate-slide-out-right data-[state=open]:animate-slide-in-right",
           side === "right" ? "right-0 border-l" : "left-0 border-r",
           className,
         )}
@@ -42,7 +42,7 @@ function SheetContent({
         {...props}
       >
         {children}
-        <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+        <SheetPrimitive.Close className="absolute right-4 top-4 flex size-11 items-center justify-center rounded-md opacity-70 transition-opacity hover:bg-secondary hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           <X className="size-4" />
           <span className="sr-only">Close</span>
         </SheetPrimitive.Close>

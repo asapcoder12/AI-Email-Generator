@@ -1,6 +1,20 @@
 @import "tailwindcss";
 
 :root {
+  --ink: #292827;
+  --ink-mute: #73706d;
+  --ink-faint: #9a9794;
+  --canvas: #ffffff;
+  --canvas-soft: #fafaf8;
+  --primary-deep: #0e0c1f;
+  --surface-violet-soft: #c9b4fa;
+  --surface-teal-deep: #0e3030;
+  --surface-teal-mid: #155555;
+  --hairline: #e8e4dd;
+  --hairline-dark: #3f3a52;
+  --on-primary: #ffffff;
+  --on-dark-mute: #bcbac9;
+  --on-dark-faint: #5a5772;
   --background: #ffffff;
   --foreground: #292827;
   --card: #ffffff;
@@ -24,6 +38,8 @@
   --teal-foreground: #ffffff;
   --primary-hover: #0e0c1f;
   --secondary-hover: #f1eee7;
+  --shadow-elev-1: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-elev-2: 0 8px 24px rgba(0, 0, 0, 0.12);
   --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
   --radius: 0.5rem;
 }
@@ -48,14 +64,26 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-ink-mute: var(--ink-mute);
+  --color-ink-faint: var(--ink-faint);
+  --color-canvas: var(--canvas);
+  --color-canvas-soft: var(--canvas-soft);
+  --color-primary-deep: var(--primary-deep);
+  --color-violet-soft: var(--surface-violet-soft);
   --color-teal: var(--teal);
   --color-teal-foreground: var(--teal-foreground);
+  --color-teal-mid: var(--surface-teal-mid);
+  --color-hairline: var(--hairline);
+  --color-hairline-dark: var(--hairline-dark);
+  --color-on-dark-mute: var(--on-dark-mute);
+  --color-on-dark-faint: var(--on-dark-faint);
   --color-primary-hover: var(--primary-hover);
   --color-secondary-hover: var(--secondary-hover);
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
-  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: "Inter Variable", "Super Sans VF", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 
   --animate-fade-up: fade-up 280ms cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -82,13 +110,15 @@ body {
   min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Inter Variable", "Super Sans VF", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-variation-settings: "wght" 460;
+  line-height: 1.5;
 }
 
 .dashboard-shell {
   min-height: 100dvh;
-  background: #ffffff;
-  color: #0b0d2e;
+  background: var(--background);
+  color: var(--foreground);
 }
 
 .dashboard-sidebar {
@@ -96,8 +126,8 @@ body {
   width: 326px;
   flex-shrink: 0;
   flex-direction: column;
-  border-right: 1px solid #e1e1e8;
-  background: #ffffff;
+  border-right: 1px solid var(--border);
+  background: var(--background);
   padding: 24px 16px 32px;
 }
 
@@ -130,16 +160,16 @@ body {
   min-height: 44px;
   align-items: center;
   gap: 20px;
-  border-radius: 10px;
-  color: #202344;
+  border-radius: var(--radius-md);
+  color: var(--foreground);
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 460;
   text-decoration: none;
   transition: background-color 200ms ease-out, color 200ms ease-out;
 }
 
 .dashboard-nav-link:hover {
-  background: #f8f6ff;
+  background: var(--secondary);
 }
 
 .dashboard-nav-link:focus-visible {
@@ -161,12 +191,12 @@ body {
 }
 
 .dashboard-nav-link--active {
-  background: linear-gradient(90deg, #f4efff 0%, #f7f4ff 100%);
-  color: #3928e8;
+  background: color-mix(in srgb, var(--accent) 30%, var(--secondary));
+  color: var(--primary);
 }
 
 .dashboard-nav-link--active:hover {
-  background: linear-gradient(90deg, #efe8ff 0%, #f5f0ff 100%);
+  background: color-mix(in srgb, var(--accent) 38%, var(--secondary));
 }
 
 .dashboard-primary-action {
@@ -242,12 +272,31 @@ select {
       color-mix(in srgb, var(--accent) 45%, transparent),
       transparent 24%),
     radial-gradient(circle at 72% 70%,
-      color-mix(in srgb, #f59b8f 22%, transparent),
+      color-mix(in srgb, var(--accent) 18%, transparent),
       transparent 25%),
     radial-gradient(circle at 8% 10%,
       color-mix(in srgb, var(--primary-foreground) 8%, transparent),
       transparent 28%),
-    linear-gradient(115deg, var(--primary-hover) 0%, var(--primary) 48%, #241f52 100%);
+    linear-gradient(115deg, var(--primary-hover) 0%, var(--primary) 48%, color-mix(in srgb, var(--primary) 82%, var(--accent)) 100%);
+}
+
+.landing-hero-copy-overlay {
+  background: linear-gradient(
+    90deg,
+    var(--primary-deep) 0%,
+    color-mix(in srgb, var(--primary-deep) 96%, transparent) 24%,
+    color-mix(in srgb, var(--primary-deep) 72%, transparent) 45%,
+    color-mix(in srgb, var(--primary-deep) 12%, transparent) 70%,
+    transparent 100%
+  );
+}
+
+.landing-hero-bottom-overlay {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--primary-deep) 16%, transparent) 100%
+  );
 }
 
 .animate-enter-delay-1 {
@@ -277,24 +326,24 @@ select {
 @keyframes scale-in {
   from {
     opacity: 0;
-    transform: translate(-50%, -48%) scale(0.98);
+    transform: scale(0.98);
   }
 
   to {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1);
   }
 }
 
 @keyframes scale-out {
   from {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1);
   }
 
   to {
     opacity: 0;
-    transform: translate(-50%, -48%) scale(0.98);
+    transform: scale(0.98);
   }
 }
 

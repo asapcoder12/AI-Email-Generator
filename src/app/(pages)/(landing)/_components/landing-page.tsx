@@ -25,11 +25,11 @@ export function LandingPage({ isAuthenticated = false }: LandingPageProps) {
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[linear-gradient(90deg,#0e0c1f_0%,rgba(14,12,31,0.96)_24%,rgba(14,12,31,0.72)_45%,rgba(14,12,31,0.12)_70%,rgba(14,12,31,0)_100%)]"
+            className="landing-hero-copy-overlay absolute inset-0"
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[linear-gradient(180deg,rgba(14,12,31,0)_0%,rgba(14,12,31,0.16)_100%)]"
+            className="landing-hero-bottom-overlay absolute inset-0"
           />
           <MarketingHeader isAuthenticated={isAuthenticated} />
           <HeroSection isAuthenticated={isAuthenticated} />
