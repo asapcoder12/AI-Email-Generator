@@ -280,15 +280,31 @@ select {
     linear-gradient(115deg, var(--primary-hover) 0%, var(--primary) 48%, color-mix(in srgb, var(--primary) 82%, var(--accent)) 100%);
 }
 
+.landing-hero-image {
+  position: absolute;
+  right: clamp(-320px, -58vw, -220px);
+  bottom: 8px;
+  width: clamp(740px, 188vw, 860px);
+  max-width: none;
+  height: auto;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .landing-hero-copy-overlay {
-  background: linear-gradient(
-    90deg,
-    var(--primary-deep) 0%,
-    color-mix(in srgb, var(--primary-deep) 96%, transparent) 24%,
-    color-mix(in srgb, var(--primary-deep) 72%, transparent) 45%,
-    color-mix(in srgb, var(--primary-deep) 12%, transparent) 70%,
-    transparent 100%
-  );
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--primary-deep) 94%, transparent) 0%,
+      color-mix(in srgb, var(--primary-deep) 86%, transparent) 58%,
+      color-mix(in srgb, var(--primary-deep) 72%, transparent) 100%
+    ),
+    linear-gradient(
+      90deg,
+      var(--primary-deep) 0%,
+      color-mix(in srgb, var(--primary-deep) 94%, transparent) 64%,
+      color-mix(in srgb, var(--primary-deep) 46%, transparent) 100%
+    );
 }
 
 .landing-hero-bottom-overlay {
@@ -297,6 +313,37 @@ select {
     transparent 0%,
     color-mix(in srgb, var(--primary-deep) 16%, transparent) 100%
   );
+}
+
+@media (min-width: 640px) {
+  .landing-hero-image {
+    right: -300px;
+    bottom: -12px;
+    width: clamp(920px, 138vw, 1120px);
+    opacity: 0.66;
+  }
+}
+
+@media (min-width: 1024px) {
+  .landing-hero-image {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: right center;
+    opacity: 1;
+  }
+
+  .landing-hero-copy-overlay {
+    background: linear-gradient(
+      90deg,
+      var(--primary-deep) 0%,
+      color-mix(in srgb, var(--primary-deep) 96%, transparent) 24%,
+      color-mix(in srgb, var(--primary-deep) 72%, transparent) 45%,
+      color-mix(in srgb, var(--primary-deep) 12%, transparent) 70%,
+      transparent 100%
+    );
+  }
 }
 
 .animate-enter-delay-1 {
@@ -412,6 +459,68 @@ select {
   to {
     height: 0;
     opacity: 0;
+  }
+}
+
+/* ─── Mobile responsive fixes (< 768px) ─── */
+@media (max-width: 767px) {
+
+  /* 1. "Built for speed" heading: ensure it sits above decorative elements */
+  #benefits > div > div:first-child {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 2. Stats block (1248+, 82%, 4.9/5): keep 3-column row on mobile */
+  #faq dl {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #faq dl > div {
+    min-width: 0;
+  }
+
+  /* 3. Feature cards: single column stack */
+  #benefits .grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 4. Trust logos: neat 3x2 grid instead of chaotic wrapping */
+  section[aria-label="Trusted by teams"] ul {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    gap: 16px;
+  }
+
+  /* 5. Hero h1: fluid scaling to keep CTA above the fold */
+  #landing-hero-title {
+    font-size: clamp(28px, 8vw, 52px);
+  }
+
+  /* 6. Footer link columns: 2-column grid with brand block as its own row */
+  footer > div > div:first-child {
+    grid-template-columns: 1fr;
+  }
+
+  footer > div > div:first-child > div:last-child {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 7. Hero illustration: hide background image, collapse empty space */
+  .landing-hero-image {
+    display: none;
+  }
+
+  .landing-hero-surface {
+    overflow: hidden;
+  }
+
+  /* 8. Final CTA button: full-width on mobile */
+  section:has(> .relative > .relative > div > [href="/signup"]) [href="/signup"],
+  section:has(> .relative > .relative > div > [href="/dashboard"]) [href="/dashboard"] {
+    width: 100%;
+    text-align: center;
   }
 }
 

@@ -14,14 +14,15 @@ export function LandingPage({ isAuthenticated = false }: LandingPageProps) {
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <main>
-        <div className="relative overflow-hidden bg-primary">
+        <div className="landing-hero-surface relative overflow-hidden bg-primary">
           <Image
             alt=""
-            className="object-contain object-right"
-            fill
+            className="landing-hero-image"
+            height={848}
             priority
-            sizes="100vw"
+            sizes="(min-width: 1024px) 100vw, 820px"
             src="/images/hero-background.png"
+            width={1774}
           />
           <div
             aria-hidden="true"

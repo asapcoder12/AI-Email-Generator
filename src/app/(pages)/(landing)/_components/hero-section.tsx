@@ -42,7 +42,7 @@ export function HeroSection({ isAuthenticated = false }: HeroSectionProps) {
             <Link href={ctaHref}>{ctaLabel}</Link>
           </Button>
         </div>
-        <ul className="mt-8 flex flex-col gap-4 text-xs font-[540] text-primary-foreground sm:flex-row sm:flex-wrap sm:items-center sm:gap-7">
+        <ul className="mt-8 flex md:flex-col flex-row gap-4 text-xs font-[540] text-primary-foreground sm:flex-row sm:flex-wrap sm:items-center sm:gap-7">
           {trustPoints.map((point) => (
             <li className="flex items-center gap-2" key={point}>
               <CheckCircle2 className="size-3.5 text-primary-foreground" aria-hidden="true" />
