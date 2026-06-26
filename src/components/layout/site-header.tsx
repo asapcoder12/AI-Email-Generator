@@ -26,6 +26,7 @@ type SiteHeaderProps = {
   isAuthenticated?: boolean;
   primaryCtaLabel?: string;
   showPublicSignIn?: boolean;
+  showPrimaryCta?: boolean;
   variant?: "dark" | "light";
 };
 
@@ -34,6 +35,7 @@ export function SiteHeader({
   isAuthenticated = false,
   primaryCtaLabel = "Get started",
   showPublicSignIn = true,
+  showPrimaryCta = true,
   variant = "light",
 }: SiteHeaderProps) {
   const isDark = variant === "dark";
@@ -49,12 +51,12 @@ export function SiteHeader({
     >
       <nav className="mx-auto flex h-[72px] w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
-          className="flex min-h-11 min-w-0 items-center gap-3 text-base font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="flex min-h-11 min-w-0 items-center gap-3 text-base font-[540] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           href="/"
         >
           <span
             className={cn(
-              "flex size-9 items-center justify-center rounded-md",
+              "flex size-8 items-center justify-center rounded-lg",
               isDark ? "bg-accent text-primary" : "bg-primary text-primary-foreground",
             )}
           >
@@ -71,7 +73,7 @@ export function SiteHeader({
               <Link
                 aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "relative flex h-[72px] items-center text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                  "relative flex h-[72px] items-center text-base font-[460] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                   isDark
                     ? "text-on-dark-mute hover:text-primary-foreground"
                     : "text-muted-foreground hover:text-foreground",
@@ -124,12 +126,14 @@ export function SiteHeader({
                   <Link href="/login">Sign in</Link>
                 </Button>
               ) : null}
-              <Button asChild className="px-6" variant={isDark ? "hero" : "default"}>
-                <Link href="/signup">
-                  {primaryCtaLabel}
-                  <ArrowRight className="size-4" aria-hidden="true" />
-                </Link>
-              </Button>
+              {showPrimaryCta ? (
+                <Button asChild className="px-6" variant={isDark ? "hero" : "default"}>
+                  <Link href="/signup">
+                    {primaryCtaLabel}
+                    <ArrowRight className="size-4" aria-hidden="true" />
+                  </Link>
+                </Button>
+              ) : null}
             </>
           )}
         </div>
@@ -158,7 +162,7 @@ export function SiteHeader({
                   <Link
                     aria-current={activeHref === link.href ? "page" : undefined}
                     className={cn(
-                      "rounded-md px-2 py-3 text-base font-semibold hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                      "rounded-md px-2 py-3 text-base font-[460] hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                       activeHref === link.href && "bg-secondary text-primary",
                     )}
                     href={link.href}
@@ -187,11 +191,13 @@ export function SiteHeader({
                       </Button>
                     </SheetClose>
                   ) : null}
-                  <SheetClose asChild>
-                    <Button asChild>
-                      <Link href="/signup">{primaryCtaLabel}</Link>
-                    </Button>
-                  </SheetClose>
+                  {showPrimaryCta ? (
+                    <SheetClose asChild>
+                      <Button asChild>
+                        <Link href="/signup">{primaryCtaLabel}</Link>
+                      </Button>
+                    </SheetClose>
+                  ) : null}
                 </>
               )}
             </div>

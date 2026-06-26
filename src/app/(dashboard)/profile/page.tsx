@@ -9,7 +9,6 @@ import {
 } from "@/lib/supabase/server";
 import { ProfileHeader } from "./_components/profile-header";
 import { ProfileSummaryCards } from "./_components/profile-summary-cards";
-import { SecurityNote } from "./_components/security-note";
 
 const FALLBACK_EMAIL = "sam@mail.com";
 const FALLBACK_PLAN = "Free plan";
@@ -73,9 +72,6 @@ export default async function ProfilePage() {
           planLabel={planLabel}
           savedDrafts={generatedCount}
         />
-      </div>
-      <div className="mt-6">
-        <SecurityNote />
       </div>
     </div>
   );

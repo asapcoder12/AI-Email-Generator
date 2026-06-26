@@ -120,7 +120,6 @@ export function AuthForm({ mode }: AuthFormProps) {
         />
       </div>
       <Button disabled={isPending} type="submit">
-        {isSignup ? <ShieldCheck className="size-4" /> : <Mail className="size-4" />}
         {isPending ? "Working" : isSignup ? "Create account" : "Sign in"}
       </Button>
       <p className="text-center text-sm text-muted-foreground">
