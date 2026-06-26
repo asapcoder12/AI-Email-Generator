@@ -14,7 +14,7 @@ export default async function LoginPage() {
 
   return (
     <div className="min-h-screen bg-secondary">
-      <SiteHeader />
+      <SiteHeader showPublicSignIn={false} />
       <main className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-12">
         <section className="animate-enter w-full max-w-md rounded-lg border border-border bg-background p-8 shadow-[var(--shadow-elev-1)]">
           <h1 className="text-[28px] font-[540] leading-[1.14] tracking-normal text-foreground">Welcome back</h1>

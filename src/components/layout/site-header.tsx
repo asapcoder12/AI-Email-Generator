@@ -26,6 +26,7 @@ type SiteHeaderProps = {
   isAuthenticated?: boolean;
   primaryCtaLabel?: string;
   showPublicSignIn?: boolean;
+  showPrimaryCta?: boolean;
   variant?: "dark" | "light";
 };
 
@@ -34,6 +35,7 @@ export function SiteHeader({
   isAuthenticated = false,
   primaryCtaLabel = "Get started",
   showPublicSignIn = true,
+  showPrimaryCta = true,
   variant = "light",
 }: SiteHeaderProps) {
   const isDark = variant === "dark";
@@ -124,12 +126,14 @@ export function SiteHeader({
                   <Link href="/login">Sign in</Link>
                 </Button>
               ) : null}
-              <Button asChild className="px-6" variant={isDark ? "hero" : "default"}>
-                <Link href="/signup">
-                  {primaryCtaLabel}
-                  <ArrowRight className="size-4" aria-hidden="true" />
-                </Link>
-              </Button>
+              {showPrimaryCta ? (
+                <Button asChild className="px-6" variant={isDark ? "hero" : "default"}>
+                  <Link href="/signup">
+                    {primaryCtaLabel}
+                    <ArrowRight className="size-4" aria-hidden="true" />
+                  </Link>
+                </Button>
+              ) : null}
             </>
           )}
         </div>
@@ -187,11 +191,13 @@ export function SiteHeader({
                       </Button>
                     </SheetClose>
                   ) : null}
-                  <SheetClose asChild>
-                    <Button asChild>
-                      <Link href="/signup">{primaryCtaLabel}</Link>
-                    </Button>
-                  </SheetClose>
+                  {showPrimaryCta ? (
+                    <SheetClose asChild>
+                      <Button asChild>
+                        <Link href="/signup">{primaryCtaLabel}</Link>
+                      </Button>
+                    </SheetClose>
+                  ) : null}
                 </>
               )}
             </div>
