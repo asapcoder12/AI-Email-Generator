@@ -1,4 +1,8 @@
 import { defineConfig, devices } from "@playwright/test";
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
+
+loadPlaywrightEnv();
 
 const localChrome = process.env.CI
   ? {}
@@ -25,3 +29,15 @@ export default defineConfig({
     },
   ],
 });
+
+function loadPlaywrightEnv() {
+  const envFiles = [".env.development.local", ".env.local", ".env.development", ".env"];
+
+  for (const file of envFiles) {
+    const path = resolve(process.cwd(), file);
+
+    if (existsSync(path)) {
+      process.loadEnvFile(path);
+    }
+  }
+}

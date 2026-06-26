@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AI_PROVIDER: mock
-      NEXT_PUBLIC_SUPABASE_URL: https://example.supabase.co
-      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: sb_publishable_test_key
+      NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL || 'https://example.supabase.co' }}
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_test_key' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,6 +42,9 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: E2E smoke tests
+        env:
+          E2E_EMAIL: ${{ secrets.E2E_EMAIL }}
+          E2E_PASSWORD: ${{ secrets.E2E_PASSWORD }}
         run: npm run test:e2e
 
       - name: Docker build
