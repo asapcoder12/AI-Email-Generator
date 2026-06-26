@@ -1,16 +1,10 @@
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
+
 
 export function ProfileHeader() {
   return (
     <header className="animate-enter flex min-h-[166px] flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
       <div className="min-w-0">
-        <Badge
-          className="h-9 w-fit px-4 text-sm font-[600]"
-          variant="accent"
-        >
-          Profile
-        </Badge>
         <h1 className="mt-6 text-[36px] font-[540] leading-[0.96] tracking-[-0.99px] text-foreground sm:text-[48px] sm:font-[460] sm:tracking-[-1.32px]">
           Account profile
         </h1>

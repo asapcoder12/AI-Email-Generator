@@ -7,7 +7,6 @@ import {
   getAuthenticatedClaims,
   getClaimEmail,
 } from "@/lib/supabase/server";
-import { AccountDetailsCard } from "./_components/account-details-card";
 import { ProfileHeader } from "./_components/profile-header";
 import { ProfileSummaryCards } from "./_components/profile-summary-cards";
 import { SecurityNote } from "./_components/security-note";
@@ -15,7 +14,6 @@ import { SecurityNote } from "./_components/security-note";
 const FALLBACK_EMAIL = "sam@mail.com";
 const FALLBACK_PLAN = "Free plan";
 const FALLBACK_SAVED_DRAFTS = 4;
-const FALLBACK_SUBJECT = "24a0cafd-3df9-40dc-917d-a10d7337567b";
 
 function resolveEmail(
   profileEmail: string | undefined,
@@ -65,10 +63,6 @@ export default async function ProfilePage() {
 
   const email = resolveEmail(profile?.email, getClaimEmail(claims));
   const planLabel = resolvePlanLabel(profile?.plan);
-  const subject =
-    typeof claims?.sub === "string" && claims.sub.length > 0
-      ? claims.sub
-      : FALLBACK_SUBJECT;
 
   return (
     <div>
@@ -79,9 +73,6 @@ export default async function ProfilePage() {
           planLabel={planLabel}
           savedDrafts={generatedCount}
         />
-      </div>
-      <div className="mt-8">
-        <AccountDetailsCard subject={subject} />
       </div>
       <div className="mt-6">
         <SecurityNote />
