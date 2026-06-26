@@ -141,7 +141,7 @@ export function DashboardGenerator({
           <Sparkles className="size-5" aria-hidden="true" />
         </span>
         <div className="min-w-0">
-          <h1 className="text-[28px] font-[540] leading-[1.14] text-foreground sm:text-[48px] sm:font-[460] sm:leading-[0.96]">
+          <h1 className="text-[28px] font-[540] leading-[1.14] tracking-[-0.63px] text-foreground sm:text-[48px] sm:font-[460] sm:leading-[0.96] sm:tracking-[-1.32px]">
             Generate an email
           </h1>
           <p className="mt-3 max-w-3xl text-base leading-6 text-muted-foreground">
@@ -182,7 +182,7 @@ export function DashboardGenerator({
               </div>
               {visibleTopicError ? (
                 <p
-                  className="text-sm font-medium text-destructive"
+                  className="text-sm font-[540] text-destructive"
                   id="topic-error"
                   role="alert"
                 >
@@ -259,7 +259,7 @@ export function DashboardGenerator({
       <Card aria-live="polite" className="rounded-lg">
         <CardHeader className="flex-row items-start justify-between gap-4">
           <div className="min-w-0">
-            <CardTitle className="flex items-center gap-3 text-[22px] font-[460] leading-[1.1]">
+            <CardTitle className="flex items-center gap-3 text-[22px] font-[460] leading-[1.1] tracking-[-0.315px]">
               <MailCheck className="size-5" aria-hidden="true" />
               Result preview
             </CardTitle>
@@ -292,17 +292,17 @@ export function DashboardGenerator({
 
           {!generateMutation.isPending && generatedEmail ? (
             <div className="animate-enter rounded-lg border border-border bg-secondary p-5">
-              <p className="text-xs font-semibold uppercase text-primary/70">
+              <p className="text-xs font-[600] uppercase text-ink-mute">
                 Subject
               </p>
-              <h2 className="mt-1 text-lg font-semibold leading-snug">
+              <h2 className="mt-1 text-lg font-[540] leading-snug">
                 {generatedEmail.subject}
               </h2>
               <pre className="mt-5 whitespace-pre-wrap font-sans text-sm leading-7 text-foreground">
                 {generatedEmail.body}
               </pre>
               {copyStatus === "failed" ? (
-                <p className="mt-4 text-sm font-medium text-destructive" role="status">
+                <p className="mt-4 text-sm font-[540] text-destructive" role="status">
                   Copy failed. Please try again.
                 </p>
               ) : null}
@@ -325,7 +325,7 @@ export function DashboardGenerator({
       <Card id="recent-drafts" className="rounded-lg">
         <CardHeader className="flex-row items-start justify-between gap-4">
           <div className="min-w-0">
-            <CardTitle className="flex items-center gap-3 text-[22px] font-[460] leading-[1.1]">
+            <CardTitle className="flex items-center gap-3 text-[22px] font-[460] leading-[1.1] tracking-[-0.315px]">
               <History className="size-5" aria-hidden="true" />
               Recent drafts
             </CardTitle>
@@ -349,7 +349,7 @@ export function DashboardGenerator({
                     key={item.id}
                   >
                     <div className="min-w-0">
-                      <h3 className="truncate text-sm font-semibold">
+                      <h3 className="truncate text-sm font-[540]">
                         {item.subject}
                       </h3>
                       <p className="mt-1 line-clamp-1 text-sm leading-6 text-muted-foreground">

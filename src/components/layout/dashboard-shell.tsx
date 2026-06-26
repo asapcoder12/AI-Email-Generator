@@ -41,7 +41,7 @@ export function DashboardShell({
         <header className="dashboard-mobile-header">
           <div className="flex min-h-16 items-center justify-between gap-3 px-4">
             <Link
-              className="flex min-w-0 items-center gap-2 font-semibold"
+              className="flex min-w-0 items-center gap-2 font-[600]"
               href="/dashboard"
             >
               <span className="flex size-9 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground">

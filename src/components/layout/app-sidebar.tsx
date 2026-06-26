@@ -42,7 +42,7 @@ export function AppSidebar({
   return (
     <aside className="dashboard-sidebar">
       <Link
-        className="flex items-center gap-5 px-2 text-[22px] font-[540] leading-[1.1] text-foreground"
+        className="flex items-center gap-5 px-2 text-[22px] font-[460] leading-[1.1] tracking-[-0.315px] text-foreground"
         href="/dashboard"
       >
         <span className="flex size-10 items-center justify-center rounded-md bg-primary text-primary-foreground shadow-[var(--shadow-elev-1)]">
@@ -65,7 +65,7 @@ export function AppSidebar({
         <span className="flex size-9 items-center justify-center rounded-lg bg-accent text-primary">
           <Sparkles className="size-5" aria-hidden="true" />
         </span>
-        <h2 className="mt-5 text-base font-bold text-foreground">
+        <h2 className="mt-5 text-base font-[700] text-foreground">
           Upgrade your plan
         </h2>
         <p className="mt-4 text-base leading-6 text-muted-foreground">

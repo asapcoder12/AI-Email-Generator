@@ -22,7 +22,7 @@ export function ProfileHeader() {
       <div aria-hidden="true" className="hidden shrink-0 pt-5 sm:block">
         <Image
           alt=""
-          className="size-[120px] rounded-lg object-cover lg:size-[140px]"
+          className="size-[120px] rounded-full object-cover lg:size-[140px]"
           height={140}
           priority
           src="/images/avatar.png"
