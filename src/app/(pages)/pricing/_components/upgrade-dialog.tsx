@@ -104,52 +104,40 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
         </Button>
       </DialogPrimitive.Trigger>
       <DialogPrimitive.Portal>
-        {/* Fullscreen background overlay */}
-        <DialogPrimitive.Overlay className="fixed inset-0 z-[100] bg-[#0B0A1A] data-[state=closed]:animate-overlay-out data-[state=open]:animate-overlay-in">
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-100"
-            style={{ backgroundImage: "url('/images/get-invite-bg.png')" }}
-          />
-          {/* Dimming layer to make background less bright */}
-          <div className="absolute inset-0 bg-black/40" />
-        </DialogPrimitive.Overlay>
+        {/* Overlay backdrop */}
+        <DialogPrimitive.Overlay className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm data-[state=closed]:animate-overlay-out data-[state=open]:animate-overlay-in" />
 
         <DialogPrimitive.Content
           className={cn(
-            "fixed inset-0 z-[100] flex flex-col overflow-y-auto data-[state=closed]:animate-scale-out data-[state=open]:animate-scale-in",
+            "fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto p-4 sm:p-6 data-[state=closed]:animate-scale-out data-[state=open]:animate-scale-in",
           )}
         >
-
-          {/* Top Navigation Bar */}
-          <div className="relative z-10 flex w-full flex-none items-center justify-end p-6 sm:p-8">
-            <DialogPrimitive.Close className="flex size-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 backdrop-blur-md transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+          {/* Centered Modal Card */}
+          <div className="relative w-full max-w-[480px] animate-enter">
+            {/* Close Button inside modal */}
+            <DialogPrimitive.Close className="absolute right-4 top-4 z-20 flex size-8 items-center justify-center rounded-full text-[#9a9794] transition-colors hover:bg-[#fafaf8] hover:text-[#292827] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
               <X className="size-4" aria-hidden="true" />
               <span className="sr-only">Close</span>
             </DialogPrimitive.Close>
-          </div>
-
-          {/* Centered Modal Card */}
-          <div className="relative z-10 flex flex-1 items-center justify-center p-4">
-            <div className="w-full max-w-[480px] animate-enter">
               {/* Email step */}
               {step === "email" && (
-                <div className="relative rounded-[36px] border border-[#b794ff]/75 bg-[#0b0920]/70 p-6 sm:p-10 backdrop-blur-xl shadow-[inset_0_0_30px_rgba(139,92,246,0.14)] before:absolute before:inset-0 before:-z-10 before:rounded-[36px] before:shadow-[0_0_50px_rgba(139,92,246,0.55)]">
+                <div className="relative rounded-2xl border border-[#e8e4dd] bg-[#ffffff] p-6 sm:p-10 shadow-[0_8px_24px_rgba(0,0,0,0.12)]">
                   <div className="mb-6 flex justify-center animate-fade-up">
-                    <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[13px] font-[500] text-white/80">
-                      <div className="size-2 rounded-full bg-[#C4A1FF]" aria-hidden="true" />
+                    <div className="flex items-center gap-2 rounded-full border border-[#e8e4dd] bg-[#fafaf8] px-3 py-1.5 text-[12px] font-[540] text-[#73706d]">
+                      <div className="size-2 rounded-full bg-[#1b1938]" aria-hidden="true" />
                       Step 1 of 3
                     </div>
                   </div>
 
                   <form onSubmit={handleEmailSubmit} className="space-y-8 animate-fade-up" noValidate>
                     <div className="space-y-3 text-center">
-                      <div className="text-[11px] font-[700] tracking-[0.15em] text-[#C4A1FF]">
-                        GET EARLY ACCESS
+                      <div className="text-[12px] font-[540] text-[#73706d]">
+                        Get early access
                       </div>
-                      <DialogPrimitive.Title className="text-[32px] font-[600] leading-[1.1] tracking-[-0.02em] text-white sm:text-[36px]">
+                      <DialogPrimitive.Title className="text-[28px] font-[540] leading-[1.14] tracking-[-0.63px] text-[#292827]">
                         Get your Pro invite
                       </DialogPrimitive.Title>
-                      <DialogPrimitive.Description className="mx-auto max-w-[340px] text-[15px] font-[460] leading-[1.5] text-white/60">
+                      <DialogPrimitive.Description className="mx-auto max-w-[340px] text-[16px] font-[460] leading-[1.5] text-[#73706d]">
                         We manually onboard teams to maintain the highest quality experience.
                       </DialogPrimitive.Description>
                     </div>
@@ -157,7 +145,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                     <div className="space-y-6">
                       <div className="space-y-2">
                         <Label
-                          className="text-[14px] font-[500] text-white/90"
+                          className="text-[14px] font-[460] text-[#73706d]"
                           htmlFor={emailInputId}
                         >
                           Work email
@@ -177,11 +165,11 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                           placeholder="you@company.com"
                           type="email"
                           value={email}
-                          className="h-12 border-white/10 bg-black/20 text-base text-white placeholder:text-white/30 focus-visible:ring-[#C4A1FF] focus-visible:ring-offset-0 sm:h-14"
+                          className="h-[44px] border-[#e8e4dd] bg-[#ffffff] text-[16px] font-[460] text-[#292827] placeholder:text-[#9a9794] rounded-[6px] focus-visible:ring-2 focus-visible:ring-[#1b1938] focus-visible:ring-offset-0"
                         />
                         {emailError && (
                           <p
-                            className="mt-2 text-[13px] font-[500] text-red-400"
+                            className="mt-2 text-[14px] font-[460] text-red-500"
                             id={emailErrorId}
                             role="alert"
                           >
@@ -192,14 +180,14 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
 
                       <div className="space-y-4 pt-2">
                         <Button
-                          className="h-12 w-full rounded-xl bg-gradient-to-r from-violet-400 to-purple-400 text-[15px] font-semibold text-[#160b2e] hover:opacity-90 sm:h-14"
+                          className="h-[44px] w-full rounded-[8px] bg-[#1b1938] text-[16px] font-[700] text-[#ffffff] hover:bg-[#0e0c1f]"
                           type="submit"
                         >
                           Request Pro Access
                           <ArrowRight className="ml-2 size-4" aria-hidden="true" />
                         </Button>
 
-                        <p className="flex items-center justify-center gap-2 text-[13px] font-[460] text-white/50">
+                        <p className="flex items-center justify-center gap-2 text-[14px] font-[460] text-[#9a9794]">
                           <Lock className="size-3.5" aria-hidden="true" />
                           Secure and private waitlist
                         </p>
@@ -211,23 +199,23 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
 
               {/* Goals step */}
               {step === "goals" && (
-                <div className="relative rounded-[36px] border border-[#b794ff]/75 bg-[#0b0920]/70 p-6 sm:p-10 backdrop-blur-xl shadow-[inset_0_0_30px_rgba(139,92,246,0.14)] before:absolute before:inset-0 before:-z-10 before:rounded-[36px] before:shadow-[0_0_50px_rgba(139,92,246,0.55)]">
+                <div className="relative rounded-2xl border border-[#e8e4dd] bg-[#ffffff] p-6 sm:p-10 shadow-[0_8px_24px_rgba(0,0,0,0.12)]">
                   <div className="mb-6 flex justify-center animate-fade-up">
-                    <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[13px] font-[500] text-white/80">
-                      <div className="size-2 rounded-full bg-[#C4A1FF]" aria-hidden="true" />
+                    <div className="flex items-center gap-2 rounded-full border border-[#e8e4dd] bg-[#fafaf8] px-3 py-1.5 text-[12px] font-[540] text-[#73706d]">
+                      <div className="size-2 rounded-full bg-[#1b1938]" aria-hidden="true" />
                       Step 2 of 3
                     </div>
                   </div>
 
                   <form onSubmit={handleGoalsSubmit} className="space-y-8 animate-fade-up">
                     <div className="space-y-3 text-center">
-                      <div className="text-[11px] font-[700] tracking-[0.15em] text-[#C4A1FF]">
-                        CUSTOMIZE YOUR EXPERIENCE
+                      <div className="text-[12px] font-[540] text-[#73706d]">
+                        Customize your experience
                       </div>
-                      <DialogPrimitive.Title className="text-[32px] font-[600] leading-[1.1] tracking-[-0.02em] text-white sm:text-[36px]">
+                      <DialogPrimitive.Title className="text-[28px] font-[540] leading-[1.14] tracking-[-0.63px] text-[#292827]">
                         What should Pro help you with first?
                       </DialogPrimitive.Title>
-                      <DialogPrimitive.Description className="mx-auto max-w-[340px] text-[15px] font-[460] leading-[1.5] text-white/60">
+                      <DialogPrimitive.Description className="mx-auto max-w-[340px] text-[16px] font-[460] leading-[1.5] text-[#73706d]">
                         We customize your onboarding so you get value faster.
                       </DialogPrimitive.Description>
                     </div>
@@ -242,34 +230,34 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                             type="button"
                             onClick={() => handleGoalSelect(goal.id)}
                             className={cn(
-                              "group relative flex w-full items-center gap-4 rounded-xl border p-4 text-left transition-all",
+                              "group relative flex w-full items-center gap-4 rounded-[8px] border p-4 text-left transition-all",
                               isSelected
-                                ? "border-[#C4A1FF]/50 bg-[#C4A1FF]/10"
-                                : "border-white/10 bg-black/20 hover:border-white/20 hover:bg-black/40"
+                                ? "border-[#1b1938] bg-[#fafaf8]"
+                                : "border-[#e8e4dd] bg-[#ffffff] hover:border-[#9a9794]"
                             )}
                             aria-pressed={isSelected}
                           >
                             <div
                               className={cn(
-                                "flex size-12 shrink-0 items-center justify-center rounded-xl transition-colors",
+                                "flex size-12 shrink-0 items-center justify-center rounded-[8px] transition-colors border",
                                 isSelected
-                                  ? "bg-[#C4A1FF] text-[#0C0C16]"
-                                  : "bg-white/5 text-white/70 group-hover:bg-white/10"
+                                  ? "bg-[#1b1938] text-[#ffffff] border-[#1b1938]"
+                                  : "bg-[#ffffff] text-[#9a9794] border-[#e8e4dd]"
                               )}
                             >
                               <Icon className="size-5" aria-hidden="true" />
                             </div>
                             <div className="flex-1">
-                              <div className="text-[15px] font-[600] text-white">
+                              <div className="text-[16px] font-[460] text-[#292827]">
                                 {goal.title}
                               </div>
-                              <div className="mt-0.5 text-[13px] font-[460] leading-[1.4] text-white/60">
+                              <div className="mt-0.5 text-[14px] font-[460] leading-[1.4] text-[#73706d]">
                                 {goal.desc}
                               </div>
                             </div>
                             {isSelected && (
-                              <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-[#C4A1FF]">
-                                <Check className="size-4 text-[#0C0C16]" aria-hidden="true" />
+                              <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-[#1b1938]">
+                                <Check className="size-4 text-[#ffffff]" aria-hidden="true" />
                               </div>
                             )}
                           </button>
@@ -281,12 +269,12 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                       <Button
                         type="submit"
                         disabled={!selectedGoal}
-                        className="h-12 w-full rounded-xl bg-gradient-to-r from-violet-400 to-purple-400 text-[15px] font-semibold text-[#160b2e] hover:opacity-90 disabled:opacity-50 sm:h-14"
+                        className="h-[44px] w-full rounded-[8px] bg-[#1b1938] text-[16px] font-[700] text-[#ffffff] hover:bg-[#0e0c1f] disabled:opacity-50"
                       >
                         Continue
                         <ArrowRight className="ml-2 size-4" aria-hidden="true" />
                       </Button>
-                      <p className="flex items-center justify-center gap-2 text-[13px] font-[460] text-white/50">
+                      <p className="flex items-center justify-center gap-2 text-[14px] font-[460] text-[#9a9794]">
                         <Lock className="size-3.5" aria-hidden="true" />
                         You can change this later
                       </p>
@@ -297,50 +285,49 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
 
               {/* Success step */}
               {step === "success" && (
-                <div className="relative rounded-[36px] border border-[#b794ff]/75 bg-[#0b0920]/70 p-6 sm:p-10 backdrop-blur-xl shadow-[inset_0_0_30px_rgba(139,92,246,0.14)] before:absolute before:inset-0 before:-z-10 before:rounded-[36px] before:shadow-[0_0_50px_rgba(139,92,246,0.55)]">
+                <div className="relative rounded-2xl border border-[#e8e4dd] bg-[#ffffff] p-6 sm:p-10 shadow-[0_8px_24px_rgba(0,0,0,0.12)]">
                   <div className="mb-6 flex justify-center animate-fade-up">
-                    <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[13px] font-[500] text-white/80">
-                      <div className="size-2 rounded-full bg-[#C4A1FF]" aria-hidden="true" />
+                    <div className="flex items-center gap-2 rounded-full border border-[#e8e4dd] bg-[#fafaf8] px-3 py-1.5 text-[12px] font-[540] text-[#73706d]">
+                      <div className="size-2 rounded-full bg-[#1b1938]" aria-hidden="true" />
                       All set
                     </div>
                   </div>
 
                   <div className="flex flex-col items-center justify-center space-y-8 animate-fade-up">
                     <div className="relative flex size-[88px] items-center justify-center">
-                      <div className="absolute inset-0 animate-pulse rounded-full bg-[#C4A1FF]/20 blur-xl" />
-                      <div className="relative flex size-[72px] items-center justify-center rounded-full border-[3px] border-[#C4A1FF] bg-[#C4A1FF]/10">
-                        <Check className="size-8 text-[#C4A1FF]" aria-hidden="true" strokeWidth={3} />
+                      <div className="relative flex size-[72px] items-center justify-center rounded-full border-[2px] border-[#1b1938] bg-[#fafaf8]">
+                        <Check className="size-8 text-[#1b1938]" aria-hidden="true" strokeWidth={2} />
                       </div>
                     </div>
 
                     <div className="space-y-3 text-center">
-                      <DialogPrimitive.Title className="text-[32px] font-[600] leading-[1.1] tracking-[-0.02em] text-white sm:text-[36px]">
-                        You're on the list
+                      <DialogPrimitive.Title className="text-[28px] font-[540] leading-[1.14] tracking-[-0.63px] text-[#292827]">
+                        You&apos;re on the list
                       </DialogPrimitive.Title>
-                      <DialogPrimitive.Description className="mx-auto max-w-[340px] space-y-4 text-[15px] font-[460] leading-[1.5] text-white/60">
-                        <p>We've reserved your spot for Pro.</p>
+                      <DialogPrimitive.Description className="mx-auto max-w-[340px] space-y-4 text-[16px] font-[460] leading-[1.5] text-[#73706d]">
+                        <p>We&apos;ve reserved your spot for Pro.</p>
                         <p>
-                          We'll email you at{" "}
-                          <strong className="font-[500] text-[#C4A1FF]">{email}</strong>{" "}
+                          We&apos;ll email you at{" "}
+                          <strong className="font-[700] text-[#292827]">{email}</strong>{" "}
                           when your workspace is ready.
                         </p>
                       </DialogPrimitive.Description>
                     </div>
 
                     <div className="w-full space-y-6">
-                      <div className="flex w-full items-center gap-4 rounded-xl border border-white/10 bg-black/20 p-4">
-                        <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/70">
+                      <div className="flex w-full items-center gap-4 rounded-[8px] border border-[#e8e4dd] bg-[#fafaf8] p-4 text-left">
+                        <div className="flex size-12 shrink-0 items-center justify-center rounded-[8px] border border-[#e8e4dd] bg-[#ffffff] text-[#292827]">
                           <Mail className="size-5" aria-hidden="true" />
                         </div>
                         <div className="flex-1">
-                          <div className="text-[14px] font-[600] text-white">
+                          <div className="text-[16px] font-[460] text-[#292827]">
                             Waitlist confirmed
                           </div>
-                          <div className="mt-0.5 text-[13px] font-[460] text-white/60">
-                            You'll be one of the first to get access.
+                          <div className="mt-0.5 text-[14px] font-[460] text-[#73706d]">
+                            You&apos;ll be one of the first to get access.
                           </div>
                         </div>
-                        <div className="rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-[600] text-white/70">
+                        <div className="rounded-[4px] border border-[#e8e4dd] bg-[#ffffff] px-2.5 py-1 text-[12px] font-[540] text-[#292827]">
                           Pro Access
                         </div>
                       </div>
@@ -348,7 +335,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                       <div className="space-y-4">
                         <DialogPrimitive.Close asChild>
                           <Button
-                            className="h-12 w-full rounded-xl bg-gradient-to-r from-violet-400 to-purple-400 text-[15px] font-semibold text-[#160b2e] hover:opacity-90 sm:h-14"
+                            className="h-[44px] w-full rounded-[8px] bg-[#1b1938] text-[16px] font-[700] text-[#ffffff] hover:bg-[#0e0c1f]"
                             type="button"
                           >
                             Done
@@ -356,7 +343,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                         </DialogPrimitive.Close>
                         
                         <div className="text-center">
-                          <DialogPrimitive.Close className="inline-flex items-center gap-2 text-[14px] font-[500] text-white/60 transition-colors hover:text-white focus-visible:outline-none">
+                          <DialogPrimitive.Close className="inline-flex items-center gap-2 text-[14px] font-[460] text-[#73706d] transition-colors hover:text-[#292827] focus-visible:outline-none">
                             <ArrowLeft className="size-3.5" aria-hidden="true" />
                             Back to site
                           </DialogPrimitive.Close>
@@ -367,7 +354,6 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                 </div>
               )}
             </div>
-          </div>
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>
     </DialogPrimitive.Root>
