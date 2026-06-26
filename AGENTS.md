@@ -70,6 +70,14 @@ Keep `page.tsx` thin: compose feature UI from colocated modules and keep domain 
 
 Use the `@/*` alias for imports from `./src/*` when it improves clarity.
 
+## Design Source Of Truth
+
+`DESIGN.md` is the source of truth for product visual direction, design tokens, typography, colors, spacing, component treatments, responsive behavior, and brand-specific UI rules.
+
+Before creating or modifying user-facing UI, layouts, visual styling, Tailwind classes, shadcn component styling, marketing sections, forms, navigation, charts, or animations, Codex must read `DESIGN.md` and apply its relevant tokens and guidance. Do not invent new colors, fonts, spacing scales, radii, shadows, or visual patterns when `DESIGN.md` already defines them.
+
+If `DESIGN.md` conflicts with a project skill, `DESIGN.md` controls concrete visual values and brand rules; the skill controls its implementation concern.
+
 ## State Management
 
 Use TanStack Query for server state: fetching, caching, synchronization, mutations, invalidation, and remote data where the server is the source of truth.
@@ -113,13 +121,13 @@ Before the first edit in a code-writing task, scan the request and target files 
 - Use `prompt-master` when writing, improving, or adapting prompts for AI tools.
 - Use `karpathy-guidelines` for code changes not covered by a narrower trigger, large multi-file changes, refactors, or unclear scope.
 
-Common stacks are allowed when responsibilities differ: UI work usually needs `ui-ux-pro-max` for UX direction, `design-system` for tokens and values, and `tailwind-best-practices` for implementation; shadcn UI work may also need `shadcn-ui`; data-fetching features often need `tanstack-query` plus `error-handling`; new route handlers usually need `designing-apis` plus `error-handling`.
+Common stacks are allowed when responsibilities differ: UI work usually needs `ui-ux-pro-max` for UX direction, `DESIGN.md` for tokens and values, and `tailwind-best-practices` for implementation; shadcn UI work may also need `shadcn-ui`; data-fetching features often need `tanstack-query` plus `error-handling`; new route handlers usually need `designing-apis` plus `error-handling`.
 
 ## Skill Boundaries
 
 Let each skill decide only its own concern:
 
-- `design-system` decides what design tokens and visual values to use.
+- `DESIGN.md` decides what design tokens, brand rules, and visual values to use.
 - `ui-ux-pro-max` decides product-level UI/UX direction, page and component patterns, style selection, palette and font recommendations, accessibility, responsive behavior, interaction quality, animation, chart choices, and visual polish.
 - `tailwind-best-practices` decides how to implement styling with Tailwind.
 - `shadcn-ui` decides component-library usage.
@@ -133,7 +141,7 @@ Let each skill decide only its own concern:
 - `prompt-master` decides prompt quality.
 - `karpathy-guidelines` provides general implementation discipline and does not replace narrower skills.
 
-If skills conflict, follow the most specific skill for the decision at hand. For design versus implementation conflicts, `design-system` decides the token or value, and implementation skills adapt to it.
+If skills conflict, follow the most specific skill for the decision at hand. For design versus implementation conflicts, `DESIGN.md` decides the token or value, and implementation skills adapt to it.
 
 ## Subagents
 
