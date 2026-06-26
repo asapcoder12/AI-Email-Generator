@@ -4,6 +4,7 @@
 
 - Codex with GPT-5.5 was used as the primary coding agent for repository inspection, implementation, test setup, and verification.
 - Claude Code with Claude Opus 4.8 was used as the agentic review and planning tool for checking architecture, auth boundaries, and over-engineering risks.
+- Gemini 3.1 Pro (High) was used as the advanced UI/UX design agent for engineering complex interaction flows, refining visual hierarchy, and optimizing premium design tokens.
 
 ## Development Process
 
