@@ -64,27 +64,6 @@ export function AppSidebar({
         ))}
       </nav>
 
-      <section
-        aria-label="Account summary"
-        className="mt-10 rounded-xl border bg-background p-5 shadow-sm"
-      >
-        <div className="flex items-start gap-3">
-          <span className="flex size-10 items-center justify-center rounded-lg bg-secondary text-foreground">
-            <UserRound className="size-4" aria-hidden="true" />
-          </span>
-          <div className="min-w-0">
-            <p className="truncate text-sm font-semibold">{userEmail}</p>
-            <p className="mt-1 text-xs text-muted-foreground">Free workspace</p>
-          </div>
-        </div>
-
-        <div className="mt-5 border-t pt-4 text-sm">
-          <SummaryRow label="Plan" value="Free" valueKind="badge" />
-          <SummaryRow label="Saved drafts" value={savedDrafts.toString()} />
-          <SummaryRow label="Words generated" value={formattedWords} />
-        </div>
-      </section>
-
       <section className="mt-9 rounded-xl border border-accent/50 bg-accent/15 p-5">
         <span className="flex size-9 items-center justify-center rounded-full bg-accent/35 text-primary">
           <Sparkles className="size-4" aria-hidden="true" />
