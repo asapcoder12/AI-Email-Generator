@@ -40,9 +40,9 @@ function validateEmail(email: string): string | null {
 }
 
 const goals = [
-  { id: "speed", icon: Zap, title: "Personal speed", desc: "Generate polished drafts faster with higher quality." },
-  { id: "team", icon: Users, title: "Team collaboration", desc: "Share prompts, workflows, and a unified voice across the team." },
-  { id: "api", icon: Target, title: "Advanced usage", desc: "Scale with API access and custom integrations." },
+  { id: "Free", icon: Zap, title: "Free plan", desc: "Perfect for trying the generator and saving your first drafts." },
+  { id: "Pro", icon: Users, title: "Pro plan", desc: "For teams that want the premium journey next." },
+  { id: "Business", icon: Target, title: "Business plan", desc: "For larger teams preparing real model rollout." },
 ];
 
 const TOTAL_STEPS = 3;
@@ -54,19 +54,18 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
   const [step, setStep] = useState<Step>("email");
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState<string | null>(null);
-  const [selectedGoal, setSelectedGoal] = useState<string | null>(null);
+  const [selectedGoal, setSelectedGoal] = useState<string | null>(planName);
 
   const currentStepNumber = step === "email" ? 1 : step === "goals" ? 2 : 3;
 
   function handleOpenChange(newOpen: boolean) {
     setOpen(newOpen);
     if (!newOpen) {
-      // reset state after animation completes
       setTimeout(() => {
         setStep("email");
         setEmail("");
         setEmailError(null);
-        setSelectedGoal(null);
+        setSelectedGoal(planName);
       }, 300);
     }
   }
@@ -135,7 +134,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                         Get early access
                       </div>
                       <DialogPrimitive.Title className="text-[28px] font-[540] leading-[1.14] tracking-[-0.63px] text-[#292827]">
-                        Get your Pro invite
+                        Get your {planName} invite
                       </DialogPrimitive.Title>
                       <DialogPrimitive.Description className="mx-auto max-w-[340px] text-[16px] font-[460] leading-[1.5] text-[#73706d]">
                         We manually onboard teams to maintain the highest quality experience.
@@ -183,7 +182,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                           className="h-[44px] w-full rounded-[8px] bg-[#1b1938] text-[16px] font-[700] text-[#ffffff] hover:bg-[#0e0c1f]"
                           type="submit"
                         >
-                          Request Pro Access
+                          Request {planName} Access
                           <ArrowRight className="ml-2 size-4" aria-hidden="true" />
                         </Button>
 
@@ -213,10 +212,10 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                         Customize your experience
                       </div>
                       <DialogPrimitive.Title className="text-[28px] font-[540] leading-[1.14] tracking-[-0.63px] text-[#292827]">
-                        What should Pro help you with first?
+                        Which plan fits you best?
                       </DialogPrimitive.Title>
                       <DialogPrimitive.Description className="mx-auto max-w-[340px] text-[16px] font-[460] leading-[1.5] text-[#73706d]">
-                        We customize your onboarding so you get value faster.
+                        Confirm the plan you&apos;d like to join the waitlist for.
                       </DialogPrimitive.Description>
                     </div>
 
@@ -305,7 +304,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                         You&apos;re on the list
                       </DialogPrimitive.Title>
                       <DialogPrimitive.Description className="mx-auto max-w-[340px] space-y-4 text-[16px] font-[460] leading-[1.5] text-[#73706d]">
-                        <p>We&apos;ve reserved your spot for Pro.</p>
+                        <p>We&apos;ve reserved your spot for {selectedGoal || planName}.</p>
                         <p>
                           We&apos;ll email you at{" "}
                           <strong className="font-[700] text-[#292827]">{email}</strong>{" "}
@@ -328,7 +327,7 @@ export function UpgradeDialog({ ctaLabel, planName }: UpgradeDialogProps) {
                           </div>
                         </div>
                         <div className="rounded-[4px] border border-[#e8e4dd] bg-[#ffffff] px-2.5 py-1 text-[12px] font-[540] text-[#292827]">
-                          Pro Access
+                          {selectedGoal || planName} Access
                         </div>
                       </div>
 
