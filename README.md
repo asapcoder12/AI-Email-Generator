@@ -42,7 +42,7 @@ Create `.env.local` from the example:
 cp .env.example .env.local
 ```
 
-Fill in the required Supabase values described in [Environment Variables](#environment-variables). Do not commit local environment files with real project credentials.
+Fill in the required Supabase values described in [Environment Variables](#environment-variables). Next.js and the Playwright config both read local env files, so `.env.local` is recommended and `.env` also works. Do not commit local environment files with real project credentials.
 
 Apply the app database schema before testing authenticated generation. The migration file is:
 
@@ -62,7 +62,7 @@ Open `http://localhost:3000`.
 
 ## Environment Variables
 
-The application reads variables from `.env.local`, the deployment environment, Docker Compose, or CI. The minimum local setup for authenticated app flows is:
+The application reads variables from local env files, the deployment environment, Docker Compose, or CI. For local development, prefer `.env.local`; `.env` is also loaded. The minimum local setup for authenticated app flows is:
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=your-supabase-project-url
@@ -75,8 +75,8 @@ AI_PROVIDER=mock
 | `NEXT_PUBLIC_SUPABASE_URL` | Yes for auth, protected pages, and persistence | App, API route, Supabase clients, Docker, CI | Supabase project URL, for example `https://your-project.supabase.co`. Public by design, but environment-specific. |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Yes for auth, protected pages, and persistence | App, API route, Supabase clients, Docker, CI | Supabase publishable anon key. Do not use a service-role key in this client-facing variable. |
 | `AI_PROVIDER` | Optional | Email generator service, Docker, CI | Defaults to `mock`. The MVP currently supports only `mock`; any other value fails intentionally. |
-| `E2E_EMAIL` | Optional | `e2e/authenticated.spec.ts` | Email for the authenticated Playwright smoke test. If it is missing, that test is skipped. |
-| `E2E_PASSWORD` | Optional | `e2e/authenticated.spec.ts` | Password for the authenticated Playwright smoke test. If it is missing, that test is skipped. |
+| `E2E_EMAIL` | Optional | Playwright config, `e2e/authenticated.spec.ts` | Email for the authenticated Playwright smoke test. If it is missing, that test is skipped. |
+| `E2E_PASSWORD` | Optional | Playwright config, `e2e/authenticated.spec.ts` | Password for the authenticated Playwright smoke test. If it is missing, that test is skipped. |
 | `NEXT_TELEMETRY_DISABLED` | Optional | Local scripts, Docker build/runtime | Set to `1` to disable Next.js telemetry. The Dockerfile and E2E runner already disable it where they run. |
 | `CI` | Set by CI providers | Playwright config | Enables CI retries and the GitHub reporter in Playwright. Usually set automatically by GitHub Actions. |
 | `NODE_ENV` | Set by framework/runtime | Next.js, Docker runtime | The Docker image sets `production`. Do not set it manually for normal local development. |
@@ -100,7 +100,7 @@ If the Supabase variables are missing, public pages still render as a signed-out
 | `npm run test:e2e` | Start the E2E dev server, run Playwright with one worker, and stop the server. |
 | `npm run test:e2e:run` | Run Playwright directly against an already running app at `http://127.0.0.1:3000`. |
 
-The authenticated Playwright smoke test requires `E2E_EMAIL` and `E2E_PASSWORD`. Without them, the authenticated test is skipped and the public smoke tests still run.
+The authenticated Playwright smoke test requires `E2E_EMAIL` and `E2E_PASSWORD`. Put them in `.env.local`, `.env`, or the shell environment before running E2E tests. Without both values, the authenticated test is skipped and the public smoke tests still run.
 
 ## Docker
 
