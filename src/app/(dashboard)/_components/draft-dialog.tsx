@@ -114,8 +114,8 @@ export function DraftDialog({ item }: { item: EmailHistoryItem }) {
         </article>
       </DialogTrigger>
       <DialogContent className="sm:max-w-xl">
-        <DialogHeader className="flex-row items-start justify-between gap-4 space-y-0 border-b pb-4 pr-14">
-          <div className="min-w-0 space-y-1 pr-4">
+        <DialogHeader className="flex-row items-start justify-between gap-4 space-y-0 border-b pb-4">
+          <div className="min-w-0 space-y-1 pr-[140px]">
             <DialogTitle className="text-xl font-[540] leading-snug">
               {item.subject}
             </DialogTitle>
@@ -131,13 +131,12 @@ export function DraftDialog({ item }: { item: EmailHistoryItem }) {
           <Button
             aria-label="Copy generated email"
             onClick={copyEmail}
-            size="sm"
             type="button"
             variant="outline"
-            className="shrink-0 mt-0"
+            className="absolute right-[72px] top-5 h-11 bg-background shadow-[var(--shadow-elev-1)] hover:bg-secondary hover:text-primary"
           >
             <Copy className="size-4 mr-2" aria-hidden="true" />
-            {copyLabel}
+            <span className="font-[600]">{copyLabel}</span>
           </Button>
         </DialogHeader>
         <div className="py-2">
