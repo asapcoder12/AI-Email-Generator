@@ -106,7 +106,7 @@ export function SiteHeader({
                 </Link>
               </Button>
               <LogoutButton
-                className={cn(isDark && "text-primary-foreground hover:bg-primary-deep")}
+                className={cn(isDark && "text-primary-foreground hover:bg-accent/15")}
                 variant={isDark ? "ghost" : "outline"}
               />
             </>
@@ -117,7 +117,7 @@ export function SiteHeader({
                   asChild
                   className={cn(
                     "px-5",
-                    isDark && "text-on-dark-mute hover:bg-primary-deep hover:text-primary-foreground",
+                    isDark && "text-on-dark-mute hover:bg-accent/15 hover:text-primary-foreground",
                   )}
                   variant={isDark ? "ghost" : "outline"}
                 >
@@ -138,7 +138,7 @@ export function SiteHeader({
           <SheetTrigger asChild>
             <Button
               aria-label="Open navigation"
-              className={cn("ml-auto shrink-0 md:hidden", isDark && "text-primary-foreground hover:bg-primary-deep")}
+              className={cn("ml-auto shrink-0 md:hidden", isDark && "text-primary-foreground hover:bg-accent/15")}
               size="icon"
               variant="ghost"
             >

@@ -17,7 +17,7 @@ export function LandingPage({ isAuthenticated = false }: LandingPageProps) {
         <div className="relative overflow-hidden bg-primary">
           <Image
             alt=""
-            className="object-cover object-[63%_top]"
+            className="object-contain object-right"
             fill
             priority
             sizes="100vw"

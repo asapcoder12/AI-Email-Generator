@@ -66,7 +66,7 @@ export function MarketingHeader({
                 </Link>
               </Button>
               <LogoutButton
-                className="text-on-dark-mute hover:bg-primary-deep hover:text-primary-foreground"
+                className="text-on-dark-mute hover:bg-accent/15 hover:text-primary-foreground"
                 variant="ghost"
               />
             </>
@@ -93,7 +93,7 @@ export function MarketingHeader({
           <SheetTrigger asChild>
             <Button
               aria-label="Open navigation"
-              className="text-primary-foreground hover:bg-primary-deep md:hidden"
+              className="text-primary-foreground hover:bg-accent/15 md:hidden"
               size="icon"
               variant="ghost"
             >
