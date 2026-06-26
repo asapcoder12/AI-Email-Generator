@@ -45,7 +45,7 @@ export function BenefitsSection() {
           <p className="text-xs font-[540] uppercase text-primary">
             Built for speed.
           </p>
-          <h2 className="mt-4 text-[28px] font-[540] leading-[1.14] tracking-normal text-foreground sm:text-[48px] sm:font-[460] sm:leading-[0.96]">
+          <h2 className="mt-4 text-[28px] font-[540] leading-[1.14] tracking-normal text-foreground md:text-[48px] md:font-[460] md:leading-[0.96]">
             Built for speed without locking the architecture
           </h2>
         </div>

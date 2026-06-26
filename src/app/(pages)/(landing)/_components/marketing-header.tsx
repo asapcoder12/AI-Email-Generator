@@ -31,7 +31,7 @@ export function MarketingHeader({
     <header className="relative z-30 text-primary-foreground">
       <nav className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10">
         <Link
-          className="flex min-h-11 items-center gap-3 text-base font-semibold text-primary-foreground"
+          className="flex min-h-11 items-center gap-3 text-base font-[540] text-primary-foreground"
           href="/"
         >
           <span className="flex size-8 items-center justify-center rounded-lg bg-accent text-primary">
@@ -43,7 +43,7 @@ export function MarketingHeader({
         <div className="hidden items-center gap-10 md:flex">
           {navLinks.map((link) => (
             <Link
-              className="text-sm font-medium text-on-dark-mute transition-colors duration-200 hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="text-base font-[460] text-on-dark-mute transition-colors duration-200 hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               href={link.href}
               key={link.href}
             >
@@ -73,7 +73,7 @@ export function MarketingHeader({
           ) : (
             <>
               <Link
-                className="text-sm font-medium text-on-dark-mute transition-colors duration-200 hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                className="text-base font-[460] text-on-dark-mute transition-colors duration-200 hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 href="/login"
               >
                 Sign in
@@ -111,7 +111,7 @@ export function MarketingHeader({
               {navLinks.map((link) => (
                 <SheetClose asChild key={link.href}>
                   <Link
-                    className="rounded-md px-2 py-3 text-base font-semibold hover:bg-secondary"
+                    className="rounded-md px-2 py-3 text-base font-[460] hover:bg-secondary"
                     href={link.href}
                   >
                     {link.label}

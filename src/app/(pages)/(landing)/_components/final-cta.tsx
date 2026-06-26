@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 type FinalCTAProps = {
@@ -23,22 +24,20 @@ export function FinalCTA({ isAuthenticated = false }: FinalCTAProps) {
           src="/images/cta-background.png"
         />
         <div className="relative z-10 max-w-lg">
-          <p className="text-sm font-semibold uppercase text-on-dark-mute">
+          <p className="text-xs font-[540] uppercase text-on-dark-mute">
             Ready to write faster?
           </p>
-          <h2 className="mt-4 text-[clamp(28px,4vw,48px)] font-[540] leading-[0.96] tracking-[-0.02em]">
+          <h2 className="mt-4 text-[28px] font-[540] leading-[1.14] tracking-normal">
             Create your next email in seconds
           </h2>
           <p className="mt-5 text-lg font-[540] leading-[1.5] text-on-dark-mute">
             Generate polished outreach, sales, and follow-up emails with AI.
           </p>
           <div className="mt-8">
-            <Button asChild className="px-7" size="lg" variant="hero">
+            <Button asChild variant="teal">
               <Link href={ctaHref}>
                 {ctaLabel}
-                <span aria-hidden="true" className="ml-1">
-                  &rarr;
-                </span>
+                <ArrowRight className="size-4" aria-hidden="true" />
               </Link>
             </Button>
           </div>

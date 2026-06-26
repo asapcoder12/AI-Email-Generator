@@ -18,12 +18,12 @@ export function HeroSection({ isAuthenticated = false }: HeroSectionProps) {
       className="relative z-10 mx-auto grid w-full max-w-7xl gap-9 px-5 pb-14 pt-10 sm:px-8 sm:pb-18 sm:pt-14 lg:min-h-[690px] lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)] lg:items-start lg:gap-0 lg:px-10 lg:pb-10 lg:pt-16"
     >
       <div className="max-w-[540px]">
-        <p className="flex items-center gap-3 text-sm font-semibold text-accent">
+        <p className="flex items-center gap-3 text-xs font-[540] uppercase text-accent">
           <Sparkles className="size-5" aria-hidden="true" />
           Write better. Send faster.
         </p>
         <h1
-          className="mt-6 text-[36px] font-[540] leading-[0.96] tracking-normal text-primary-foreground sm:text-5xl lg:text-[64px]"
+          className="mt-6 text-[36px] font-[540] leading-[0.96] tracking-normal text-primary-foreground md:text-5xl lg:text-[64px]"
           id="landing-hero-title"
         >
           AI email generator for campaigns that need to move today

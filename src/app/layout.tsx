@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AppProviders } from "./providers";
+import "@fontsource-variable/inter";
 import "./globals.css";
 
 export const metadata: Metadata = {

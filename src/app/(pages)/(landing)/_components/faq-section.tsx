@@ -61,7 +61,7 @@ export function FAQSection() {
                 key={faq.question}
                 value={`faq-${index}`}
               >
-                <AccordionTrigger className="min-h-[52px] py-3 text-sm font-semibold text-foreground hover:text-primary hover:no-underline data-[state=open]:text-primary">
+                <AccordionTrigger className="min-h-[52px] py-3 text-sm font-[600] text-foreground hover:text-primary hover:no-underline data-[state=open]:text-primary">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-sm leading-6">
@@ -93,7 +93,7 @@ export function FAQSection() {
                 <dd className="text-[28px] font-[540] leading-[1.14] text-foreground">
                   {stat.value}
                   {stat.suffix ? (
-                    <span className="text-base font-medium text-muted-foreground">
+                    <span className="text-base font-[460] text-muted-foreground">
                       {stat.suffix}
                     </span>
                   ) : null}

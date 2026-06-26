@@ -111,7 +111,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: "Inter Variable", "Super Sans VF", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-variation-settings: "wght" 460;
+  font-weight: 460;
   line-height: 1.5;
 }
 
@@ -459,12 +459,7 @@ select {
     gap: 16px;
   }
 
-  /* 5. Hero h1: fluid scaling to keep CTA above the fold */
-  #landing-hero-title {
-    font-size: clamp(28px, 8vw, 52px);
-  }
-
-  /* 6. Footer link columns: 2-column grid with brand block as its own row */
+  /* 5. Footer link columns: 2-column grid with brand block as its own row */
   footer > div > div:first-child {
     grid-template-columns: 1fr;
   }
@@ -473,7 +468,7 @@ select {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* 7. Final CTA button: full-width on mobile */
+  /* 6. Final CTA button: full-width on mobile */
   section:has(> .relative > .relative > div > [href="/signup"]) [href="/signup"],
   section:has(> .relative > .relative > div > [href="/dashboard"]) [href="/dashboard"] {
     width: 100%;
