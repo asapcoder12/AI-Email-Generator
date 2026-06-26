@@ -1,0 +1,496 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #292827;
+  --ink-mute: #73706d;
+  --ink-faint: #9a9794;
+  --canvas: #ffffff;
+  --canvas-soft: #fafaf8;
+  --primary-deep: #0e0c1f;
+  --surface-violet-soft: #c9b4fa;
+  --surface-teal-deep: #0e3030;
+  --surface-teal-mid: #155555;
+  --hairline: #e8e4dd;
+  --hairline-dark: #3f3a52;
+  --on-primary: #ffffff;
+  --on-dark-mute: #bcbac9;
+  --on-dark-faint: #5a5772;
+  --background: #ffffff;
+  --foreground: #292827;
+  --card: #ffffff;
+  --card-foreground: #292827;
+  --popover: #ffffff;
+  --popover-foreground: #292827;
+  --primary: #1b1938;
+  --primary-foreground: #ffffff;
+  --secondary: #fafaf8;
+  --secondary-foreground: #292827;
+  --muted: #fafaf8;
+  --muted-foreground: #73706d;
+  --accent: #c9b4fa;
+  --accent-foreground: #1b1938;
+  --destructive: #b42318;
+  --destructive-foreground: #ffffff;
+  --border: #e8e4dd;
+  --input: #e8e4dd;
+  --ring: #c9b4fa;
+  --teal: #0e3030;
+  --teal-foreground: #ffffff;
+  --primary-hover: #0e0c1f;
+  --secondary-hover: #f1eee7;
+  --shadow-elev-1: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-elev-2: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-ink-mute: var(--ink-mute);
+  --color-ink-faint: var(--ink-faint);
+  --color-canvas: var(--canvas);
+  --color-canvas-soft: var(--canvas-soft);
+  --color-primary-deep: var(--primary-deep);
+  --color-violet-soft: var(--surface-violet-soft);
+  --color-teal: var(--teal);
+  --color-teal-foreground: var(--teal-foreground);
+  --color-teal-mid: var(--surface-teal-mid);
+  --color-hairline: var(--hairline);
+  --color-hairline-dark: var(--hairline-dark);
+  --color-on-dark-mute: var(--on-dark-mute);
+  --color-on-dark-faint: var(--on-dark-faint);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary-hover: var(--secondary-hover);
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --font-sans: "Inter Variable", "Super Sans VF", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  /* DESIGN.md font weights */
+  --font-weight-display: 540;
+  --font-weight-body: 460;
+  --font-weight-button: 700;
+  --font-weight-button-cap: 600;
+
+  --animate-fade-up: fade-up 280ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-enter: fade-up 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-scale-in: scale-in 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-scale-out: scale-out 180ms ease-in both;
+  --animate-overlay-in: overlay-in 180ms ease-out both;
+  --animate-overlay-out: overlay-out 150ms ease-in both;
+  --animate-slide-in-right: slide-in-right 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-slide-out-right: slide-out-right 180ms ease-in both;
+  --animate-accordion-down: accordion-down 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-accordion-up: accordion-up 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Inter Variable", "Super Sans VF", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: var(--font-weight-body);
+  line-height: 1.5;
+}
+
+.dashboard-shell {
+  min-height: 100dvh;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.dashboard-sidebar {
+  display: none;
+  width: 326px;
+  flex-shrink: 0;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  background: var(--background);
+  padding: 24px 16px 32px;
+}
+
+.dashboard-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.dashboard-mobile-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+}
+
+.dashboard-mobile-nav {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+  padding: 0 12px 12px;
+}
+
+.dashboard-main {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.dashboard-nav-link {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 20px;
+  border-radius: var(--radius-md);
+  color: var(--foreground);
+  font-size: 16px;
+  font-weight: var(--font-weight-body);
+  text-decoration: none;
+  transition: background-color 200ms ease-out, color 200ms ease-out;
+}
+
+.dashboard-nav-link:hover {
+  background: var(--secondary);
+}
+
+.dashboard-nav-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.dashboard-nav-link--desktop {
+  min-height: 51px;
+  padding: 14px 16px;
+}
+
+.dashboard-nav-link--compact {
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px;
+  font-size: 12px;
+}
+
+.dashboard-nav-link--active {
+  background: color-mix(in srgb, var(--accent) 30%, var(--secondary));
+  color: var(--primary);
+}
+
+.dashboard-nav-link--active:hover {
+  background: color-mix(in srgb, var(--accent) 38%, var(--secondary));
+}
+
+.dashboard-primary-action {
+  background: color-mix(in srgb, var(--primary) 74%, var(--accent));
+  color: var(--primary-foreground);
+}
+
+.dashboard-primary-action:not(:disabled):hover {
+  background: var(--primary-hover);
+}
+
+@media (min-width: 640px) {
+  .dashboard-main {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dashboard-shell {
+    display: flex;
+  }
+
+  .dashboard-sidebar {
+    display: flex;
+    min-height: 100dvh;
+  }
+
+  .dashboard-mobile-header {
+    display: none;
+  }
+
+  .dashboard-main {
+    max-width: none;
+    margin: 0;
+    padding: 56px 32px 48px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .dashboard-main {
+    padding: 86px 76px 48px 56px;
+  }
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  outline-color: var(--ring);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.hero-surface {
+  background:
+    radial-gradient(circle at 75% 20%,
+      color-mix(in srgb, var(--accent) 55%, transparent),
+      transparent 28%),
+    radial-gradient(circle at 20% 10%,
+      color-mix(in srgb, var(--primary-foreground) 14%, transparent),
+      transparent 30%),
+    linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+}
+
+.landing-hero-surface {
+  background-image: url("/images/hero-background.png"),
+    radial-gradient(circle at 86% 28%,
+      color-mix(in srgb, var(--accent) 45%, transparent),
+      transparent 24%),
+    radial-gradient(circle at 72% 70%,
+      color-mix(in srgb, var(--accent) 18%, transparent),
+      transparent 25%),
+    radial-gradient(circle at 8% 10%,
+      color-mix(in srgb, var(--primary-foreground) 8%, transparent),
+      transparent 28%),
+    linear-gradient(115deg, var(--primary-hover) 0%, var(--primary) 48%, color-mix(in srgb, var(--primary) 82%, var(--accent)) 100%);
+  background-size: cover, auto, auto, auto, auto;
+  background-position: right center, center, center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+}
+
+.landing-hero-copy-overlay {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--primary-deep) 94%, transparent) 0%,
+      color-mix(in srgb, var(--primary-deep) 86%, transparent) 58%,
+      color-mix(in srgb, var(--primary-deep) 72%, transparent) 100%
+    ),
+    linear-gradient(
+      90deg,
+      var(--primary-deep) 0%,
+      color-mix(in srgb, var(--primary-deep) 94%, transparent) 64%,
+      color-mix(in srgb, var(--primary-deep) 46%, transparent) 100%
+    );
+}
+
+@media (min-width: 1024px) {
+  .landing-hero-copy-overlay {
+    background: linear-gradient(
+      90deg,
+      var(--primary-deep) 0%,
+      color-mix(in srgb, var(--primary-deep) 96%, transparent) 24%,
+      color-mix(in srgb, var(--primary-deep) 72%, transparent) 45%,
+      color-mix(in srgb, var(--primary-deep) 12%, transparent) 70%,
+      transparent 100%
+    );
+  }
+}
+
+.animate-enter-delay-1 {
+  animation-delay: 80ms;
+}
+
+.animate-enter-delay-2 {
+  animation-delay: 140ms;
+}
+
+.animate-enter-delay-3 {
+  animation-delay: 200ms;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes overlay-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out-right {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+/* Mobile responsive fixes (< 768px) */
+@media (max-width: 767px) {
+
+  /* 1. "Built for speed" heading: ensure it sits above decorative elements */
+  #benefits > div > div:first-child {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 2. Stats block (1248+, 82%, 4.9/5): keep 3-column row on mobile */
+  #faq dl {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #faq dl > div {
+    min-width: 0;
+  }
+
+  /* 3. Feature cards: single column stack */
+  #benefits .grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 4. Trust logos: neat 3x2 grid instead of chaotic wrapping */
+  section[aria-label="Trusted by teams"] ul {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    gap: 16px;
+  }
+
+  /* 5. Footer link columns: 2-column grid with brand block as its own row */
+  footer > div > div:first-child {
+    grid-template-columns: 1fr;
+  }
+
+  footer > div > div:first-child > div:last-child {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 6. Final CTA button: full-width on mobile */
+  section:has(> .relative > .relative > div > [href="/signup"]) [href="/signup"],
+  section:has(> .relative > .relative > div > [href="/dashboard"]) [href="/dashboard"] {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}

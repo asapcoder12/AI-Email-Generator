@@ -1,0 +1,131 @@
+import { MailCheck } from "lucide-react";
+import Image from "next/image";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Card } from "@/components/ui/card";
+
+const faqs = [
+  {
+    question: "Can a real AI model be connected later?",
+    answer:
+      "Yes. The generator is built around a provider boundary, so a production AI provider can be connected without replacing the product flow.",
+  },
+  {
+    question: "Is authentication real?",
+    answer:
+      "Yes. Signup, login, protected routes, session handling, and sign out stay connected to Supabase Auth.",
+  },
+  {
+    question: "Can this be used on mobile?",
+    answer:
+      "Yes. The marketing pages, pricing flow, authentication screens, dashboard, and profile are designed to work across desktop, tablet, and mobile.",
+  },
+  {
+    question: "Is my data secure?",
+    answer:
+      "The app keeps authenticated areas protected and uses server-side boundaries for generation requests. Production deployments should still review environment settings and access policies.",
+  },
+];
+
+const stats = [
+  { value: "1,248+", label: "Drafts created" },
+  { value: "82%", label: "Time saved weekly" },
+  { value: "4.9", suffix: "/5", label: "Average rating" },
+];
+
+export function FAQSection() {
+  return (
+    <section
+      className="bg-background px-5 pb-10 pt-10 sm:px-8 sm:pb-12 lg:px-10"
+      id="faq"
+    >
+      <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
+        <div>
+          <p className="text-xs font-[540] uppercase text-primary">FAQ</p>
+          <h2 className="mt-4 max-w-[420px] text-[28px] font-[540] leading-[1.14] tracking-normal text-foreground">
+            Questions before your first generated email
+          </h2>
+
+          <Accordion
+            className="mt-7 flex flex-col gap-3"
+            collapsible
+            type="single"
+          >
+            {faqs.map((faq, index) => (
+              <AccordionItem
+                className="rounded-lg border border-border bg-background px-4 shadow-[var(--shadow-elev-1)]"
+                key={faq.question}
+                value={`faq-${index}`}
+              >
+                <AccordionTrigger className="min-h-[52px] py-3 text-sm font-[600] text-foreground hover:text-primary hover:no-underline data-[state=open]:text-primary">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-sm leading-6">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+
+        <Card className="rounded-lg border-border bg-card p-6 sm:p-7">
+          <div className="grid gap-5 border-b border-border pb-6 sm:grid-cols-[56px_minmax(0,1fr)]">
+            <span className="flex size-14 items-center justify-center rounded-lg bg-accent text-primary">
+              <MailCheck className="size-6" aria-hidden="true" />
+            </span>
+            <div>
+              <h3 className="text-[22px] font-[460] leading-[1.1] text-foreground">
+                Teams ship more, faster
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                Join teams already saving hours every week.
+              </p>
+            </div>
+          </div>
+
+          <dl className="grid gap-5 border-b border-border py-6 sm:grid-cols-3">
+            {stats.map((stat) => (
+              <div key={stat.label}>
+                <dd className="text-[28px] font-[540] leading-[1.14] text-foreground">
+                  {stat.value}
+                  {stat.suffix ? (
+                    <span className="text-base font-[460] text-muted-foreground">
+                      {stat.suffix}
+                    </span>
+                  ) : null}
+                </dd>
+                <dt className="mt-2 text-sm text-muted-foreground">{stat.label}</dt>
+              </div>
+            ))}
+          </dl>
+
+          <div className="grid gap-5 pt-6 sm:grid-cols-[56px_minmax(0,1fr)]">
+            <div className="relative size-14 overflow-hidden rounded-full ring-1 ring-border">
+              <Image
+                alt="Jordan Lee"
+                className="object-cover"
+                fill
+                loading="eager"
+                sizes="56px"
+                src="/images/avatar.png"
+              />
+            </div>
+            <figure>
+              <blockquote className="text-sm leading-6 text-foreground">
+                &quot;It&apos;s like having a first draft on demand. Our team
+                moves faster and writes better.&quot;
+              </blockquote>
+              <figcaption className="mt-3 text-sm text-muted-foreground">
+                Jordan Lee, Growth Marketing Lead
+              </figcaption>
+            </figure>
+          </div>
+        </Card>
+      </div>
+    </section>
+  );
+}
