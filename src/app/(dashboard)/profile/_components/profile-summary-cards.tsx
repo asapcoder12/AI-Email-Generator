@@ -27,10 +27,10 @@ function SummaryCard({
       <span className="flex size-16 items-center justify-center rounded-lg bg-accent text-primary">
         <Icon className="size-8" aria-hidden="true" />
       </span>
-      <p className="mt-7 text-base font-[540] leading-6 text-muted-foreground">
+      <p className="mt-7 text-base leading-6 text-muted-foreground">
         {label}
       </p>
-      <p className="mt-3 break-words text-[22px] font-[460] leading-[1.1] text-foreground">
+      <p className="mt-3 break-words text-[22px] font-[460] leading-[1.1] tracking-[-0.315px] text-foreground">
         {value}
       </p>
     </div>

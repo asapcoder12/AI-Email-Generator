@@ -10,7 +10,7 @@ export function SecurityNote() {
             <Lock className="size-5" aria-hidden="true" />
           </span>
           <div className="min-w-0">
-            <h2 className="text-base font-bold leading-5 text-foreground">
+            <h2 className="text-[20px] font-[460] leading-[1.2] tracking-[-0.4px] text-foreground">
               Your data is secure
             </h2>
             <p className="mt-1 text-base leading-6 text-muted-foreground">

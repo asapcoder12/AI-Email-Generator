@@ -11,10 +11,10 @@ export function ProfileHeader() {
         >
           Profile
         </Badge>
-        <h1 className="mt-6 text-[36px] font-[540] leading-[0.96] text-foreground sm:text-[48px] sm:font-[460]">
+        <h1 className="mt-6 text-[36px] font-[540] leading-[0.96] tracking-[-0.99px] text-foreground sm:text-[48px] sm:font-[460] sm:tracking-[-1.32px]">
           Account profile
         </h1>
-        <p className="mt-4 max-w-2xl text-base leading-6 text-muted-foreground sm:text-lg">
+        <p className="mt-4 max-w-2xl text-base leading-6 text-muted-foreground sm:text-lg sm:font-[540] sm:tracking-[-0.135px]">
           View and manage your account details.
         </p>
       </div>
